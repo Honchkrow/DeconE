@@ -36,10 +36,10 @@ vignettes/*.pdf
 *.knit.md
 
 # R Environment Variables
-.Renviron
+*.Renviron
 
 # Rstudio
-.Rproj
+*.Rproj
 
 # Mac
-.DS_Store
+*.DS_Store
