@@ -40,7 +40,7 @@ vignettes/*.pdf
 
 # Rstudio
 *.Rproj
-*.Rbuildignore
+.Rbuildignore
 
 # Mac
 *.DS_Store
