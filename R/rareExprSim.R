@@ -1,16 +1,21 @@
-#' @title Generate in silico mixture expression matrix
+#' @title Generate in silico expression dataset with rare component.
 #'
 #' @description Generate in silico mixture expression matrix based on the
-#' internal RNA-seq database. The internal RNA-seq database is collected from
-#' multiple studies. All the samples are passed the quality filter. This
-#' function is different from \code{\link{pseudoExpr}}. Counts in
-#' \code{\link{pseudoExpr}} is randomly generated from uniform distribution.
-#' This function use the real cell type specific expression data to generate
-#' mixture data. We provide two types of simulation called "coarse" and "fine".
-#' This idea is from DREAM Challenge Tumor Deconvolution problem.
+#' internal RNA-seq database. This function is different from the function
+#' \code{\link{simuRNAseq}}. \code{\link{simuRNAseq}} generates all the proportion
+#' randomly, while this function takes one cell type as rare component and all Other
+#' cell type proportion will be set randomly from the uniform distribution.
+#' The internal RNA-seq database is collected from multiple studies.
+#' All the samples are passed the quality filter. We provide two types of
+#' simulation called "coarse" and "fine". This idea is from DREAM Challenge Tumor
+#' Deconvolution problem.
 #' \url{https://www.synapse.org/#!Synapse:syn15589870/wiki/}.
 #'
-#' @param n_sample Sample number to be generated, default: 50.
+#' @param p_rare A vector of proportions.
+#' Default: c(0.001, 0.003, 0.005, 0.008, 0.01, 0.03, 0.05)
+#' Note: Every cell type will be treated as rare component.
+#' For example, if 8 cell types need to be tested, this function will generate
+#' 7 * 8 = 56 samples. 7 mean 7 rare proportions and 8 means 8 cell types.
 #' @param p Proportion of sample in train set, default: 0.6.
 #' @param type "coarse" or "fine".
 #' "coarse" means the simulation will be performed in a coarse level.
@@ -38,18 +43,18 @@
 #'
 #' @export
 #'
-simuRNAseq <- function(n_sample = 50,
-                       p = 0.6,
-                       type = "coarse",
-                       transform = "TPM",
-                       seed = 20202020,
-                       outputPath = NULL,
-                       mix_name = "coarse_gene_expr.csv",
-                       ref_name = "coarse_ref.csv",
-                       prop_name = "coarse_prop.csv",
-                       refVar_name = NULL,
-                       train_name = NULL,
-                       test_name = NULL) {
+rareExprSim <- function(p_rare = c(0.001, 0.003, 0.005, 0.008, 0.01, 0.03, 0.05),
+                        p = 0.6,
+                        type = "coarse",
+                        transform = "TPM",
+                        seed = 20202020,
+                        outputPath = NULL,
+                        mix_name = "coarse_gene_expr.csv",
+                        ref_name = "coarse_ref.csv",
+                        prop_name = "coarse_prop.csv",
+                        refVar_name = NULL,
+                        train_name = NULL,
+                        test_name = NULL) {
 
     set.seed(seed = seed)
 
@@ -82,7 +87,7 @@ simuRNAseq <- function(n_sample = 50,
 
     if (type == "coarse") {
         this.celltypes <- c("B.cells", "CD4.T.cells", "CD8.T.cells", "endothelial.cells",
-                              "macrophages", "monocytes","neutrophils", "NK.cells")
+                            "macrophages", "monocytes","neutrophils", "NK.cells")
 
     } else if (type == "fine") {
         this.celltypes <- c("memory.B.cells", "naive.B.cells", "memory.CD4.T.cells", "naive.CD4.T.cells",
@@ -149,9 +154,27 @@ simuRNAseq <- function(n_sample = 50,
 
 
     writeLines("Creating simulated mixture samples......")
-    prop <- matrix(data = sample(x = 1000, size = n_sample * length(this.celltypes), replace = TRUE),
+
+    n_sample <- length(p_rare) * length(this.celltypes)
+    mess <- paste("There are",
+                  length(this.celltypes),
+                  "cell types will be tested, and each cell type will generate",
+                  length(p_rare), "sample......")
+    writeLines(mess)
+
+    # generate proportions
+    prop <- matrix(data = sample(x = 5000, size = n_sample * length(this.celltypes), replace = TRUE),
                    nrow = length(this.celltypes), ncol = n_sample)
-    prop <- apply(X = prop, MARGIN = 2, FUN = v_norm)
+    for (ii in seq(length(this.celltypes))) {
+        for (jj in seq(length(p_rare))) {
+            idx_column <- jj + (ii - 1) * length(p_rare)
+            this_sample <- prop[, idx_column]
+            other_p <- this_sample[-ii]
+            other_p <- (other_p / sum(other_p)) * (1 - p_rare[jj])
+            prop[, idx_column] <- append(x = other_p, values = p_rare[jj], (ii - 1))
+        }
+    }
+
     colnames(prop) <- paste("S", seq(n_sample), sep = "")
     rownames(prop) <- colnames(thisref.test)
     this.mix <- thisref.test %*% prop
@@ -167,9 +190,3 @@ simuRNAseq <- function(n_sample = 50,
               row.names = T)
 
 }
-
-
-
-
-
-

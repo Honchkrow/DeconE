@@ -30,3 +30,14 @@ pseudoExpr <- function(n_sample = 50, n_gene = 1000, n_ct = 10) {
 
     return(list(mix = mix, ref = ref, prop = prop))
 }
+
+
+
+
+
+
+
+
+
+
+

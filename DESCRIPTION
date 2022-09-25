@@ -21,7 +21,13 @@ Imports:
     tibble,
     data.table,
     tools,
-    magrittr
+    magrittr,
+    ggplot2,
+    pheatmap,
+    reshape2,
+    grDevices,
+    forcats,
+    stringr
 
 
 
