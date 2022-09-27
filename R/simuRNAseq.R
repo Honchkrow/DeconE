@@ -24,12 +24,11 @@
 #' @param seed random seed.
 #' @param outputPath output file save path.
 #' @param mix_name mixture output file name.
-#' @param ref_name reference output file name in csv.
-#' @param prop_name simulated proportion file name in csv.
-#' @param refVar_name reference variance file name in csv.
-#' @param train_name file name for all data in train set in csv.
+#' @param ref_name reference output file name in csv or csv.gz.
+#' @param prop_name simulated proportion file name in csv or csv.gz.
+#' @param refVar_name reference variance file name in csv or csv.gz.
+#' @param train_name file name for all data in train set in csv or csv.gz.
 #' This data can be used for differential gene analysis.
-#' @param test_name file name for all data in test set in csv.
 #'
 #' @return All the information will be written in the output path.
 #'
@@ -48,8 +47,7 @@ simuRNAseq <- function(n_sample = 50,
                        ref_name = "coarse_ref.csv",
                        prop_name = "coarse_prop.csv",
                        refVar_name = NULL,
-                       train_name = NULL,
-                       test_name = NULL) {
+                       train_name = NULL) {
 
     set.seed(seed = seed)
 
@@ -114,15 +112,6 @@ simuRNAseq <- function(n_sample = 50,
             subset(subset = TRUE, select = this.list[["train"]])
         write.csv(x = this.train_counts,
                   file = file.path(outputPath, train_name),
-                  row.names = T)
-    }
-
-    if (!is.null(test_name)) {
-        writeLines("Output all samples in test set......")
-        this.test_counts <- data_counts %>%
-            subset(subset = TRUE, select = this.list[["test"]])
-        write.csv(x = this.test_counts,
-                  file = file.path(outputPath, test_name),
                   row.names = T)
     }
 
