@@ -24,10 +24,10 @@
 #'
 #' @export
 #'
-addNoiseExpr <- function(exprFile,
-                         outputPath = NULL,
-                         prefix = NULL,
-                         Pt = seq(0.1, 1, 0.1)) {
+addNoise <- function(exprFile,
+                     outputPath = NULL,
+                     prefix = NULL,
+                     Pt = seq(0.1, 1, 0.1)) {
     if (is.null(prefix)) {
         prefix <- file_path_sans_ext(basename(exprFile))
         mess <- paste("The prefix will be", prefix, sep = " ")

@@ -29,12 +29,13 @@
 #' @param ref_name reference output file name in csv.
 #' @param prop_name simulated proportion file name in csv, unknown component
 #' will be removed.
+#' @param ref_total_name simulated reference file name in csv, unknown component
+#' is contained.
 #' @param prop_total_name simulated proportion file name in csv, unknown component
 #' is contained.
 #' @param refVar_name reference variance file name in csv.
 #' @param train_name file name for all data in train set in csv.
 #' This data can be used for differential gene analysis.
-#' @param test_name file name for all data in test set in csv.
 #'
 #' @return All the information will be written in the output path.
 #'
@@ -43,21 +44,20 @@
 #'
 #' @export
 #'
-rareExprSim <- function(unknown = NULL,
-                        n_sample = 50,
-                        p = 0.6,
-                        type = "coarse",
-                        transform = "TPM",
-                        seed = 20202020,
-                        outputPath = NULL,
-                        mix_name = "coarse_gene_expr.csv",
-                        ref_name = "coarse_ref.csv",
-                        prop_name = "coarse_prop.csv",
-                        ref_total_name = "coarse_ref_total.csv",
-                        prop_total_name = "coarse_prop_total.csv",
-                        refVar_name = NULL,
-                        train_name = NULL,
-                        test_name = NULL) {
+unExprSim <- function(unknown = NULL,
+                      n_sample = 50,
+                      p = 0.6,
+                      type = "coarse",
+                      transform = "TPM",
+                      seed = 20202020,
+                      outputPath = NULL,
+                      mix_name = "coarse_gene_expr.csv",
+                      ref_name = "coarse_ref.csv",
+                      prop_name = "coarse_prop.csv",
+                      ref_total_name = NULL,
+                      prop_total_name = NULL,
+                      refVar_name = NULL,
+                      train_name = NULL) {
 
     set.seed(seed = seed)
 
@@ -125,14 +125,6 @@ rareExprSim <- function(unknown = NULL,
                   row.names = T)
     }
 
-    if (!is.null(test_name)) {
-        writeLines("Output all samples in test set......")
-        this.test_counts <- data_counts %>%
-            subset(subset = TRUE, select = this.list[["test"]])
-        write.csv(x = this.test_counts,
-                  file = file.path(outputPath, test_name),
-                  row.names = T)
-    }
 
     writeLines("Generating train reference data......")
     this.train <- refGenerator(df = this.train_matrix,
@@ -179,14 +171,20 @@ rareExprSim <- function(unknown = NULL,
     prop_unknown <- prop[-which(rownames(prop) %in% c(unknown)), ]
 
 
-    write.csv(x = as.data.frame(thisref.train),
-              file = file.path(outputPath, ref_total_name),
-              row.names = T)
+    if (!is.null(ref_total_name)) {
+        write.csv(x = as.data.frame(thisref.train),
+                  file = file.path(outputPath, ref_total_name),
+                  row.names = T)
+    }
+
+    if (!is.null(prop_total_name)) {
+        write.csv(x = prop,
+                  file = file.path(outputPath, prop_total_name),
+                  row.names = T)
+    }
+
     write.csv(x = as.data.frame(thisref.train_unknown),
               file = file.path(outputPath, ref_name),
-              row.names = T)
-    write.csv(x = prop,
-              file = file.path(outputPath, prop_total_name),
               row.names = T)
     write.csv(x = prop_unknown,
               file = file.path(outputPath, prop_name),

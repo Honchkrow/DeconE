@@ -37,17 +37,17 @@
 #'
 #' @export
 #'
-simuRNAseq <- function(n_sample = 50,
-                       p = 2 / 3,
-                       type = "coarse",
-                       transform = "TPM",
-                       seed = 20202020,
-                       outputPath = NULL,
-                       mix_name = "coarse_gene_expr.csv",
-                       ref_name = "coarse_ref.csv",
-                       prop_name = "coarse_prop.csv",
-                       refVar_name = NULL,
-                       train_name = NULL) {
+exprSim <- function(n_sample = 50,
+                    p = 2 / 3,
+                    type = "coarse",
+                    transform = "TPM",
+                    seed = 20202020,
+                    outputPath = NULL,
+                    mix_name = "coarse_gene_expr.csv",
+                    ref_name = "coarse_ref.csv",
+                    prop_name = "coarse_prop.csv",
+                    refVar_name = NULL,
+                    train_name = NULL) {
 
     set.seed(seed = seed)
 
@@ -80,7 +80,7 @@ simuRNAseq <- function(n_sample = 50,
 
     if (type == "coarse") {
         this.celltypes <- c("B.cells", "CD4.T.cells", "CD8.T.cells", "endothelial.cells",
-                              "macrophages", "monocytes","neutrophils", "NK.cells")
+                            "macrophages", "monocytes","neutrophils", "NK.cells")
 
     } else if (type == "fine") {
         this.celltypes <- c("memory.B.cells", "naive.B.cells", "memory.CD4.T.cells", "naive.CD4.T.cells",

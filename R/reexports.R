@@ -20,10 +20,16 @@ Metrics::mape
 Metrics::mae
 
 
+#' @importFrom data.table fread
+#' @export
+#'
+data.table::fread
 
 
-
-
+#' @importFrom data.table fwrite
+#' @export
+#'
+data.table::fwrite
 
 
 

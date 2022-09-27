@@ -6,6 +6,8 @@
 \alias{rmse}
 \alias{mape}
 \alias{mae}
+\alias{fread}
+\alias{fwrite}
 \title{Objects exported from other packages}
 \keyword{internal}
 \description{
@@ -14,5 +16,7 @@ below to see their documentation.
 
 \describe{
   \item{Metrics}{\code{\link[Metrics]{mae}}, \code{\link[Metrics]{mape}}, \code{\link[Metrics]{rmse}}}
+
+  \item{data.table}{\code{\link[data.table]{fread}}, \code{\link[data.table]{fwrite}}}
 }}
 

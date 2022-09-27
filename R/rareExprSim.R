@@ -34,7 +34,6 @@
 #' @param refVar_name reference variance file name in csv.
 #' @param train_name file name for all data in train set in csv.
 #' This data can be used for differential gene analysis.
-#' @param test_name file name for all data in test set in csv.
 #'
 #' @return All the information will be written in the output path.
 #'
@@ -53,8 +52,7 @@ rareExprSim <- function(p_rare = c(0.001, 0.003, 0.005, 0.008, 0.01, 0.03, 0.05)
                         ref_name = "coarse_ref.csv",
                         prop_name = "coarse_prop.csv",
                         refVar_name = NULL,
-                        train_name = NULL,
-                        test_name = NULL) {
+                        train_name = NULL) {
 
     set.seed(seed = seed)
 
@@ -119,15 +117,6 @@ rareExprSim <- function(p_rare = c(0.001, 0.003, 0.005, 0.008, 0.01, 0.03, 0.05)
             subset(subset = TRUE, select = this.list[["train"]])
         write.csv(x = this.train_counts,
                   file = file.path(outputPath, train_name),
-                  row.names = T)
-    }
-
-    if (!is.null(test_name)) {
-        writeLines("Output all samples in test set......")
-        this.test_counts <- data_counts %>%
-            subset(subset = TRUE, select = this.list[["test"]])
-        write.csv(x = this.test_counts,
-                  file = file.path(outputPath, test_name),
                   row.names = T)
     }
 
