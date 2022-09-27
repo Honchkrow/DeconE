@@ -65,6 +65,8 @@ boxplot_simple <- function(actual,
 
 
 
+
+
 #' @title Scatter plot for proportion prediction.
 #'
 #' @description Generate scatter plot comparison for different cell types.
