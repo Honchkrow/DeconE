@@ -24,17 +24,16 @@
 #' @param seed random seed.
 #' @param outputPath output file save path.
 #' @param mix_name mixture output file name.
-#' @param ref_name reference output file name in csv.
-#' @param prop_name simulated proportion file name in csv.
-#' @param refVar_name reference variance file name in csv.
-#' @param train_name file name for all data in train set in csv.
+#' @param ref_name reference output file name in csv or csv.gz.
+#' @param prop_name simulated proportion file name in csv or csv.gz.
+#' @param refVar_name reference variance file name in csv or csv.gz.
+#' @param train_name file name for all data in train set in csv or csv.gz.
 #' This data can be used for differential gene analysis.
 #'
 #' @return All the information will be written in the output path.
 #'
 #' @importFrom tibble tibble
 #' @importFrom magrittr %>%
-#' @importFrom data.table fwrite
 #'
 #' @export
 #'
@@ -111,14 +110,9 @@ simuRNAseq <- function(n_sample = 50,
         writeLines("Output all samples in train set......")
         this.train_counts <- data_counts %>%
             subset(subset = TRUE, select = this.list[["train"]])
-        # write.csv(x = this.train_counts,
-        #           file = file.path(outputPath, train_name),
-        #           row.names = T)
-        fwrite(x = this.train_counts,
-               file = file.path(outputPath, train_name),
-               sep = ",",
-               row.names = TRUE,
-               quote = FALSE)
+        write.csv(x = this.train_counts,
+                  file = file.path(outputPath, train_name),
+                  row.names = T)
     }
 
     writeLines("Generating train reference data......")
@@ -137,14 +131,9 @@ simuRNAseq <- function(n_sample = 50,
 
     if (!is.null(refVar_name)) {
         writeLines("Output reference variance file......")
-        # write.csv(x = thisstd.train,
-        #           file = file.path(outputPath, refVar_name),
-        #           row.names = T)
-        fwrite(x = thisstd.train,
-               file = file.path(outputPath, refVar_name),
-               sep = ",",
-               row.names = TRUE,
-               quote = FALSE)
+        write.csv(x = thisstd.train,
+                  file = file.path(outputPath, refVar_name),
+                  row.names = T)
     }
 
 
@@ -156,31 +145,15 @@ simuRNAseq <- function(n_sample = 50,
     rownames(prop) <- colnames(thisref.test)
     this.mix <- thisref.test %*% prop
 
-    # write.csv(x = as.data.frame(thisref.train),
-    #           file = file.path(outputPath, ref_name),
-    #           row.names = T)
-    # write.csv(x = prop,
-    #           file = file.path(outputPath, prop_name),
-    #           row.names = T)
-    # write.csv(x = this.mix,
-    #           file = file.path(outputPath, mix_name),
-    #           row.names = T)
-
-    fwrite(x = as.data.frame(thisref.train),
-           file = file.path(outputPath, ref_name),
-           sep = ",",
-           row.names = TRUE,
-           quote = FALSE)
-    fwrite(x = prop,
-           file = file.path(outputPath, prop_name),
-           sep = ",",
-           row.names = TRUE,
-           quote = FALSE)
-    fwrite(x = this.mix,
-           file = file.path(outputPath, mix_name),
-           sep = ",",
-           row.names = TRUE,
-           quote = FALSE)
+    write.csv(x = as.data.frame(thisref.train),
+              file = file.path(outputPath, ref_name),
+              row.names = T)
+    write.csv(x = prop,
+              file = file.path(outputPath, prop_name),
+              row.names = T)
+    write.csv(x = this.mix,
+              file = file.path(outputPath, mix_name),
+              row.names = T)
 
 }
 
