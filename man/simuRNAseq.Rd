@@ -6,7 +6,7 @@
 \usage{
 simuRNAseq(
   n_sample = 50,
-  p = 0.6,
+  p = 2/3,
   type = "coarse",
   transform = "TPM",
   seed = 20202020,

@@ -27,7 +27,8 @@ Imports:
     reshape2,
     grDevices,
     forcats,
-    stringr
+    stringr,
+    R.utils
 
 
 
