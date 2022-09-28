@@ -10,6 +10,8 @@
 #'
 #' @return the sample length vector.
 #'
+#' @importFrom stats rnorm rpois
+#'
 addNoise <- function (x = NULL, pt = 0.1) {
     x_size <- length(x)
 
@@ -39,6 +41,8 @@ addNoise <- function (x = NULL, pt = 0.1) {
 #' @param scale scale
 #'
 #' @return random number from gamma distribution
+#'
+#' @importFrom stats rgamma
 #'
 #' @keywords internal
 #'
@@ -172,6 +176,8 @@ multiClassSample <- function(df = NULL, p = NULL,
 #'
 #' @return A reference list contains expression and expression variance matrix.
 #'
+#' @importFrom stats sd
+#'
 #' @keywords internal
 #'
 refGenerator <- function(df = NULL, attr = NULL, cellTypes = NULL){
@@ -185,7 +191,7 @@ refGenerator <- function(df = NULL, attr = NULL, cellTypes = NULL){
         this.SRR <- attr$RUN_Accession[which(attr$Required_Cell_Type == this.celltype)]
         this.selected <- this.SRR[which(this.SRR %in% colnames(df))]
         ref[this.celltype] <- apply(X = df[, this.selected], MARGIN = 1, FUN = mean)
-        std[this.celltype] <- apply(X = df[, this.selected], MARGIN = 1, FUN = var)
+        std[this.celltype] <- apply(X = df[, this.selected], MARGIN = 1, FUN = sd)
     }
 
     ref <- as.matrix(ref)

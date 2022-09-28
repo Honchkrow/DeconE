@@ -9,7 +9,7 @@ Authors@R: c(
 Description: The evaluation platform for cell type deconvolution.
     This platform provides multiple simulation and real mixture expression datasets
     for evaluate the performance of deconvlution tools.
-License: GPL-3
+License: GPL-3 | file LICENSE
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.2.1
@@ -28,11 +28,10 @@ Imports:
     grDevices,
     forcats,
     stringr,
-    R.utils
-
-
-
-
-
-
-
+    R.utils,
+    ggpubr,
+    progress
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr

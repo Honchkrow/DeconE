@@ -24,16 +24,17 @@
 #' @param seed random seed.
 #' @param outputPath output file save path.
 #' @param mix_name mixture output file name.
-#' @param ref_name reference output file name in csv or csv.gz.
-#' @param prop_name simulated proportion file name in csv or csv.gz.
-#' @param refVar_name reference variance file name in csv or csv.gz.
-#' @param train_name file name for all data in train set in csv or csv.gz.
+#' @param ref_name reference output file name in csv.
+#' @param prop_name simulated proportion file name in csv.
+#' @param refVar_name reference variance file name in csv.
+#' @param train_name file name for all data in train set in csv.
 #' This data can be used for differential gene analysis.
 #'
 #' @return All the information will be written in the output path.
 #'
 #' @importFrom tibble tibble
 #' @importFrom magrittr %>%
+#' @importFrom utils write.csv
 #'
 #' @export
 #'

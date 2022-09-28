@@ -8,7 +8,7 @@
 #'
 #' @param exprFile The input expression file. Must be in csv format. Each row is
 #' a gene, each column is a sample. rownames and colnames are required. Please check
-#' the output of the function \code{\link{simuRNAseq}}.
+#' the output of the function \code{\link{exprSim}}.
 #' @param outputPath Output path, create if not exists. Default: a new folder
 #' based on the exprFile. For example, if the exprFile is "/data/test.txt",
 #' the outputPath will be a new folder "/data/test".

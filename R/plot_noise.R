@@ -21,9 +21,10 @@
 #'
 #' @importFrom Metrics mape rmse mae
 #' @importFrom ggplot2 ggplot geom_boxplot aes stat_boxplot theme
-#' ggtitle xlab ylab element_text element_rect element_blank
+#' ggtitle xlab ylab element_text element_rect element_blank .data
 #' @importFrom tools file_path_sans_ext
 #' @importFrom reshape2 melt
+#' @importFrom utils read.csv
 #'
 #' @export
 #'
@@ -68,7 +69,7 @@ boxplot_NGrad <- function(actual,
     df <- do.call(cbind, res)
     df1 <- melt(data = df)
 
-    p <- ggplot(data = df1, aes(x = Var2, y = value)) +
+    p <- ggplot(data = df1, aes(x = .data$Var2, y = .data$value)) +
         # stat_boxplot(geom = "errorbar", width = 0.25) +
         geom_boxplot(width=0.4, outlier.shape = 19) +
         theme(panel.background = element_blank(),
@@ -115,7 +116,7 @@ boxplot_NGrad <- function(actual,
 #'
 #' @importFrom Metrics mape rmse mae
 #' @importFrom ggplot2 ggplot geom_boxplot aes stat_boxplot theme
-#' ggtitle xlab ylab element_text element_rect element_blank labs
+#' ggtitle xlab ylab element_text element_rect element_blank labs .data
 #' @importFrom reshape2 melt
 #'
 #' @export
@@ -163,7 +164,7 @@ boxplot_NcrossCompare <- function(actual,
 
     fi <- melt(fi)
 
-    p <- ggplot(fi, aes(x = Var2, y = value, fill = L1)) +
+    p <- ggplot(fi, aes(x = .data$Var2, y = .data$value, fill = .data$L1)) +
         # stat_boxplot(geom = "errorbar", width = 0.25) +
         geom_boxplot(width=0.4, outlier.shape = 19, outlier.size = 0.3) +
         theme(panel.background = element_blank(),
@@ -370,7 +371,7 @@ heatmap_NGradCT <- function (actual,
 #' @importFrom forcats fct_rev
 #' @importFrom ggplot2 ggplot geom_point scale_x_discrete scale_radius
 #' scale_fill_gradient theme_minimal theme element_text element_blank
-#' guides guide_legend guide_colorbar
+#' guides guide_legend guide_colorbar .data
 #' @importFrom stringr str_remove
 #'
 #' @export
@@ -410,27 +411,27 @@ cheatmap_NcrossCompare <- function(actual, predicted, label = NULL, method1, met
         res1 <- list()
         res2 <- list()
         for (i in seq(length(pred_files))) {
-            label <- noise_level[i]
+            this_label <- label[i]
             p_pred <- as.matrix(read.csv(file = pred_files[i],
                                          header = T, row.names = 1,
                                          encoding = "UTF-8"))
 
             if (method1 %in% c("mape", "mae", "rmse")) {
-                res1[[label]] <- mean(regMetrics(actual = p_true,
+                res1[[this_label]] <- mean(regMetrics(actual = p_true,
                                                 predicted = p_pred,
                                                 method = method1))
             } else {
-                res1[[label]] <- regMetrics(actual = p_true,
+                res1[[this_label]] <- regMetrics(actual = p_true,
                                            predicted = p_pred,
                                            method = method1)
             }
 
             if (method2 %in% c("mape", "mae", "rmse")) {
-                res2[[label]] <- mean(regMetrics(actual = p_true,
+                res2[[this_label]] <- mean(regMetrics(actual = p_true,
                                                 predicted = p_pred,
                                                 method = method2))
             } else {
-                res2[[label]] <- regMetrics(actual = p_true,
+                res2[[this_label]] <- regMetrics(actual = p_true,
                                            predicted = p_pred,
                                            method = method2)
             }
@@ -460,7 +461,10 @@ cheatmap_NcrossCompare <- function(actual, predicted, label = NULL, method1, met
 
 
     # fill is fi1, size is fi2
-    p <- ggplot(data, aes(x = Var2, y = forcats::fct_rev(Var1), fill = value.x, size = value.y)) +
+    p <- ggplot(data, aes(x = .data$Var2,
+                          y = forcats::fct_rev(.data$Var1),
+                          fill = .data$value.x,
+                          size = .data$value.y)) +
         geom_point(shape = 21,
                    stroke = 0) +
         scale_x_discrete(position = "bottom") +

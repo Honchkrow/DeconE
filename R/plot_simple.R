@@ -15,7 +15,7 @@
 #'
 #' @importFrom Metrics mape rmse mae
 #' @importFrom ggplot2 ggplot geom_boxplot aes stat_boxplot theme
-#' ggtitle xlab ylab element_text element_rect element_blank
+#' ggtitle xlab ylab element_text element_rect element_blank .data
 #'
 #' @export
 #'
@@ -44,7 +44,7 @@ boxplot_simple <- function(actual,
 
     res <- data.frame(value = res)
 
-    p <- ggplot(data = res, aes(x = "", y = value)) +
+    p <- ggplot(data = res, aes(x = "", y = .data$value)) +
         # stat_boxplot(geom = "errorbar", width = 0.25) +
         geom_boxplot(fill = "#4271AE", outlier.colour = "red", outlier.shape = 19) +
         theme(panel.background = element_blank(),
@@ -85,7 +85,8 @@ boxplot_simple <- function(actual,
 #'
 #' @importFrom reshape2 melt
 #' @importFrom ggplot2 ggplot geom_point scale_shape_manual geom_smooth
-#' theme element_blank element_rect element_text labs
+#' theme element_blank element_rect element_text labs .data
+#' @importFrom stats lm
 #' @importFrom ggpubr stat_cor
 #'
 #' @export
@@ -118,8 +119,8 @@ scatter_simple <- function(actual, predicted, method, celltype = TRUE) {
     data <- merge(x = a1, y = a2, by = c("Var1", "Var2"))
 
     if (celltype) {
-        p <- ggplot(data, aes(x = value.x, y = value.y)) +
-            geom_point(aes(shape = Var1, color = Var1)) +
+        p <- ggplot(data, aes(x = .data$value.x, y = .data$value.y)) +
+            geom_point(aes(shape = .data$Var1, color = .data$Var1)) +
             scale_shape_manual(values = seq(length(unique(data$Var1)))) +
             geom_smooth(method=lm , color="red", fill="#69b3a2", se=TRUE) +
             stat_cor(p.accuracy = 0.001, r.accuracy = 0.01, size = 5) +
@@ -137,7 +138,7 @@ scatter_simple <- function(actual, predicted, method, celltype = TRUE) {
             labs(title = "", x = "Ground Truth", y = "Prediction",
                  shape = "Cell Types", color = "Cell Types")
     } else {
-        p <- ggplot(data, aes(x = value.x, y = value.y)) +
+        p <- ggplot(data, aes(x = .data$value.x, y = .data$value.y)) +
             geom_point() +
             scale_shape_manual(values = seq(length(unique(data$Var1)))) +
             geom_smooth(method=lm , color="red", fill="#69b3a2", se=TRUE) +

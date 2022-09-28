@@ -40,13 +40,13 @@ Only 8 cell types will be used, including ("B.cells", "CD4.T.cells",
 
 \item{mix_name}{mixture output file name.}
 
-\item{ref_name}{reference output file name in csv or csv.gz.}
+\item{ref_name}{reference output file name in csv.}
 
-\item{prop_name}{simulated proportion file name in csv or csv.gz.}
+\item{prop_name}{simulated proportion file name in csv.}
 
-\item{refVar_name}{reference variance file name in csv or csv.gz.}
+\item{refVar_name}{reference variance file name in csv.}
 
-\item{train_name}{file name for all data in train set in csv or csv.gz.
+\item{train_name}{file name for all data in train set in csv.
 This data can be used for differential gene analysis.}
 }
 \value{

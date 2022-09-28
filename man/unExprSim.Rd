@@ -68,7 +68,7 @@ All the information will be written in the output path.
 \description{
 Generate in silico mixture expression matrix based on the
 internal RNA-seq database. This function is different from the function
-\code{\link{simuRNAseq}}. \code{\link{simuRNAseq}} generates all the proportion
+\code{\link{exprSim}}. \code{\link{exprSim}} generates all the proportion
 randomly, while this function takes one cell type as unknown component.
 The internal RNA-seq database is collected from multiple studies.
 All the samples are passed the quality filter. We provide two types of

@@ -21,7 +21,7 @@ pseudoExpr <- function(n_sample = 50, n_gene = 1000, n_ct = 10) {
     colnames(ref) <- paste0("ct", seq(ncol(ref)))
 
     prop <- matrix(data = sample(x = 1000, size = n_sample * n_ct, replace = TRUE),
-                   nrow = n_sample, ncol = n_sample)
+                   nrow = n_ct, ncol = n_sample)
     prop <- apply(X = prop, MARGIN = 2, FUN = v_norm)
     rownames(prop) <- paste0("ct", seq(nrow(prop)))
     colnames(prop) <- paste0("S", seq(ncol(prop)))

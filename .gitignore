@@ -41,6 +41,14 @@ vignettes/*.pdf
 # Rstudio
 *.Rproj
 .Rbuildignore
+pkgdowntravis.Rproj
+.Rproj*
+
 
 # Mac
 *.DS_Store
+docs
+inst/doc
+
+
+

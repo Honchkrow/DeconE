@@ -18,8 +18,9 @@
 #'
 #' @importFrom reshape2 melt
 #' @importFrom ggplot2 ggplot geom_point scale_shape_manual geom_smooth
-#' theme element_blank element_rect element_text labs
+#' theme element_blank element_rect element_text labs .data
 #' @importFrom ggpubr stat_cor
+#' @importFrom stats lm
 #'
 #' @export
 #'
@@ -72,10 +73,10 @@ scatter_R <- function(actual,
     data <- melt(pp_m)
 
     if (celltype) {
-        p <- ggplot(data, aes(x = Var2, y = value)) +
-            geom_point(aes(shape = Var1, color = Var1)) +
+        p <- ggplot(data, aes(x = .data$Var2, y = .data$value)) +
+            geom_point(aes(shape = .data$Var1, color = .data$Var1)) +
             scale_shape_manual(values = seq(length(unique(data$Var1)))) +
-            geom_smooth(method=lm , color="red", fill="#69b3a2", se=TRUE) +
+            geom_smooth(method = lm , color = "red", fill = "#69b3a2", se = TRUE) +
             stat_cor(p.accuracy = 0.001, r.accuracy = 0.01, size = 5) +
             theme(panel.background = element_blank(),
                   panel.grid.major = element_blank(),
@@ -91,7 +92,7 @@ scatter_R <- function(actual,
             labs(title = "", x = "Ground Truth", y = "Prediction",
                  shape = "Cell Types", color = "Cell Types")
     } else {
-        p <- ggplot(data, aes(x = Var2, y = value)) +
+        p <- ggplot(data, aes(x = .data$Var2, y = .data$value)) +
             geom_point() +
             scale_shape_manual(values = seq(length(unique(data$Var1)))) +
             geom_smooth(method=lm , color="red", fill="#69b3a2", se=TRUE) +
@@ -250,7 +251,7 @@ heatmap_RcrossCompare <- function (actual,
 #' @importFrom forcats fct_rev
 #' @importFrom ggplot2 ggplot geom_point scale_x_discrete scale_radius
 #' scale_fill_gradient theme_minimal theme element_text element_blank
-#' guides guide_legend guide_colorbar
+#' guides guide_legend guide_colorbar .data
 #'
 #' @export
 #'
@@ -338,7 +339,10 @@ cheatmap_RcrossCompare <- function (actual,
     data$Var2 <- as.character(data$Var2)
 
     # fill is fi1, size is fi2
-    p <- ggplot(data, aes(x = Var2, y = forcats::fct_rev(Var1), fill = value.x, size = value.y)) +
+    p <- ggplot(data, aes(x = .data$Var2,
+                          y = forcats::fct_rev(.data$Var1),
+                          fill = .data$value.x,
+                          size = .data$value.y)) +
         geom_point(shape = 21,
                    stroke = 0) +
         scale_x_discrete(position = "bottom") +
