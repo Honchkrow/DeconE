@@ -40,3 +40,9 @@ The computed metrics and plot data.
 Boxplot for illustrating the deconvlition performance with the
 noised in silico data. this function is used for comparing multiple methods.
 }
+\examples{
+res <- pseudoData(type = 3, outputPath = "test_file")
+res <- boxplot_NcrossCompare(actual = res$actual, predicted = res$predicted,
+label = res$noise_level, method = "pearson", title = "pearson")
+
+}

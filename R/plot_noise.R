@@ -28,6 +28,11 @@
 #'
 #' @export
 #'
+#' @examples
+#' res <- pseudoData(type = 2)
+#' res <-boxplot_NGrad(actual = res$actual, predicted = res$predicted,
+#' label = res$noise_level, method = "rmse")
+#'
 boxplot_NGrad <- function(actual,
                               predicted,
                               label = NULL,
@@ -35,7 +40,7 @@ boxplot_NGrad <- function(actual,
                               title = "Boxplot") {
     if (typeof(actual) == "character") {
         p_true <- as.matrix(read.csv(file = actual,
-                                     header = T,
+                                     header = TRUE,
                                      row.names = 1,
                                      encoding = "UTF-8"))
     }
@@ -57,7 +62,7 @@ boxplot_NGrad <- function(actual,
     for (i in seq(length(predicted))) {
         this.label <- label[i]
         p_pred <- as.matrix(read.csv(file = predicted[i],
-                                     header = T,
+                                     header = TRUE,
                                      row.names = 1,
                                      encoding = "UTF-8"))
 
@@ -121,6 +126,11 @@ boxplot_NGrad <- function(actual,
 #'
 #' @export
 #'
+#' @examples
+#' res <- pseudoData(type = 3, outputPath = "test_file")
+#' res <- boxplot_NcrossCompare(actual = res$actual, predicted = res$predicted,
+#' label = res$noise_level, method = "pearson", title = "pearson")
+#'
 boxplot_NcrossCompare <- function(actual,
                                  predicted,
                                  label = NULL,
@@ -128,7 +138,7 @@ boxplot_NcrossCompare <- function(actual,
                                  title = "Boxplot") {
     if (typeof(actual) == "character") {
         p_true <- as.matrix(read.csv(file = actual,
-                                     header = T,
+                                     header = TRUE,
                                      row.names = 1,
                                      encoding = "UTF-8"))
     }
@@ -154,7 +164,7 @@ boxplot_NcrossCompare <- function(actual,
         for (i in seq(length(pred_files))) {
             tmp_label <- label[i]
             p_pred <- as.matrix(read.csv(file = pred_files[i],
-                                         header = T,
+                                         header = TRUE,
                                          row.names = 1,
                                          encoding = "UTF-8"))
             res[[tmp_label]] <- regMetrics(actual = p_true, predicted = p_pred, method = method)
@@ -211,13 +221,18 @@ boxplot_NcrossCompare <- function(actual,
 #'
 #' @export
 #'
+#' @examples
+#' res <- pseudoData(type = 3, outputPath = "test_file")
+#' res <- heatmap_NcrossCompare(actual = res$actual, predicted = res$predicted,
+#' label = res$noise_level, method = "mape")
+#'
 heatmap_NcrossCompare <- function(actual,
                                  predicted,
                                  label = NULL,
                                  method) {
     if (typeof(actual) == "character") {
         p_true <- as.matrix(read.csv(file = actual,
-                                     header = T,
+                                     header = TRUE,
                                      row.names = 1,
                                      encoding = "UTF-8"))
     }
@@ -238,7 +253,7 @@ heatmap_NcrossCompare <- function(actual,
         for (i in seq(length(pred_files))) {
             tmp_label <- label[i]
             p_pred <- as.matrix(read.csv(file = pred_files[i],
-                                         header = T, row.names = 1,
+                                         header = TRUE, row.names = 1,
                                          encoding = "UTF-8"))
 
             if (method %in% c("mape", "mae", "rmse")) {
@@ -293,13 +308,18 @@ heatmap_NcrossCompare <- function(actual,
 #'
 #' @export
 #'
+#' @examples
+#' res <- pseudoData(type = 2)
+#' res <- heatmap_NGradCT(actual = res$actual, predicted = res$predicted,
+#' label = res$noise_level, method = "rmse")
+#'
 heatmap_NGradCT <- function (actual,
                              predicted,
                              label = NULL,
                              method) {
     if (typeof(actual) == "character") {
         p_true <- as.matrix(read.csv(file = actual,
-                                     header = T,
+                                     header = TRUE,
                                      row.names = 1,
                                      encoding = "UTF-8"))
     }
@@ -316,7 +336,7 @@ heatmap_NGradCT <- function (actual,
     for (i in seq(length(predicted))) {
         this.label <- label[i]
         p_pred <- as.matrix(read.csv(file = predicted[i],
-                                     header = T,
+                                     header = TRUE,
                                      row.names = 1,
                                      encoding = "UTF-8"))
 
@@ -376,10 +396,15 @@ heatmap_NGradCT <- function (actual,
 #'
 #' @export
 #'
+#' @examples
+#' res <- pseudoData(type = 3, outputPath = "test_file")
+#' res <- cheatmap_NcrossCompare(actual = res$actual, predicted = res$predicted,
+#' label = res$noise_level,  method1 = "pearson", method2 = "rmse")
+#'
 cheatmap_NcrossCompare <- function(actual, predicted, label = NULL, method1, method2) {
     if (typeof(actual) == "character") {
         p_true <- as.matrix(read.csv(file = actual,
-                                     header = T,
+                                     header = TRUE,
                                      row.names = 1,
                                      encoding = "UTF-8"))
     }
@@ -413,7 +438,7 @@ cheatmap_NcrossCompare <- function(actual, predicted, label = NULL, method1, met
         for (i in seq(length(pred_files))) {
             this_label <- label[i]
             p_pred <- as.matrix(read.csv(file = pred_files[i],
-                                         header = T, row.names = 1,
+                                         header = TRUE, row.names = 1,
                                          encoding = "UTF-8"))
 
             if (method1 %in% c("mape", "mae", "rmse")) {

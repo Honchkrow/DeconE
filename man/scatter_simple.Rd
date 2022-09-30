@@ -26,3 +26,8 @@ The plot data.
 \description{
 Generate scatter plot comparison for different cell types.
 }
+\examples{
+res <- pseudoData(type = 1)
+res <- scatter_simple(actual = res$actual, predicted = res$predicted, method = "pearson")
+
+}

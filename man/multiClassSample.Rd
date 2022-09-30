@@ -27,3 +27,4 @@ A list contains train and sample names.
 Split a dataframe into train and test set based on the labelCol,
 1 sample in one class at least.
 }
+\keyword{internal}

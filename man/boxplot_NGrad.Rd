@@ -32,3 +32,9 @@ The computed metrics and plot data.
 Boxplot for illustrating the deconvolution performance with the
 noised in silico data.
 }
+\examples{
+res <- pseudoData(type = 2)
+res <-boxplot_NGrad(actual = res$actual, predicted = res$predicted,
+label = res$noise_level, method = "rmse")
+
+}

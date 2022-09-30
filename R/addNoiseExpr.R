@@ -16,7 +16,7 @@
 #' Note: the suffix will be added automatically based on the noise level.
 #' @param Pt Parameter to control noise level. Default: seq(0.1, 1, 0.1)
 #'
-#' @return All the information will be written in the output path. Each file
+#' @return  All the information will be written in the output path, and each file
 #' is the generated data in a specific noise level.
 #'
 #' @importFrom tools file_path_sans_ext file_path_as_absolute
@@ -24,10 +24,14 @@
 #'
 #' @export
 #'
-addNoise <- function(exprFile,
-                     outputPath = NULL,
-                     prefix = NULL,
-                     Pt = seq(0.1, 1, 0.1)) {
+#' @examples
+#' res <- pseudoData(type = 2)
+#' addNoiseExpr(exprFile = res$actual)
+#'
+addNoiseExpr <- function(exprFile,
+                         outputPath = NULL,
+                         prefix = NULL,
+                         Pt = seq(0.1, 1, 0.1)) {
     if (is.null(prefix)) {
         prefix <- file_path_sans_ext(basename(exprFile))
         mess <- paste("The prefix will be", prefix, sep = " ")
@@ -47,7 +51,7 @@ addNoise <- function(exprFile,
     }
 
     writeLines("Reading the expected expression value......")
-    data <- read.csv(file = exprFile, header = T, row.names = 1, encoding = "UTF-8")
+    data <- read.csv(file = exprFile, header = TRUE, row.names = 1, encoding = "UTF-8")
     n_gene <- nrow(data)
     n_sample <- ncol(data)
     sample_names <- colnames(data)
@@ -59,9 +63,6 @@ addNoise <- function(exprFile,
     write.csv(x = data,
               file = file.path(outputPath, paste0(prefix, "_NL_0.csv")),
               row.names = TRUE)
-
-
-
 
     for (pt in Pt) {
         mess <- paste0("Generating noised data for pt = ", pt, "......")

@@ -26,7 +26,6 @@
 #' "naive.CD4.T.cells", "regulatory.T.cells", "memory.CD8.T.cells", "naive.CD8.T.cells", "NK.cells",
 #' "neutrophils", "monocytes", "myeloid.dendritic.cells", "macrophages", "fibroblasts", "endothelial.cells")
 #' @param transform "TPM", "CPM" or "NO". Transform the data into TPM, CPM or in counts.
-#' @param seed random seed.
 #' @param outputPath output file save path.
 #' @param mix_name mixture output file name.
 #' @param ref_name reference output file name in csv.
@@ -43,20 +42,19 @@
 #'
 #' @export
 #'
+#' @examples
+#' rareExprSim()
+#'
 rareExprSim <- function(p_rare = c(0.001, 0.003, 0.005, 0.008, 0.01, 0.03, 0.05),
                         p = 0.6,
                         type = "coarse",
                         transform = "TPM",
-                        seed = 20202020,
                         outputPath = NULL,
                         mix_name = "coarse_gene_expr.csv",
                         ref_name = "coarse_ref.csv",
                         prop_name = "coarse_prop.csv",
                         refVar_name = NULL,
                         train_name = NULL) {
-
-    set.seed(seed = seed)
-
     writeLines("Loading RNA-seq data......")
     attr <- readRDS(file = system.file(package="decone", "extdata", "RNAseq_attr.rds"))
     raw_data <- readRDS(file = system.file(package="decone", "extdata", "RNAseq_matrix.rds"))
@@ -118,7 +116,7 @@ rareExprSim <- function(p_rare = c(0.001, 0.003, 0.005, 0.008, 0.01, 0.03, 0.05)
             subset(subset = TRUE, select = this.list[["train"]])
         write.csv(x = this.train_counts,
                   file = file.path(outputPath, train_name),
-                  row.names = T)
+                  row.names = TRUE)
     }
 
     writeLines("Generating train reference data......")
@@ -139,7 +137,7 @@ rareExprSim <- function(p_rare = c(0.001, 0.003, 0.005, 0.008, 0.01, 0.03, 0.05)
         writeLines("Output reference variance file......")
         write.csv(x = thisstd.train,
                   file = file.path(outputPath, refVar_name),
-                  row.names = T)
+                  row.names = TRUE)
     }
 
 
@@ -171,12 +169,12 @@ rareExprSim <- function(p_rare = c(0.001, 0.003, 0.005, 0.008, 0.01, 0.03, 0.05)
 
     write.csv(x = as.data.frame(thisref.train),
               file = file.path(outputPath, ref_name),
-              row.names = T)
+              row.names = TRUE)
     write.csv(x = prop,
               file = file.path(outputPath, prop_name),
-              row.names = T)
+              row.names = TRUE)
     write.csv(x = this.mix,
               file = file.path(outputPath, mix_name),
-              row.names = T)
+              row.names = TRUE)
 
 }

@@ -42,3 +42,9 @@ The plot data.
 Generate circle heatmap for different rare cell type proportions.
 The dataset should be generated from the function \code{\link{rareExprSim}}.
 }
+\examples{
+rareExprSim()
+# after the simulation, just pass the predicted file
+# to the parameter "actual" and "predicted"
+
+}

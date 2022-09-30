@@ -28,3 +28,9 @@ The computed metrics and plot data.
 \description{
 Generate heatmap comparison for different cell types.
 }
+\examples{
+res <- pseudoData(type = 2)
+res <- heatmap_NGradCT(actual = res$actual, predicted = res$predicted,
+label = res$noise_level, method = "rmse")
+
+}

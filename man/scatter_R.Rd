@@ -32,3 +32,9 @@ The plot data.
 \description{
 Generate scatter plot for rare component.
 }
+\examples{
+rareExprSim()
+# after the simulation, just pass the predicted file
+# to the parameter "actual" and "predicted"
+
+}

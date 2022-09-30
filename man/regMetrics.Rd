@@ -24,3 +24,8 @@ a vector with the value for each sample.
 \description{
 Compute several regression Metrics for cell type deconcolution.
 }
+\examples{
+res <- regMetrics(actual = matrix(data = seq(9), nrow = 3),
+                  predicted = matrix(data = seq(9), nrow = 3),
+                  method = "rmse")
+}

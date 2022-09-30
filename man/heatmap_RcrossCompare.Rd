@@ -37,3 +37,9 @@ The computed metrics and plot data.
 \description{
 Generate heatmap comparison for different methods.
 }
+\examples{
+rareExprSim()
+# after the simulation, just pass the predicted file
+# to the parameter "actual" and "predicted"
+
+}

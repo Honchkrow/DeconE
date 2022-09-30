@@ -1,4 +1,3 @@
-
 #' @title Add noise to gene expression data
 #'
 #' @description Add noise based on negtive bionomial distribution. Please see
@@ -11,6 +10,11 @@
 #' @return the sample length vector.
 #'
 #' @importFrom stats rnorm rpois
+#'
+#' @export
+#'
+#' @examples
+#' res <- addNoise(x = seq(100))
 #'
 addNoise <- function (x = NULL, pt = 0.1) {
     x_size <- length(x)
@@ -60,6 +64,11 @@ G <- function (shape, scale) {
 #'
 #' @return Normalized numeric vector
 #'
+#' @export
+#'
+#' @examples
+#' res <- v_norm(seq(100))
+#'
 v_norm <- function(x = NULL){
     normRes <- x / sum(x)
     return(normRes)
@@ -75,6 +84,8 @@ v_norm <- function(x = NULL){
 #' @param by Flag used to merge, default: "row.names"
 #'
 #' @return A dataframe
+#'
+#' @keywords internal
 #'
 merge.all <- function(x, ..., by = "row.names"){
     L <- list(...)
@@ -95,6 +106,12 @@ merge.all <- function(x, ..., by = "row.names"){
 #' Note: Must contain a column named "Length", "Length" means gene length.
 #'
 #' @return A dataframe or matrix object.
+#'
+#' @export
+#'
+#' @examples
+#' data <- data.frame(s1 = seq(100), Length = seq(100))
+#' res <- TPM(data)
 #'
 TPM <- function(data = NULL){
     if("Length" %in% colnames(data)){
@@ -119,6 +136,12 @@ TPM <- function(data = NULL){
 #'
 #' @return A dataframe or matrix object.
 #'
+#' @export
+#'
+#' @examples
+#' data <- data.frame(s1 = seq(100), Length = seq(100))
+#' res <- CPM(data)
+#'
 CPM <- function(data = NULL){
     if("Length" %in% colnames(data)){
         rawCounts <- within(data, rm("Length"))
@@ -141,6 +164,8 @@ CPM <- function(data = NULL){
 #' @param outVarCol column name to output, usually is sample name like RUN Accession Number.
 #'
 #' @return A list contains train and sample names.
+#'
+#' @keywords internal
 #'
 multiClassSample <- function(df = NULL, p = NULL,
                              labelCol = "Required_Cell_Type",

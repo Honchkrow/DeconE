@@ -15,3 +15,7 @@ Normalized numeric vector
 \description{
 Normalize a vector
 }
+\examples{
+res <- v_norm(seq(100))
+
+}

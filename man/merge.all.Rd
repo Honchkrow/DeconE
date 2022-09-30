@@ -19,3 +19,4 @@ A dataframe
 \description{
 Merge and align dataframes.
 }
+\keyword{internal}

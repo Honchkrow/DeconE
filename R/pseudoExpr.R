@@ -12,6 +12,9 @@
 #'
 #' @export
 #'
+#' @examples
+#' res <- pseudoExpr()
+#'
 pseudoExpr <- function(n_sample = 50, n_gene = 1000, n_ct = 10) {
 
     ref <- matrix(data = sample(x = 10000, size = n_gene * n_ct, replace = TRUE),

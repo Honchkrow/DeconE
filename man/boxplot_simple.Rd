@@ -24,3 +24,8 @@ The computed metrics and plot data.
 \description{
 Boxplot for deconvolution results with multiple samples.
 }
+\examples{
+res <- pseudoData(type = 1)
+res <- boxplot_simple(actual = res$actual, predicted = res$predicted, method = "mape")
+
+}

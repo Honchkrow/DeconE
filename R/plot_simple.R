@@ -19,21 +19,29 @@
 #'
 #' @export
 #'
+#' @examples
+#' res <- pseudoData(type = 1)
+#' res <- boxplot_simple(actual = res$actual, predicted = res$predicted, method = "mape")
+#'
 boxplot_simple <- function(actual,
                            predicted,
                            method = NULL) {
     if (typeof(actual) == "character") {
         p_true <- as.matrix(read.csv(file = actual,
-                                     header = T,
+                                     header = TRUE,
                                      row.names = 1,
                                      encoding = "UTF-8"))
+    } else {
+        p_true <- actual
     }
 
     if (typeof(predicted) == "character") {
         p_pred <- as.matrix(read.csv(file = predicted,
-                                     header = T,
+                                     header = TRUE,
                                      row.names = 1,
                                      encoding = "UTF-8"))
+    } else {
+        p_pred <- predicted
     }
 
     if (method %in% c("mape", "mae", "rmse", "pearson", "spearman")) {
@@ -91,10 +99,14 @@ boxplot_simple <- function(actual,
 #'
 #' @export
 #'
+#' @examples
+#' res <- pseudoData(type = 1)
+#' res <- scatter_simple(actual = res$actual, predicted = res$predicted, method = "pearson")
+#'
 scatter_simple <- function(actual, predicted, method, celltype = TRUE) {
     if (typeof(actual) == "character") {
         p_true <- as.matrix(read.csv(file = actual,
-                                     header = T,
+                                     header = TRUE,
                                      row.names = 1,
                                      encoding = "UTF-8"))
     } else {
@@ -103,7 +115,7 @@ scatter_simple <- function(actual, predicted, method, celltype = TRUE) {
 
     if (typeof(predicted) == "character") {
         p_pred <- as.matrix(read.csv(file = predicted,
-                                     header = T,
+                                     header = TRUE,
                                      row.names = 1,
                                      encoding = "UTF-8"))
     } else {

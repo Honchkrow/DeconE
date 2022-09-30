@@ -9,7 +9,6 @@ unscExprSim(
   n_sample = 50,
   p = 2/3,
   transform = "TPM",
-  seed = 20202020,
   outputPath = NULL,
   mix_name = "scMouse_gene_expr.csv",
   ref_name = "scMouse_ref.csv",
@@ -28,8 +27,6 @@ Default: NULL, mean randomly select one cell type to drop.}
 \item{p}{Proportion of sample in train set, default: 2 / 3.}
 
 \item{transform}{"TPM", "CPM" or "NO". Transform the data into TPM, CPM or in counts.}
-
-\item{seed}{random seed.}
 
 \item{outputPath}{output file save path.}
 
@@ -59,4 +56,8 @@ This function use the real cell type specific expression data to generate
 mixture data. The cell type include c("FetalStomach", "FetalLung",
 "FetalLiver", "FetalKidney", "FetalIntestine",
 "FetalBrain", "Female.fetal.Gonad")
+}
+\examples{
+res <- unscExprSim()
+
 }

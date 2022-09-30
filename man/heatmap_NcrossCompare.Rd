@@ -31,3 +31,9 @@ The computed metrics and plot data.
 \description{
 Generate heatmap comparison for different methods.
 }
+\examples{
+res <- pseudoData(type = 3, outputPath = "test_file")
+res <- heatmap_NcrossCompare(actual = res$actual, predicted = res$predicted,
+label = res$noise_level, method = "mape")
+
+}

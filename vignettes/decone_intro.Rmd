@@ -1,12 +1,6 @@
 ---
-title: "decone: cell type deconvolution evaluator"
-author: "Wei Zhang"
-date: "`r Sys.Date()`"
-output:
-  prettydoc::html_pretty:
-    theme: architect
-  pdf_document:
-    toc: true
+title: "decone_intro"
+output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{decone_intro}
   %\VignetteEngine{knitr::rmarkdown}
@@ -23,5 +17,5 @@ knitr::opts_chunk$set(
 ```{r setup}
 library(decone)
 
-a <- pseudoExpr()
+sessionInfo()
 ```

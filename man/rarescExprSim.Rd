@@ -6,10 +6,8 @@
 \usage{
 rarescExprSim(
   p_rare = c(0.001, 0.003, 0.005, 0.008, 0.01, 0.03, 0.05),
-  n_sample = 50,
   p = 2/3,
   transform = "TPM",
-  seed = 20202020,
   outputPath = NULL,
   mix_name = "scMouse_gene_expr.csv",
   ref_name = "scMouse_ref.csv",
@@ -27,8 +25,6 @@ For example, if 8 cell types need to be tested, this function will generate
 \item{p}{Proportion of sample in train set, default: 2 / 3.}
 
 \item{transform}{"TPM", "CPM" or "NO". Transform the data into TPM, CPM or in counts.}
-
-\item{seed}{random seed.}
 
 \item{outputPath}{output file save path.}
 
@@ -52,4 +48,8 @@ This function use the real cell type specific expression data to generate
 mixture data. The cell type include c("FetalStomach", "FetalLung",
 "FetalLiver", "FetalKidney", "FetalIntestine",
 "FetalBrain", "Female.fetal.Gonad")
+}
+\examples{
+rarescExprSim()
+
 }

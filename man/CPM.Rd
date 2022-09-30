@@ -16,3 +16,8 @@ A dataframe or matrix object.
 \description{
 Convert a gene expression count matrix into CPM matrix
 }
+\examples{
+data <- data.frame(s1 = seq(100), Length = seq(100))
+res <- CPM(data)
+
+}

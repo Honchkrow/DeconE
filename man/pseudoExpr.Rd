@@ -21,3 +21,7 @@ external reference, mix is the output of ref %*% prop
 Generate pseudo mixture expression matrix based on uniform
 distribution, without any noise.
 }
+\examples{
+res <- pseudoExpr()
+
+}

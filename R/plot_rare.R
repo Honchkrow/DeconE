@@ -1,4 +1,3 @@
-
 #' @title Scatter plot for rare component.
 #'
 #' @description Generate scatter plot for rare component.
@@ -24,13 +23,18 @@
 #'
 #' @export
 #'
+#' @examples
+#' rareExprSim()
+#' # after the simulation, just pass the predicted file
+#' # to the parameter "actual" and "predicted"
+#'
 scatter_R <- function(actual,
                       predicted,
                       p_rare = c(0.001, 0.003, 0.005, 0.008, 0.01, 0.03, 0.05),
                       celltype = TRUE) {
     if (typeof(actual) == "character") {
         p_true <- as.matrix(read.csv(file = actual,
-                                     header = T,
+                                     header = TRUE,
                                      row.names = 1,
                                      encoding = "UTF-8"))
     } else {
@@ -39,7 +43,7 @@ scatter_R <- function(actual,
 
     if (typeof(predicted) == "character") {
         p_pred <- as.matrix(read.csv(file = predicted,
-                                     header = T,
+                                     header = TRUE,
                                      row.names = 1,
                                      encoding = "UTF-8"))
     } else {
@@ -142,6 +146,12 @@ scatter_R <- function(actual,
 #' @importFrom grDevices heat.colors
 #'
 #' @export
+#'
+#' @examples
+#' rareExprSim()
+#' # after the simulation, just pass the predicted file
+#' # to the parameter "actual" and "predicted"
+#'
 heatmap_RcrossCompare <- function (actual,
                                    predicted,
                                    p_rare = c(0.001, 0.003, 0.005, 0.008, 0.01, 0.03, 0.05),
@@ -149,7 +159,7 @@ heatmap_RcrossCompare <- function (actual,
                                    method) {
     if (typeof(actual) == "character") {
         p_true <- as.matrix(read.csv(file = actual,
-                                     header = T,
+                                     header = TRUE,
                                      row.names = 1,
                                      encoding = "UTF-8"))
     }
@@ -173,7 +183,7 @@ heatmap_RcrossCompare <- function (actual,
     for (i in seq(length(predicted))) {
 
         p_pred <- as.matrix(read.csv(file = predicted[i],
-                                     header = T,
+                                     header = TRUE,
                                      row.names = 1,
                                      encoding = "UTF-8"))
         tmp_label <- label[i]
@@ -255,6 +265,11 @@ heatmap_RcrossCompare <- function (actual,
 #'
 #' @export
 #'
+#' @examples
+#' rareExprSim()
+#' # after the simulation, just pass the predicted file
+#' # to the parameter "actual" and "predicted"
+#'
 cheatmap_RcrossCompare <- function (actual,
                                     predicted,
                                     p_rare = c(0.001, 0.003, 0.005, 0.008, 0.01, 0.03, 0.05),
@@ -263,7 +278,7 @@ cheatmap_RcrossCompare <- function (actual,
                                     method2) {
     if (typeof(actual) == "character") {
         p_true <- as.matrix(read.csv(file = actual,
-                                     header = T,
+                                     header = TRUE,
                                      row.names = 1,
                                      encoding = "UTF-8"))
     }
@@ -292,7 +307,7 @@ cheatmap_RcrossCompare <- function (actual,
     for (i in seq(length(predicted))) {
 
         p_pred <- as.matrix(read.csv(file = predicted[i],
-                                     header = T,
+                                     header = TRUE,
                                      row.names = 1,
                                      encoding = "UTF-8"))
         tmp_label <- label[i]

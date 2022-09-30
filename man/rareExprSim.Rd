@@ -9,7 +9,6 @@ rareExprSim(
   p = 0.6,
   type = "coarse",
   transform = "TPM",
-  seed = 20202020,
   outputPath = NULL,
   mix_name = "coarse_gene_expr.csv",
   ref_name = "coarse_ref.csv",
@@ -38,8 +37,6 @@ Only 8 cell types will be used, including ("B.cells", "CD4.T.cells",
 
 \item{transform}{"TPM", "CPM" or "NO". Transform the data into TPM, CPM or in counts.}
 
-\item{seed}{random seed.}
-
 \item{outputPath}{output file save path.}
 
 \item{mix_name}{mixture output file name.}
@@ -67,4 +64,8 @@ All the samples are passed the quality filter. We provide two types of
 simulation called "coarse" and "fine". This idea is from DREAM Challenge Tumor
 Deconvolution problem.
 \url{https://www.synapse.org/#!Synapse:syn15589870/wiki/}.
+}
+\examples{
+rareExprSim()
+
 }

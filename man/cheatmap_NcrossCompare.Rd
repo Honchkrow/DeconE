@@ -36,3 +36,9 @@ Usually, only one metric cannot reveal the deconvolution
 performance well. Therefore, the circle heatmap which contains two different
 dimension information can be used for a better illustration.
 }
+\examples{
+res <- pseudoData(type = 3, outputPath = "test_file")
+res <- cheatmap_NcrossCompare(actual = res$actual, predicted = res$predicted,
+label = res$noise_level,  method1 = "pearson", method2 = "rmse")
+
+}

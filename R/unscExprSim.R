@@ -13,7 +13,6 @@
 #' @param n_sample Sample number to be generated, default: 50.
 #' @param p Proportion of sample in train set, default: 2 / 3.
 #' @param transform "TPM", "CPM" or "NO". Transform the data into TPM, CPM or in counts.
-#' @param seed random seed.
 #' @param outputPath output file save path.
 #' @param mix_name mixture output file name.
 #' @param ref_name reference output file name in csv.
@@ -34,11 +33,13 @@
 #'
 #' @export
 #'
+#' @examples
+#' res <- unscExprSim()
+#'
 unscExprSim <- function (unknown = NULL,
                          n_sample = 50,
                          p = 2 / 3,
                          transform = "TPM",
-                         seed = 20202020,
                          outputPath = NULL,
                          mix_name = "scMouse_gene_expr.csv",
                          ref_name = "scMouse_ref.csv",
@@ -46,8 +47,6 @@ unscExprSim <- function (unknown = NULL,
                          train_name = "scMouse_ref_rawCount.csv",
                          ref_total_name = NULL,
                          prop_total_name = NULL) {
-    set.seed(seed = seed)
-
     writeLines("Loading scRNA-seq data......")
     raw_data <- readRDS(file = system.file(package="decone", "extdata", "scRNAseq_matrix_mouse.rds"))
 

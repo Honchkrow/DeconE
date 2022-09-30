@@ -18,6 +18,10 @@
 #'
 #' @export
 #'
+#' @examples
+#' res <- regMetrics(actual = matrix(data = seq(9), nrow = 3),
+#'                   predicted = matrix(data = seq(9), nrow = 3),
+#'                   method = "rmse")
 regMetrics <- function(actual, predicted, method = NULL) {
     if (!all(dim(actual) == dim(predicted))) {
         stop("Dimension of matrix actual and predicted are inconsistent.")
