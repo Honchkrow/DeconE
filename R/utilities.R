@@ -6,6 +6,9 @@
 #'
 #' @param x a gene expression numeric vector.
 #' @param pt parameter to control noised level. Default: 0.1
+#' @param type "NB", "N" or "LN". "NB" means Negative binomial model,
+#' "N" means normal model, "LN" means Log-normal model.
+#' Default: "NB"
 #'
 #' @return the sample length vector.
 #'
@@ -16,22 +19,39 @@
 #' @examples
 #' res <- addNoise(x = seq(100))
 #'
-addNoise <- function (x = NULL, pt = 0.1) {
+addNoise <- function (x = NULL, pt = 0.1, type = "NB") {
     x_size <- length(x)
 
-    # step1 compute sigma
-    sigma_tmp <- 1.8 * pt + (1 / sqrt(x))
-    delta <- rnorm(n = x_size, mean = 0, sd = 0.25)
-    sigma <- sigma_tmp * exp(delta / 2)
+    if (type == "NB") {
+        # step1 compute sigma
+        sigma_tmp <- 1.8 * pt + (1 / sqrt(x))
+        delta <- rnorm(n = x_size, mean = 0, sd = 0.25)
+        sigma <- sigma_tmp * exp(delta / 2)
 
-    # step2 comput u
-    shape <- 1 / (sigma ** 2)
-    scale <- x / shape
-    u <- mapply(FUN = G, shape = shape, scale = scale)
-    u[is.na(u)] <- 0
+        # step2 compute u
+        shape <- 1 / (sigma ** 2)
+        scale <- x / shape
+        u <- mapply(FUN = G, shape = shape, scale = scale)
+        u[is.na(u)] <- 0
 
-    # step3 generate v
-    v <- sapply(X = u, FUN = rpois, n = 1)
+        # step3 generate v
+        v <- sapply(X = u, FUN = rpois, n = 1)
+    } else if (type == "N") {
+        # step1 compute normal
+        n1 <- rnorm(n = x_size, mean = 0, sd = sqrt(10 * pt))
+
+        # step2
+        n2 <- log2((x + 1)) + n1
+        v <- 2 ** n2
+    } else if (type == "LN") {
+        # step1
+        n1 <- rnorm(n = x_size, mean = 0, sd = sqrt(10 * pt))
+        v <- x + 2 ** n1
+
+    } else {
+        stop("Parameter 'type' is invalid!")
+    }
+
 
     return(v)
 }
