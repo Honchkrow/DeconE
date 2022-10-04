@@ -4,7 +4,13 @@
 \alias{addNoiseExpr}
 \title{Add noise to the simulated expression matrix}
 \usage{
-addNoiseExpr(exprFile, outputPath = NULL, prefix = NULL, Pt = seq(0.1, 1, 0.1))
+addNoiseExpr(
+  exprFile,
+  outputPath = NULL,
+  prefix = NULL,
+  Pt = seq(0.1, 1, 0.1),
+  type = "NB"
+)
 }
 \arguments{
 \item{exprFile}{The input expression file. Must be in csv format. Each row is
@@ -19,6 +25,10 @@ the outputPath will be a new folder "/data/test".}
 Note: the suffix will be added automatically based on the noise level.}
 
 \item{Pt}{Parameter to control noise level. Default: seq(0.1, 1, 0.1)}
+
+\item{type}{"NB", "N" or "LN". Noise type. "NB" means Negative binomial model,
+"N" means normal model, "LN" means Log-normal model.
+Default: "NB"}
 }
 \value{
 All the information will be written in the output path, and each file

@@ -15,6 +15,9 @@
 #' @param prefix The prefix of the output file.
 #' Note: the suffix will be added automatically based on the noise level.
 #' @param Pt Parameter to control noise level. Default: seq(0.1, 1, 0.1)
+#' @param type "NB", "N" or "LN". Noise type. "NB" means Negative binomial model,
+#' "N" means normal model, "LN" means Log-normal model.
+#' Default: "NB"
 #'
 #' @return  All the information will be written in the output path, and each file
 #' is the generated data in a specific noise level.
@@ -31,7 +34,8 @@
 addNoiseExpr <- function(exprFile,
                          outputPath = NULL,
                          prefix = NULL,
-                         Pt = seq(0.1, 1, 0.1)) {
+                         Pt = seq(0.1, 1, 0.1),
+                         type = "NB") {
     if (is.null(prefix)) {
         prefix <- file_path_sans_ext(basename(exprFile))
         mess <- paste("The prefix will be", prefix, sep = " ")
@@ -71,7 +75,9 @@ addNoiseExpr <- function(exprFile,
         this_data_noise <- list()
         for(i in seq(n_sample)) {
             pb$tick()
-            this_data_noise[[sample_names[i]]] <- addNoise(x = data[[sample_names[i]]], pt = pt)
+            this_data_noise[[sample_names[i]]] <- addNoise(x = data[[sample_names[i]]],
+                                                           pt = pt,
+                                                           type = type)
         }
 
         noisedData <- do.call(cbind, this_data_noise)

@@ -4,12 +4,16 @@
 \alias{addNoise}
 \title{Add noise to gene expression data}
 \usage{
-addNoise(x = NULL, pt = 0.1)
+addNoise(x = NULL, pt = 0.1, type = "NB")
 }
 \arguments{
 \item{x}{a gene expression numeric vector.}
 
 \item{pt}{parameter to control noised level. Default: 0.1}
+
+\item{type}{"NB", "N" or "LN". "NB" means Negative binomial model,
+"N" means normal model, "LN" means Log-normal model.
+Default: "NB"}
 }
 \value{
 the sample length vector.
