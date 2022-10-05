@@ -2,7 +2,7 @@ Package: decone
 Type: Package
 Date: 2022-09-18
 Title: Cell Type Deconvolution Evaluator
-Version: 0.99.0
+Version: 1.0.0
 Authors@R: c(
   person(given = 'Wei', family = 'Zhang', email = 'zw@sdu.edu.cn', role = c('aut', 'cre'))
   )
