@@ -15,8 +15,8 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
-  \item{Metrics}{\code{\link[Metrics]{mae}}, \code{\link[Metrics]{mape}}, \code{\link[Metrics]{rmse}}}
-
   \item{data.table}{\code{\link[data.table]{fread}}, \code{\link[data.table]{fwrite}}}
+
+  \item{Metrics}{\code{\link[Metrics]{mae}}, \code{\link[Metrics]{mape}}, \code{\link[Metrics]{rmse}}}
 }}
 
