@@ -5,12 +5,13 @@ Quantifying cell proportions is an important problem in bioinformatics. cell typ
 
 Here, we proposed a cell type <u>decon</u>volution <u>e</u>valuating toolkit named '**decone**' to perform comprehensive and systematic analysis for different algorithms.
 
-**decone** consists of 5 main part functions as below.
+**decone** consists of 6 main part functions as below.
 - Pseudo bulk data generation (including bulk and single cell).
 - Stability analysis under different types of noise.
 - Rare component analysis.
 - Unknown component analysis.
 - Comprehensive evaluation metrics.
+- Well characterized datasets for deconvolution utilities.
 
 In the following parts, we will introduce each function along with how to compute the evaluation metrics for comparison different deconvolution methods.
 
@@ -33,4 +34,4 @@ devtools::install_github('Honchkrow/decone')
 library(decone)
 ```
 
-
+## Section 3: Gnerating Pseudo Bulk Data
