@@ -582,7 +582,7 @@ In addition, we collected 14 well-characterized deconvolution datasets for users
 
 Note: some dataset are collected from [dtangle](10.1093/bioinformatics/bty926) and [MuSiC](https://doi.org/10.1038/s41467-018-08023-x).
 
-
+Please cite the corresponding article when you use the datasets.
 
 ## Citation
 
