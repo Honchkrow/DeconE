@@ -169,7 +169,7 @@ scatter_simple <- function(actual, predicted, method, celltype = TRUE) {
             labs(title = "", x = "Ground Truth", y = "Prediction")
     }
 
-    return(list(data = data, p = p))
+    return(list(data = data, plot = p))
 
 }
 

@@ -4,13 +4,7 @@
 \alias{boxplot_NcrossCompare}
 \title{Comparing boxplot for noise testing.}
 \usage{
-boxplot_NcrossCompare(
-  actual,
-  predicted,
-  label = NULL,
-  method,
-  title = "Boxplot"
-)
+boxplot_NcrossCompare(actual, predicted, label = NULL, method, title = "")
 }
 \arguments{
 \item{actual}{The groundtruth proportion of cell types in matrix.
@@ -31,7 +25,7 @@ proportion file. Default: c("condition1", "condition2", "condition3", ...)}
 \item{method}{"rmse", "mape", "mae", "pearson" or "spearman".
 Note: for mape, cell types with read proportion 0 will be ignored.}
 
-\item{title}{Boxplot title in character. Default: "Boxplot".}
+\item{title}{Boxplot title in character.}
 }
 \value{
 The computed metrics and plot data.

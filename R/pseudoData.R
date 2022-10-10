@@ -1,6 +1,6 @@
 #' @title Generate pseudo data for plotting
 #'
-#' @description Generate pseudo data for plotting
+#' @description Generate pseudo data (prediction values) for plotting
 #'
 #' @param type 1, 2 or 3 for different usage
 #' @param outputPath path to save tmp file

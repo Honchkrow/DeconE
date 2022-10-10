@@ -76,7 +76,7 @@ boxplot_NGrad <- function(actual,
 
     p <- ggplot(data = df1, aes(x = .data$Var2, y = .data$value)) +
         # stat_boxplot(geom = "errorbar", width = 0.25) +
-        geom_boxplot(width=0.4, outlier.shape = 19) +
+        geom_boxplot(width=0.4, outlier.shape = 19, fill = "#4271AE", outlier.colour = "red") +
         theme(panel.background = element_blank(),
               panel.grid.major = element_blank(),
               panel.grid.minor = element_blank(),
@@ -115,7 +115,7 @@ boxplot_NGrad <- function(actual,
 #' proportion file. Default: c("condition1", "condition2", "condition3", ...)
 #' @param method "rmse", "mape", "mae", "pearson" or "spearman".
 #' Note: for mape, cell types with read proportion 0 will be ignored.
-#' @param title Boxplot title in character. Default: "Boxplot".
+#' @param title Boxplot title in character.
 #'
 #' @return The computed metrics and plot data.
 #'
@@ -135,7 +135,7 @@ boxplot_NcrossCompare <- function(actual,
                                  predicted,
                                  label = NULL,
                                  method,
-                                 title = "Boxplot") {
+                                 title = "") {
     if (typeof(actual) == "character") {
         p_true <- as.matrix(read.csv(file = actual,
                                      header = TRUE,

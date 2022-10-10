@@ -15,7 +15,7 @@ pseudoData(type = 1, outputPath = "test_file")
 The pseudo data
 }
 \description{
-Generate pseudo data for plotting
+Generate pseudo data (prediction values) for plotting
 }
 \examples{
 res <- pseudoData(type = 1)

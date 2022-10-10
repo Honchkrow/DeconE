@@ -42,7 +42,8 @@ in this paper (Jin, H., Liu, Z. A benchmark for RNA-seq deconvolution analysis
  https://doi.org/10.1186/s13059-021-02290-6).
 }
 \examples{
-res <- pseudoData(type = 2)
-addNoiseExpr(exprFile = res$actual)
+res <- pseudoExpr()
+write.csv(x = res$mix, file = "mix.csv", row.names = T, quote = F)
+addNoiseExpr(exprFile = "mix.csv", Pt = seq(0.1, 1, 0.1), type = "NB")
 
 }
