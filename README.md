@@ -444,9 +444,94 @@ cheatmap_NcrossCompare(actual = actual,
 
 ## Section 5: Rare Component Analysis
 
+In cell type deconvolution problem, cell types with extremely small proportion are always been ignored. However, these cell types play vital roles in some situation, like TILs which exhibit low fractions in many cancer
+tissues. Some methods has been proposed to tackle this problem like [DWLS](https://doi.org/10.1038/s41467-019-10802-z) and [ARIC](https://doi.org/10.1093/bib/bbab362).
 
 
+decone provides function 'rareExprSim' and 'rarescExprSim' to simulate bulk data with the rare component. In order to perform a comprehensive analysis, decone takes all the cell types as potential rare component in loop with a pre-set rare proportion gradient.
 
+
+Here is an example with 6 different deconvolution algorithms.
+
+First, generate in silico rare proportion dataset.
+
+```R
+# rare proportion is set to 0.001, 0.003, 0.005, 0.008, 0.01, 0.03 and 0.05
+rareExprSim(p_rare = c(0.001, 0.003, 0.005, 0.008, 0.01, 0.03, 0.05),
+            type = "coarse",
+            transform = "TPM")
+```
+
+Second, deconvolute the simulated bulk data with different algriothms. Here, we directly takes the deconvolution results from [ARIC](https://doi.org/10.1093/bib/bbab362), [CIBERSORT](https://doi.org/10.1038/nmeth.3337), [EPIC](10.1007/978-1-0716-0327-7_17), [dtangle](10.1093/bioinformatics/bty926), [FARDEEP](10.1371/journal.pcbi.1006976) as well as [DeconRNAseq](10.1093/bioinformatics/btt090) as an example.
+
+
+We can generate scatter plot for each method like below.
+
+```R
+actual <- "./coarse_prop.csv"
+predicted <- "./EPIC_coarse_p-0.01_fc-2.csv"
+scatter_R(actual = actual,
+          predicted = predicted,
+          p_rare = c(0.001, 0.003, 0.005, 0.008, 0.01, 0.03, 0.05),
+          celltype = TRUE)
+```
+
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="./inst/figures/scatter_R.png">
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">Scatter plot of rare component for EPIC</div>
+</center>
+
+From the above figure, users can analyze the deconvolution power for each cell type.
+
+Also, we can heatmap and circle heatmap to have a cross-comparison.
+
+```R
+actual <- "./coarse_prop.csv"
+predicted <- Sys.glob("./*_coarse_p-0.01_fc-2.csv")
+label <- c("ARIC", "CBS", "EPIC", "DeconRNAseq", "dtangle", "FARDEEP")
+
+heatmap_RcrossCompare(actual,
+                      predicted,
+                      p_rare = c(0.001, 0.003, 0.005, 0.008, 0.01, 0.03, 0.05),
+                      label = label,
+                      method = "rmse")
+
+cheatmap_RcrossCompare(actual,
+                       predicted,
+                       p_rare = c(0.001, 0.003, 0.005, 0.008, 0.01, 0.03, 0.05),
+                       label = label,
+                       method1 = "rmse",
+                       method2 = "mape")
+```
+
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="./inst/figures/heatmap_RcrossCompare.png">
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">Heatmap plot for rmse</div>
+</center>
+
+
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="./inst/figures/cheatmap_RcrossCompare.png">
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">circle heatmap plot for rmse and mape</div>
+</center>
 
 ## Section 5: Unknown Component Analysis
 
