@@ -534,15 +534,59 @@ cheatmap_RcrossCompare(actual,
 </center>
 
 ## Section 5: Unknown Component Analysis
+Almost all physiological and pathological processes inmulticellular organisms involvemultiple cell types ([Wei, *et al.*](https://doi.org/10.1093/bib/bbab362)). It is hard to identify all the cell types in the micro-environment. Unknown component is an nonnegligible problem for all deconvolution algorithms and methods like [EPIC](10.1007/978-1-0716-0327-7_17) has taken this problem into consideration.
+
+In order to test the estimation accuracy when there exist an nonnegligible cell type, decone provides function to generate simulated bulk data which drops a certain cell type.
+
+```R
+# generate bulk data
+unExprSim(unknown = "neutrophils",  # drop neutrophils. if NULL, randomly drop a cell type.
+          n_sample = 50,
+          type = "coarse",
+          outputPath = "./un",
+          transform = "TPM",
+          mix_name = "coarse_gene_expr.csv",
+          ref_name = "coarse_ref.csv",
+          prop_name = "coarse_prop.csv")
+```
+
+After this, users can use functions mentioned above to perform single method evaluation or cross-comparison evaluation.
+
+
+## Section 7: Single Cell Related Functions
+
+Single cell related functions are similar with functions used for massive bulk data, like 'unscExprSim', 'rarescExprSim' and 'unscExprSim'. For more information, please refer to [decone manual](111).
+
+## Section 8: Well-Characterized Deconvolution Datasets
+
+In addition, we collected 14 well-characterized deconvolution datasets for users. Some of them are known cell type proportion. Some datasets with out known the truw proportion, but the related phenotype can be accessed. We provide the processed datasets with **bulk data**, **reference data** as well as **true proportions**, which means that these datasets can be used directly. We summried the datasets as the following table. 
+
+| NO. | NAME | Description | Type | Proportion | Source |
+| :----: | :----: | :----: | :----: | :----: | :----: |
+| 1 | Abbas | Microarray | Bulk | known | [Abbas, *et al.*](https://doi.org/10.1371/journal.pone.0006098) |
+| 2 | Becht | Microarray | Bulk | known | [Becht, *et al.*](https://doi.org/10.1186/s13059-016-1070-5) |
+| 3 | Gong | Microarray | Bulk | known | [Gong, *et al.*](https://doi.org/10.1371/journal.pone.0027156) |
+| 4 | Kuhn | Microarray | Bulk | known | [Kuhn, *et al.*](https://doi.org/10.1038/nmeth.1710) |
+| 5 | Linsley | RNA-seq | Bulk | known | [Linsley, *et al.*](https://doi.org/10.1371/journal.pone.0109760) |
+| 6 | Liu | RNA-seq | Bulk | known | [Liu, *et al.*](10.1093/nar/gkv412) |
+| 7 | Parsons | RNA-seq | Bulk | known | [Parsons, *et al.*](https://doi.org/10.1186/s12864-015-1912-7) |
+| 8 | Shen-Orr | Microarray | Bulk | known | [Shen-Orr, *et al.*](https://doi.org/10.1038/nmeth.1439) |
+| 9 | Shi | Microarray | Bulk | known | [Shi, *et al.*](10.1038/nbt1239) |
+| 10 | T2D | RNA-seq | single cell | known | [Fadista, *et al.*](10.1073/pnas.1402665111) |
+| 11 | TCGA_LUSC | RNA-seq | Bulk | known | [Vasaikar, *et al.*](https://doi.org/10.1093/nar/gkx1090) |
+| 12 | TCGA_OV | RNA-seq | Bulk | known | [Vasaikar, *et al.*](https://doi.org/10.1093/nar/gkx1090) |
+| 13 | kidney_Arvaniti | RNA-seq | single cell | known | [	Arvaniti, *et al.*](10.1038/srep26235) |
+| 14 | kidney_Arvaniti_TPM | RNA-seq | single cell | known | [	Arvaniti, *et al.*](10.1038/srep26235) |
+| 15 | kidney_Craciun | RNA-seq | Bulk | known | [Craciun, *et al.*](10.1681/ASN.2015020225) |
+| 16 | kidney_Craciun_TPM | RNA-seq | Bulk | known | [Craciun, *et al.*](10.1681/ASN.2015020225) |
+
+Note: some dataset are collected from [dtangle](10.1093/bioinformatics/bty926) and [MuSiC](https://doi.org/10.1038/s41467-018-08023-x).
 
 
 
-## Section 5: Well-Characterized Deconvolution Datasets
+## Citation
 
-
-
-
-## References
+Zhang, W., Xu, H., Qiao, R., Zhong, B., Zhang, X., Gu, J., Zhang, X., Wei, L. and Wang, X., 2022. ARIC: accurate and robust inference of cell type proportions from bulk gene expression or DNA methylation data. Briefings in Bioinformatics, 23(1), p.bbab362.
 
 
 

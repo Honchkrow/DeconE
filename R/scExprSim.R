@@ -45,7 +45,7 @@ scExprSim <- function (n_sample = 50,
         writeLines("output path is not specified, all the file will be saved in work directory.")
         outputPath <- "."
     } else {
-        if (!file.exists(outputPath)) {
+        if (!dir.exists(outputPath)) {
             stop("output path do not exist!")
         }
     }

@@ -13,7 +13,7 @@
 #' res <- pseudoData(type = 1)
 #'
 pseudoData <- function(type = 1, outputPath = 'test_file') {
-    if (!file.exists(outputPath)) {
+    if (!dir.exists(outputPath)) {
         dir.create(outputPath)
     }
 

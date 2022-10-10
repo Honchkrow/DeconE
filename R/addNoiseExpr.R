@@ -51,7 +51,7 @@ addNoiseExpr <- function(exprFile,
         writeLines(mess)
     }
 
-    if (!file.exists(outputPath)) {
+    if (!dir.exists(outputPath)) {
         dir.create(outputPath)
     }
 
