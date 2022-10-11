@@ -1,6 +1,3 @@
-# **decone**: An easy-to-use and comprehensive evaluation toolkit for cell type deconvolution from expression data
-
-
 **Links**:
 
 - [decone documentaion](123)
