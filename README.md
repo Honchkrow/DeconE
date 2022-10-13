@@ -1,7 +1,5 @@
 ## **decone**: An easy-to-use and comprehensive evaluation toolkit for cell type deconvolution from expression data
 
-<br/>
-
 * [Section 1: Introduction](#section-1-introduction)
 * [Section 2: Installation](#section-2-installation)
 * [Section 3: Gnerating Pseudo Bulk Data](#section-3-gnerating-pseudo-bulk-data)
@@ -17,13 +15,9 @@
 * [Section 8: Well-Characterized Deconvolution Datasets](#section-8-well-characterized-deconvolution-datasets)
 * [Citation](#citation)
 
-<br/>
-
 **Links**:
 - [decone manual](https://honchkrow.github.io/decone/inst/documents/decone_1.0.0.pdf)
 - [decone vignettes](https://honchkrow.github.io/decone/inst/documents/decone_intro.html)
-
-<br/>
 
 
 ## Section 1: Introduction
