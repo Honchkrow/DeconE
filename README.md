@@ -1,7 +1,23 @@
 ## **decone**: An easy-to-use and comprehensive evaluation toolkit for cell type deconvolution from expression data
 
-**Links**:
 
+* [Section 1: Introduction](#section-1-introduction)
+* [Section 2: Installation](#section-2-installation)
+* [Section 3: Gnerating Pseudo Bulk Data](#section-3-gnerating-pseudo-bulk-data)
+    * [Section 3.1: Gnerating Pseudo Bulk Data From Massive RNA-seq Studies](#section-31-gnerating-pseudo-bulk-data-from-massive-rna-seq-studies)
+    * [Section 3.2: Gnerating Pseudo Bulk Data From scRNA-seq data](#section-32-gnerating-pseudo-bulk-data-from-scrna-seq-data)
+    * [Section 3.3: Evaluating The Deconvolution Results For Single Method](#section-33-evaluating-the-deconvolution-results-for-single-method)
+* [Section 4: Noise Analysis](#section-4-noise-analysis)
+    * [Section 4.1: Generating Noised Bulk Data With Negative Binomial Model](#section-41-generating-noised-bulk-data-with-negative-binomial-model)
+    * [Section 4.2: Evaluating The Deconvolution Results For Multiple Method](#section-42-evaluating-the-deconvolution-results-for-multiple-method)
+* [Section 5: Rare Component Analysis](#section-5-rare-component-analysis)
+* [Section 5: Unknown Component Analysis](#section-5-unknown-component-analysis)
+* [Section 7: Single Cell Related Functions](#section-7-single-cell-related-functions)
+* [Section 8: Well-Characterized Deconvolution Datasets](#section-8-well-characterized-deconvolution-datasets)
+* [Citation](#citation)
+
+
+**Links**:
 - [decone manual](https://honchkrow.github.io/decone/inst/documents/decone_1.0.0.pdf)
 - [decone vignettes](https://honchkrow.github.io/decone/inst/documents/decone_intro.html)
 
