@@ -474,7 +474,7 @@ rareExprSim(p_rare = c(0.001, 0.003, 0.005, 0.008, 0.01, 0.03, 0.05),
             transform = "TPM")
 ```
 
-Second, deconvolute the simulated bulk data with different algorithms. Here, we directly takes the deconvolution results from [ARIC](https://doi.org/10.1093/bib/bbab362), [CIBERSORT](https://doi.org/10.1038/nmeth.3337), [EPIC](10.1007/978-1-0716-0327-7_17), [dtangle](10.1093/bioinformatics/bty926), [FARDEEP](10.1371/journal.pcbi.1006976) as well as [DeconRNAseq](10.1093/bioinformatics/btt090) as an example.
+Second, deconvolute the simulated bulk data with different algorithms. Here, we directly takes the deconvolution results from [ARIC](https://doi.org/10.1093/bib/bbab362), [CIBERSORT](https://doi.org/10.1038/nmeth.3337), [EPIC](https://doi.org/10.1007/978-1-0716-0327-7_17), [dtangle](https://doi.org/10.1093/bioinformatics/bty926), [FARDEEP](10.1371/journal.pcbi.1006976) as well as [DeconRNAseq](https://doi.org/10.1093/bioinformatics/btt090) as an example.
 
 
 We can generate a scatter plot for each method like below.
@@ -547,7 +547,7 @@ cheatmap_RcrossCompare(actual,
 
 ## Section 5: Unknown Component Analysis
 
-Almost all physiological and pathological processes in multicellular organisms involve multiple cell types ([Wei, *et al.*](https://doi.org/10.1093/bib/bbab362)). It is hard to identify all the cell types in the microenvironment. The unknown component is a nonnegligible problem for all deconvolution algorithms and methods like [EPIC](10.1007/978-1-0716-0327-7_17) have considered this problem.
+Almost all physiological and pathological processes in multicellular organisms involve multiple cell types ([Wei, *et al.*](https://doi.org/10.1093/bib/bbab362)). It is hard to identify all the cell types in the microenvironment. The unknown component is a nonnegligible problem for all deconvolution algorithms and methods like [EPIC](https://doi.org/10.1007/978-1-0716-0327-7_17) have considered this problem.
 
 To test the estimation accuracy when there exists a nonnegligible cell type, decone provides the function to generate simulated bulk data which drops a certain cell type.
 
@@ -568,7 +568,7 @@ After this, users can use the functions mentioned above to perform single-method
 
 ## Section 7: Single Cell Related Functions
 
-Single cell related functions are similar with functions used for massive bulk data, like 'unscExprSim', 'rarescExprSim' and 'unscExprSim'. For more information, please refer to [decone manual](111).
+Single cell related functions are similar with functions used for massive bulk data, like 'unscExprSim', 'rarescExprSim' and 'unscExprSim'. For more information, please refer to [decone manual](https://honchkrow.github.io/decone/inst/documents/decone_1.0.0.pdf).
 
 ## Section 8: Well-Characterized Deconvolution Datasets
 
@@ -581,21 +581,21 @@ In addition, we collected 14 well-characterized deconvolution datasets for users
 | 3 | Gong | Microarray | Bulk | known | [Gong, *et al.*](https://doi.org/10.1371/journal.pone.0027156) |
 | 4 | Kuhn | Microarray | Bulk | known | [Kuhn, *et al.*](https://doi.org/10.1038/nmeth.1710) |
 | 5 | Linsley | RNA-seq | Bulk | known | [Linsley, *et al.*](https://doi.org/10.1371/journal.pone.0109760) |
-| 6 | Liu | RNA-seq | Bulk | known | [Liu, *et al.*](10.1093/nar/gkv412) |
+| 6 | Liu | RNA-seq | Bulk | known | [Liu, *et al.*](https://doi.org/10.1093/nar/gkv412) |
 | 7 | Parsons | RNA-seq | Bulk | known | [Parsons, *et al.*](https://doi.org/10.1186/s12864-015-1912-7) |
 | 8 | Shen-Orr | Microarray | Bulk | known | [Shen-Orr, *et al.*](https://doi.org/10.1038/nmeth.1439) |
-| 9 | Shi | Microarray | Bulk | known | [Shi, *et al.*](10.1038/nbt1239) |
-| 10 | T2D | RNA-seq | single cell | known | [Fadista, *et al.*](10.1073/pnas.1402665111) |
+| 9 | Shi | Microarray | Bulk | known | [Shi, *et al.*](https://doi.org/10.1038/nbt1239) |
+| 10 | T2D | RNA-seq | single cell | known | [Fadista, *et al.*](https://doi.org/10.1073/pnas.1402665111) |
 | 11 | TCGA_LUSC | RNA-seq | Bulk | known | [Vasaikar, *et al.*](https://doi.org/10.1093/nar/gkx1090) |
 | 12 | TCGA_OV | RNA-seq | Bulk | known | [Vasaikar, *et al.*](https://doi.org/10.1093/nar/gkx1090) |
-| 13 | kidney_Arvaniti | RNA-seq | single cell | known | [	Arvaniti, *et al.*](10.1038/srep26235) |
-| 14 | kidney_Arvaniti_TPM | RNA-seq | single cell | known | [	Arvaniti, *et al.*](10.1038/srep26235) |
-| 15 | kidney_Craciun | RNA-seq | Bulk | known | [Craciun, *et al.*](10.1681/ASN.2015020225) |
-| 16 | kidney_Craciun_TPM | RNA-seq | Bulk | known | [Craciun, *et al.*](10.1681/ASN.2015020225) |
+| 13 | kidney_Arvaniti | RNA-seq | single cell | known | [	Arvaniti, *et al.*](https://doi.org/10.1038/srep26235) |
+| 14 | kidney_Arvaniti_TPM | RNA-seq | single cell | known | [	Arvaniti, *et al.*](https://doi.org/10.1038/srep26235) |
+| 15 | kidney_Craciun | RNA-seq | Bulk | known | [Craciun, *et al.*](https://doi.org/10.1681/ASN.2015020225) |
+| 16 | kidney_Craciun_TPM | RNA-seq | Bulk | known | [Craciun, *et al.*](https://doi.org/10.1681/ASN.2015020225) |
 
 Users can download the datasets from this [page](https://github.com/Honchkrow/decone_dataset).
 
-Note: some dataset are collected from [dtangle](10.1093/bioinformatics/bty926) and [MuSiC](https://doi.org/10.1038/s41467-018-08023-x).
+Note: some dataset are collected from [dtangle](https://doi.org/10.1093/bioinformatics/bty926) and [MuSiC](https://doi.org/10.1038/s41467-018-08023-x).
 
 Please cite the corresponding article when you use the datasets.
 
