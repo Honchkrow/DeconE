@@ -287,7 +287,6 @@ res$plot
 
 Generally, when a new deconvolution approach is proposed, cross-comparison between different methods is needed. decone provides multi-level comparison and visualization functions. The cross-comparison function will be introduced along with the next parts.
 
-<br/>
 
 ## Section 4: Noise Analysis
 
@@ -525,7 +524,6 @@ cheatmap_NcrossCompare(actual = actual,
     padding: 2px;">circle heatmap of rmse and PCC for different deconvolution method</div>
 </center>
 
-<br/>
 
 ## Section 5: Rare Component Analysis
 
@@ -620,11 +618,11 @@ cheatmap_RcrossCompare(actual,
 
 <br/>
 
-## Section 5: Unknown Component Analysis
+## Section 6: Unknown Component Analysis
 
 Almost all physiological and pathological processes in multicellular organisms involve multiple cell types ([Wei, *et al.*](https://doi.org/10.1093/bib/bbab362)). It is hard to identify all the cell types in the microenvironment. The unknown component is a nonnegligible problem for all deconvolution algorithms and methods like [EPIC](https://doi.org/10.1007/978-1-0716-0327-7_17) have considered this problem.
 
-To test the estimation accuracy when there exists a nonnegligible cell type, decone provides the function to generate simulated bulk data which drops a certain cell type.
+To test the estimation accuracy when there exists a nonnegligible cell type, decone provides the function to generate simulated bulk data which drops a certain cell type in reference.
 
 ```R
 # generate bulk data
@@ -638,9 +636,60 @@ unExprSim(unknown = "neutrophils",  # drop neutrophils. if NULL, randomly drop a
           prop_name = "coarse_prop.csv")
 ```
 
-After this, users can use the functions mentioned above to perform single-method evaluation or cross-comparison evaluation.
+After this, users can use the functions mentioned above to perform single-method evaluation or cross-comparison evaluation. Here, we use 4 methods as an example.
 
-<br/>
+```R
+library(EpiDISH)
+library(DeconRNASeq)
+library(FARDEEP)
+
+mix <- read.csv(file = "./un/coarse_gene_expr.csv", header = T, row.names = 1)
+ref <- read.csv(file = "./un/coarse_ref.csv", header = T, row.names = 1)
+
+# For a fast demo, we use only 500 markers.
+mix <- as.matrix(mix[1:500, ])
+ref <- as.matrix(ref[1:500, ])
+
+# deconvolute with CIBERSORT algorithm
+res1 <- epidish(beta.m = mix, ref.m = ref, method = "CBS")
+p1 <- t(res1$estF)
+# deconvolute with RPC algorithm
+res2 <- epidish(beta.m = mix, ref.m = ref, method = "RPC")
+p2 <- t(res2$estF)
+# deconvolute with DeconRNASeq algorithm
+res3 <- DeconRNASeq(datasets = as.data.frame(mix), signatures = as.data.frame(ref))
+p3 <- t(res3$out.all)
+# deconvolute with FARDEEP algorithm
+res4 <- fardeep(X = ref, Y = mix)
+p4 <- t(res4$relative.beta)
+
+# save the results
+write.csv(x = p1, file = paste0("./un/CBS.csv"), row.names = T, quote = F)
+write.csv(x = p2, file = paste0("./un/RPC.csv"), row.names = T, quote = F)
+write.csv(x = p3, file = paste0("./un/DeconRNASeq.csv"), row.names = T, quote = F)
+write.csv(x = p4, file = paste0("./un/FARDEEP.csv"), row.names = T, quote = F)
+
+
+actual <- "un/coarse_prop.csv"
+predicted <- c("./un/CBS.csv", "./un/RPC.csv", "./un/DeconRNASeq.csv", "./un/FARDEEP.csv")
+label <- c("CBS", "RPC", "DeconRNASeq", "FARDEEP")
+boxplot_multi(actual = actual, predicted = predicted, label = label, method = "rmse")
+```
+
+
+
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="./inst/figures/un_test.png">
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">Boxplot for unknown test</div>
+</center>
+
+
 
 ## Section 7: Single Cell Related Functions
 
