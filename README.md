@@ -1,25 +1,29 @@
 ## **decone**: An easy-to-use and comprehensive evaluation toolkit for cell type deconvolution from expression data
 
+<br/>
 
 * [Section 1: Introduction](#section-1-introduction)
 * [Section 2: Installation](#section-2-installation)
 * [Section 3: Gnerating Pseudo Bulk Data](#section-3-gnerating-pseudo-bulk-data)
     * [Section 3.1: Gnerating Pseudo Bulk Data From Massive RNA-seq Studies](#section-31-gnerating-pseudo-bulk-data-from-massive-rna-seq-studies)
     * [Section 3.2: Gnerating Pseudo Bulk Data From scRNA-seq data](#section-32-gnerating-pseudo-bulk-data-from-scrna-seq-data)
-    * [Section 3.3: Evaluating The Deconvolution Results For Single Method](#section-33-evaluating-the-deconvolution-results-for-single-method)
+    * [Code Demo 1: Evaluating The Deconvolution Results In A Simple Manner](#code-demo-1-evaluating-the-deconvolution-results-in-a-simple-manner)
 * [Section 4: Noise Analysis](#section-4-noise-analysis)
     * [Section 4.1: Generating Noised Bulk Data With Negative Binomial Model](#section-41-generating-noised-bulk-data-with-negative-binomial-model)
-    * [Section 4.2: Evaluating The Deconvolution Results For Multiple Method](#section-42-evaluating-the-deconvolution-results-for-multiple-method)
+    * [Code Demo 2: Evaluating The Deconvolution Results For Multiple Method](#code-demo-2-evaluating-the-deconvolution-results-for-multiple-method)
 * [Section 5: Rare Component Analysis](#section-5-rare-component-analysis)
 * [Section 5: Unknown Component Analysis](#section-5-unknown-component-analysis)
 * [Section 7: Single Cell Related Functions](#section-7-single-cell-related-functions)
 * [Section 8: Well-Characterized Deconvolution Datasets](#section-8-well-characterized-deconvolution-datasets)
 * [Citation](#citation)
 
+<br/>
 
 **Links**:
 - [decone manual](https://honchkrow.github.io/decone/inst/documents/decone_1.0.0.pdf)
 - [decone vignettes](https://honchkrow.github.io/decone/inst/documents/decone_intro.html)
+
+<br/>
 
 
 ## Section 1: Introduction
@@ -36,6 +40,8 @@ Here, we proposed a cell type <u>decon</u>volution <u>e</u>valuating toolkit nam
 - Well characterized datasets for deconvolution utilities.
 
 In the following parts, we will introduce each function along with how to compute the evaluation metrics for comparison of different deconvolution methods.
+
+<br/>
 
 ## Section 2: Installation
 
@@ -56,9 +62,13 @@ devtools::install_github('Honchkrow/decone')
 library(decone)
 ```
 
+<br/>
+
 ## Section 3: Gnerating Pseudo Bulk Data
 
 Generating pseudo-bulk data is a challenging problem. Inspired by the former work ([Francisco, *et al.*](https://doi.org/10.1038/s41467-020-20288-9), [Wang, *et al.*](https://doi.org/10.1038/s41467-018-08023-x), [Wei, *et al.*](https://doi.org/10.1093/bib/bbab362)) and [Tumor Deconvolution DREAM Challenge](https://www.synapse.org/#!Synapse:syn15589870/wiki/), decone provides different pseudo data generation strategies from bulk RNA-seq data as well as scRNA-seq data.
+
+<br/>
 
 ### Section 3.1: Gnerating Pseudo Bulk Data From Massive RNA-seq Studies
 
@@ -110,6 +120,7 @@ exprSim(n_sample = 50,  # generating 50 samples
 
 The proportion will be generated randomly from a uniform distribution ([Wei, *et al.*](https://doi.org/10.1093/bib/bbab362)). decone also outputs the data for generating the external reference which can be used for differential expression analysis in marker gene selection.
 
+<br/>
 
 ### Section 3.2: Gnerating Pseudo Bulk Data From scRNA-seq data
 
@@ -130,9 +141,11 @@ scExprSim(n_sample = 50,
 
 ```
 
-### Section 3.3: Evaluating The Deconvolution Results For Single Method
+<br/>
 
-In this part, we will demonstrate how to analyze the results of a single deconvolution method.
+### Code Demo 1: Evaluating The Deconvolution Results In A Simple Manner
+
+In this part, we will demonstrate how to perform a simple evaluation of deconvolution results.
 
 We adopted [EpiDISH](https://www.bioconductor.org/packages/release/bioc/html/EpiDISH.html) which provides 3 types of deconvolution algorithms as the demo.
 
@@ -162,24 +175,25 @@ Second, use [EpiDISH](https://www.bioconductor.org/packages/release/bioc/html/Ep
 ```R
 library(EpiDISH)
 
-mix <- read.csv(file = "./test1/coarse_mix.csv", header = T, row.names = 1)
-ref <- read.csv(file = "./test1/coarse_ref.csv", header = T, row.names = 1)
+mix <- read.csv(file = "./test/coarse_mix.csv", header = T, row.names = 1)
+ref <- read.csv(file = "./test/coarse_ref.csv", header = T, row.names = 1)
 
 # For a fast demo, we use only 500 markers.
 mix <- as.matrix(mix[1:500, ])
 ref <- as.matrix(ref[1:500, ])
 
+# here, users can change method
 res <- epidish(beta.m = mix, ref.m = ref, method = "CBS")
 prop_pred <- t(res$estF)
 
-write.csv(x = prop_pred, file = "./test1/prop_pred.csv", row.names = T, quote = F)
+write.csv(x = prop_pred, file = "./test/prop_pred.csv", row.names = T, quote = F)
 ```
 
 Next, using decone to Evaluate the deconvolution results.
 
 ```R
-actual <- "./test1/coarse_prop.csv"
-predicted <- "./test1/prop_pred.csv"
+actual <- "./test/coarse_prop.csv"
+predicted <- "./test/prop_pred.csv"
 
 # Plot boxplot for different metrics
 # Evaluation method can be changed to "rmse", "mape", "mae", "pearson" or "spearman".
@@ -202,7 +216,56 @@ The rmse boxplot of 50 samples will be like below.
     padding: 2px;">Boxplot of rmse value for 50 samples</div>
 </center>
 
-For generating the comparison plot between different methods under a certain dataset, please check the **Section 4**.
+<br/>
+
+In addition, users can compare the results from multiple methods.
+
+```R
+# Users can perform the deconvolution from multiple algorithms.
+library(DeconRNASeq)
+library(FARDEEP)
+
+# deconvolute with CIBERSORT algorithm
+res1 <- epidish(beta.m = mix, ref.m = ref, method = "CBS")
+p1 <- t(res1$estF)
+# deconvolute with RPC algorithm
+res2 <- epidish(beta.m = mix, ref.m = ref, method = "RPC")
+p2 <- t(res2$estF)
+# deconvolute with DeconRNASeq algorithm
+res3 <- DeconRNASeq(datasets = as.data.frame(mix), signatures = as.data.frame(ref))
+p3 <- t(res3$out.all)
+# deconvolute with FARDEEP algorithm
+res4 <- fardeep(X = ref, Y = mix)
+p4 <- t(res4$relative.beta)
+
+# save the results
+write.csv(x = p1, file = paste0("./CBS.csv"), row.names = T, quote = F)
+write.csv(x = p2, file = paste0("./RPC.csv"), row.names = T, quote = F)
+write.csv(x = p3, file = paste0("./DeconRNASeq.csv"), row.names = T, quote = F)
+write.csv(x = p4, file = paste0("./FARDEEP.csv"), row.names = T, quote = F)
+
+actual <- "test/coarse_prop.csv"
+predicted <- c("CBS.csv", "RPC.csv", "DeconRNASeq.csv", "FARDEEP.csv")
+label <- c("CBS", "RPC", "DeconRNASeq", "FARDEEP")
+
+boxplot_multi(actual = actual, predicted = predicted, label = label, method = "rmse")
+
+```
+
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="./inst/figures/boxplot_multi.png">
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">Boxplot of rmse value for 4 different methods</div>
+</center>
+
+<br/>
+
+For generating more comparison results between different methods under a certain dataset, please check the **Section 4**.
 
 Also, users can generate pretty scatter figure for each dataset like below.
 
@@ -226,12 +289,17 @@ res$plot
     padding: 2px;">Scatter-plot of rmse value for 50 samples</div>
 </center>
 
+<br/>
+
 Generally, when a new deconvolution approach is proposed, cross-comparison between different methods is needed. decone provides multi-level comparison and visualization functions. The cross-comparison function will be introduced along with the next parts.
+
+<br/>
 
 ## Section 4: Noise Analysis
 
 In expression data analysis, technical and biological noise cannot be ignored. Noise existing in bulk data brings a negative influence on deconvolution. In order to measure the stability and accuracy of different methods, decone provides functions to add noise with the different structures on bulk data.
 
+<br/>
 
 ### Section 4.1: Generating Noised Bulk Data With Negative Binomial Model
 
@@ -279,8 +347,9 @@ mix/
 
 After this, users can test the performance of different methods easily.
 
+<br/>
 
-### Section 4.2: Evaluating The Deconvolution Results For Multiple Method
+### Code Demo 2: Evaluating The Deconvolution Results For Multiple Method
 
 Comparison the deconvolution performance between different algorithms helps to find the appropriate method for a certain biology scenario.
 
@@ -359,6 +428,7 @@ The output figures are as follows.
     padding: 2px;">Box plot for rmse value of CIBERSORT</div>
 </center>
 
+<br/>
 
 It is clear that with the growth of noise power, the deconvolution results become worse.
 
@@ -373,6 +443,8 @@ It is clear that with the growth of noise power, the deconvolution results becom
     color: #999;
     padding: 2px;">Cell type specific mape value for CIBERSORT</div>
 </center>
+
+<br/>
 
 Of course, cell types specific results are influenced by noise power. **However, this issue is still not fully studied.**
 
@@ -420,6 +492,7 @@ The boxplot and heatmap for rmse and mape are as follows.
     padding: 2px;">Boxplot of rmse for different deconvolution method</div>
 </center>
 
+<br/>
 
 <center>
     <img style="border-radius: 0.3125em;
@@ -431,6 +504,8 @@ The boxplot and heatmap for rmse and mape are as follows.
     color: #999;
     padding: 2px;">Heatmap of mape for different deconvolution method</div>
 </center>
+
+<br/>
 
 
 Usually, only one metric may not be sufficient to reveal the deconvolution efficacy ([Wei, *et al.*](https://doi.org/10.1093/bib/bbab362)). decone provides circle heatmap function for illustrating the double metrics in one figure.
@@ -456,6 +531,7 @@ cheatmap_NcrossCompare(actual = actual,
     padding: 2px;">circle heatmap of rmse and PCC for different deconvolution method</div>
 </center>
 
+<br/>
 
 ## Section 5: Rare Component Analysis
 
@@ -499,6 +575,8 @@ scatter_R(actual = actual,
     padding: 2px;">Scatter plot of rare component for EPIC</div>
 </center>
 
+<br/>
+
 From the above figure, users can analyze the deconvolution power for each cell type.
 
 Also, we can heatmap and circle heatmap to have a cross-comparison.
@@ -533,6 +611,7 @@ cheatmap_RcrossCompare(actual,
     padding: 2px;">Heatmap plot for rmse</div>
 </center>
 
+<br/>
 
 <center>
     <img style="border-radius: 0.3125em;
@@ -544,6 +623,8 @@ cheatmap_RcrossCompare(actual,
     color: #999;
     padding: 2px;">circle heatmap plot for rmse and mape</div>
 </center>
+
+<br/>
 
 ## Section 5: Unknown Component Analysis
 
@@ -565,10 +646,13 @@ unExprSim(unknown = "neutrophils",  # drop neutrophils. if NULL, randomly drop a
 
 After this, users can use the functions mentioned above to perform single-method evaluation or cross-comparison evaluation.
 
+<br/>
 
 ## Section 7: Single Cell Related Functions
 
 Single cell related functions are similar with functions used for massive bulk data, like 'unscExprSim', 'rarescExprSim' and 'unscExprSim'. For more information, please refer to [decone manual](https://honchkrow.github.io/decone/inst/documents/decone_1.0.0.pdf).
+
+<br/>
 
 ## Section 8: Well-Characterized Deconvolution Datasets
 
@@ -598,6 +682,8 @@ Users can download the datasets from this [page](https://github.com/Honchkrow/de
 Note: some dataset are collected from [dtangle](https://doi.org/10.1093/bioinformatics/bty926) and [MuSiC](https://doi.org/10.1038/s41467-018-08023-x).
 
 Please cite the corresponding article when you use the datasets.
+
+<br/>
 
 ## Citation
 

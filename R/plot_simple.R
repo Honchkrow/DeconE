@@ -177,7 +177,96 @@ scatter_simple <- function(actual, predicted, method, celltype = TRUE) {
 
 
 
+#' @title Boxplot of deconvolution results for multiple comparison.
+#'
+#' @description Boxplot for illustrating the deconvolution performance.
+#'
+#' @param actual The groundtruth proportion of cell types in matrix.
+#' row: cell types, column: samples. Also can be a csv matrix with row and
+#' column names.
+#' @param predicted a vector contains all the files with the predicted proportions
+#' from different methods. Must be in csv file with row and column names.
+#' row: cell types, column: samples.
+#' For example, c("method1.csv", "method2.csv", "method3.csv").
+#' @param label a vector contains the label corresponding to the predicted
+#' proportion file. Default: base file name in parameter 'predicted'.
+#' For example, c("method1", "method2", "method3").
+#' @param method "rmse", "mape", "mae", "pearson" or "spearman".
+#' Note: for mape, cell types with read proportion 0 will be ignored.
+#' @param title Boxplot title in character.
+#'
+#' @return The computed metrics and plot data.
+#'
+#' @importFrom Metrics mape rmse mae
+#' @importFrom ggplot2 ggplot geom_boxplot aes stat_boxplot theme
+#' ggtitle xlab ylab element_text element_rect element_blank .data
+#' @importFrom tools file_path_sans_ext
+#' @importFrom reshape2 melt
+#' @importFrom utils read.csv
+#'
+#' @export
+#'
+#'
+boxplot_multi <- function(actual,
+                          predicted,
+                          label = NULL,
+                          method,
+                          title = "Boxplot") {
+    if (typeof(actual) == "character") {
+        p_true <- as.matrix(read.csv(file = actual,
+                                     header = TRUE,
+                                     row.names = 1,
+                                     encoding = "UTF-8"))
+    }
 
+    if (!(method %in% c("mape", "mae", "rmse", "pearson", "spearman"))) {
+        stop("Parameter must be mape, mae, rmse, pearson or spearman.")
+    }
+
+    if (is.null(label)) {
+        label <- file_path_sans_ext(basename(predicted))
+    }
+
+    if (!(length(label) == length(predicted))) {
+        stop("Different length between parameter predicted and label.")
+    }
+
+    res <- list()
+
+    for (i in seq(length(predicted))) {
+        this.label <- label[i]
+        p_pred <- as.matrix(read.csv(file = predicted[i],
+                                     header = TRUE,
+                                     row.names = 1,
+                                     encoding = "UTF-8"))
+
+        res[[this.label]] <- regMetrics(actual = p_true,
+                                        predicted = p_pred,
+                                        method = method)
+    }
+
+    df <- do.call(cbind, res)
+    df1 <- melt(data = df)
+
+    p <- ggplot(data = df1, aes(x = .data$Var2, y = .data$value)) +
+        # stat_boxplot(geom = "errorbar", width = 0.25) +
+        geom_boxplot(width=0.4, outlier.shape = 19, fill = "#4271AE", outlier.colour = "red") +
+        theme(panel.background = element_blank(),
+              panel.grid.major = element_blank(),
+              panel.grid.minor = element_blank(),
+              panel.border = element_rect(colour = "black", fill = NA, size = 1),
+              plot.title = element_text(size = 18, hjust = 0.5),
+              axis.text.x = element_text(size = 10, angle = 0, hjust = 0.5, vjust = 0.5),
+              axis.text.y = element_text(size = 10, angle = 0, hjust = 0.5, vjust = 0.5),
+              axis.title.x = element_text(size = 15, angle = 0, hjust = 0.5, vjust = 0.5),
+              axis.title.y = element_text(size = 15, angle = 90, hjust = 0.5, vjust = 0.5)) +
+        ggtitle(title) +
+        xlab("Method") +
+        ylab(method)
+
+    return(list(data = df1, plot = p))
+
+}
 
 
 
