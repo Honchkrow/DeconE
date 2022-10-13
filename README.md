@@ -10,7 +10,7 @@
     * [Section 4.1: Generating Noised Bulk Data With Negative Binomial Model](#section-41-generating-noised-bulk-data-with-negative-binomial-model)
     * [Code Demo 2: Evaluating The Deconvolution Results For Multiple Method](#code-demo-2-evaluating-the-deconvolution-results-for-multiple-method)
 * [Section 5: Rare Component Analysis](#section-5-rare-component-analysis)
-* [Section 5: Unknown Component Analysis](#section-5-unknown-component-analysis)
+* [Section 6: Unknown Component Analysis](#section-6-unknown-component-analysis)
 * [Section 7: Single Cell Related Functions](#section-7-single-cell-related-functions)
 * [Section 8: Well-Characterized Deconvolution Datasets](#section-8-well-characterized-deconvolution-datasets)
 * [Citation](#citation)
