@@ -558,7 +558,7 @@ Single cell related functions are similar with functions used for massive bulk d
 
 In addition, we collected 14 well-characterized deconvolution datasets for users. Some of them are known cell-type proportions. Some datasets without know the true proportion, but the related phenotype can be accessed. We provide the processed datasets with **bulk data**, **reference data** as well as **true proportions**, which means that these datasets can be used directly. We summarized the datasets in the following table. 
 
-| NO. | NAME | Description | Type | Proportion | Source |
+| NO. | NAME | Description | Reference Type | Proportion | Source |
 | :----: | :----: | :----: | :----: | :----: | :----: |
 | 1 | Abbas | Microarray | Bulk | known | [Abbas, *et al.*](https://doi.org/10.1371/journal.pone.0006098) |
 | 2 | Becht | Microarray | Bulk | known | [Becht, *et al.*](https://doi.org/10.1186/s13059-016-1070-5) |
