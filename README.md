@@ -694,7 +694,7 @@ boxplot_multi(actual = actual, predicted = predicted, label = label, method = "r
 
 ## Section 7: Single Cell Related Functions
 
-Single cell related functions are similar with functions used for massive bulk data, like 'unscExprSim', 'rarescExprSim' and 'unscExprSim'. For more information, please refer to [decone manual](https://honchkrow.github.io/decone/inst/documents/decone_1.0.0.pdf).
+Single cell related functions are similar with functions used for massive bulk data, like 'scExprSim', 'rarescExprSim' and 'unscExprSim'. For more information, please refer to [decone manual](https://honchkrow.github.io/decone/inst/documents/decone_1.0.0.pdf).
 
 
 
