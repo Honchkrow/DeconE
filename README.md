@@ -1,5 +1,6 @@
 ## **decone**: An easy-to-use and comprehensive evaluation toolkit for cell type deconvolution from expression data
 
+
 * [Section 1: Introduction](#section-1-introduction)
 * [Section 2: Installation](#section-2-installation)
 * [Section 3: Gnerating Pseudo Bulk Data](#section-3-gnerating-pseudo-bulk-data)
@@ -14,6 +15,7 @@
 * [Section 7: Single Cell Related Functions](#section-7-single-cell-related-functions)
 * [Section 8: Well-Characterized Deconvolution Datasets](#section-8-well-characterized-deconvolution-datasets)
 * [Citation](#citation)
+
 
 **Links**:
 - [decone manual](https://honchkrow.github.io/decone/inst/documents/decone_1.0.0.pdf)
@@ -35,7 +37,7 @@ Here, we proposed a cell type <u>decon</u>volution <u>e</u>valuating toolkit nam
 
 In the following parts, we will introduce each function along with how to compute the evaluation metrics for comparison of different deconvolution methods.
 
-<br/>
+
 
 ## Section 2: Installation
 
@@ -56,13 +58,13 @@ devtools::install_github('Honchkrow/decone')
 library(decone)
 ```
 
-<br/>
+
 
 ## Section 3: Gnerating Pseudo Bulk Data
 
 Generating pseudo-bulk data is a challenging problem. Inspired by the former work ([Francisco, *et al.*](https://doi.org/10.1038/s41467-020-20288-9), [Wang, *et al.*](https://doi.org/10.1038/s41467-018-08023-x), [Wei, *et al.*](https://doi.org/10.1093/bib/bbab362)) and [Tumor Deconvolution DREAM Challenge](https://www.synapse.org/#!Synapse:syn15589870/wiki/), decone provides different pseudo data generation strategies from bulk RNA-seq data as well as scRNA-seq data.
 
-<br/>
+
 
 ### Section 3.1: Gnerating Pseudo Bulk Data From Massive RNA-seq Studies
 
@@ -114,7 +116,7 @@ exprSim(n_sample = 50,  # generating 50 samples
 
 The proportion will be generated randomly from a uniform distribution ([Wei, *et al.*](https://doi.org/10.1093/bib/bbab362)). decone also outputs the data for generating the external reference which can be used for differential expression analysis in marker gene selection.
 
-<br/>
+
 
 ### Section 3.2: Gnerating Pseudo Bulk Data From scRNA-seq data
 
@@ -135,7 +137,7 @@ scExprSim(n_sample = 50,
 
 ```
 
-<br/>
+
 
 ### Code Demo 1: Evaluating The Deconvolution Results In A Simple Manner
 
@@ -210,7 +212,7 @@ The rmse boxplot of 50 samples will be like below.
     padding: 2px;">Boxplot of rmse value for 50 samples</div>
 </center>
 
-<br/>
+&nbsp;
 
 In addition, users can compare the results from multiple methods.
 
@@ -257,7 +259,8 @@ boxplot_multi(actual = actual, predicted = predicted, label = label, method = "r
     padding: 2px;">Boxplot of rmse value for 4 different methods</div>
 </center>
 
-<br/>
+&nbsp;
+
 
 For generating more comparison results between different methods under a certain dataset, please check the **Section 4**.
 
@@ -283,7 +286,7 @@ res$plot
     padding: 2px;">Scatter-plot of rmse value for 50 samples</div>
 </center>
 
-<br/>
+&nbsp;
 
 Generally, when a new deconvolution approach is proposed, cross-comparison between different methods is needed. decone provides multi-level comparison and visualization functions. The cross-comparison function will be introduced along with the next parts.
 
@@ -292,7 +295,7 @@ Generally, when a new deconvolution approach is proposed, cross-comparison betwe
 
 In expression data analysis, technical and biological noise cannot be ignored. Noise existing in bulk data brings a negative influence on deconvolution. In order to measure the stability and accuracy of different methods, decone provides functions to add noise with the different structures on bulk data.
 
-<br/>
+
 
 ### Section 4.1: Generating Noised Bulk Data With Negative Binomial Model
 
@@ -340,7 +343,7 @@ mix/
 
 After this, users can test the performance of different methods easily.
 
-<br/>
+
 
 ### Code Demo 2: Evaluating The Deconvolution Results For Multiple Method
 
@@ -421,10 +424,10 @@ The output figures are as follows.
     padding: 2px;">Box plot for rmse value of CIBERSORT</div>
 </center>
 
-<br/>
 
 It is clear that with the growth of noise power, the deconvolution results become worse.
 
+&nbsp;
 
 <center>
     <img style="border-radius: 0.3125em;
@@ -436,8 +439,6 @@ It is clear that with the growth of noise power, the deconvolution results becom
     color: #999;
     padding: 2px;">Cell type specific mape value for CIBERSORT</div>
 </center>
-
-<br/>
 
 Of course, cell types specific results are influenced by noise power. **However, this issue is still not fully studied.**
 
@@ -485,7 +486,7 @@ The boxplot and heatmap for rmse and mape are as follows.
     padding: 2px;">Boxplot of rmse for different deconvolution method</div>
 </center>
 
-<br/>
+&nbsp;
 
 <center>
     <img style="border-radius: 0.3125em;
@@ -498,7 +499,7 @@ The boxplot and heatmap for rmse and mape are as follows.
     padding: 2px;">Heatmap of mape for different deconvolution method</div>
 </center>
 
-<br/>
+
 
 
 Usually, only one metric may not be sufficient to reveal the deconvolution efficacy ([Wei, *et al.*](https://doi.org/10.1093/bib/bbab362)). decone provides circle heatmap function for illustrating the double metrics in one figure.
@@ -567,7 +568,7 @@ scatter_R(actual = actual,
     padding: 2px;">Scatter plot of rare component for EPIC</div>
 </center>
 
-<br/>
+
 
 From the above figure, users can analyze the deconvolution power for each cell type.
 
@@ -603,7 +604,7 @@ cheatmap_RcrossCompare(actual,
     padding: 2px;">Heatmap plot for rmse</div>
 </center>
 
-<br/>
+
 
 <center>
     <img style="border-radius: 0.3125em;
@@ -616,7 +617,7 @@ cheatmap_RcrossCompare(actual,
     padding: 2px;">circle heatmap plot for rmse and mape</div>
 </center>
 
-<br/>
+
 
 ## Section 6: Unknown Component Analysis
 
@@ -695,7 +696,7 @@ boxplot_multi(actual = actual, predicted = predicted, label = label, method = "r
 
 Single cell related functions are similar with functions used for massive bulk data, like 'unscExprSim', 'rarescExprSim' and 'unscExprSim'. For more information, please refer to [decone manual](https://honchkrow.github.io/decone/inst/documents/decone_1.0.0.pdf).
 
-<br/>
+
 
 ## Section 8: Well-Characterized Deconvolution Datasets
 
@@ -726,7 +727,7 @@ Note: some dataset are collected from [dtangle](https://doi.org/10.1093/bioinfor
 
 Please cite the corresponding article when you use the datasets.
 
-<br/>
+
 
 ## Citation
 
