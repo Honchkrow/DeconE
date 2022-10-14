@@ -212,7 +212,7 @@ The rmse boxplot of 50 samples will be like below.
     padding: 2px;">Boxplot of rmse value for 50 samples</div>
 </center>
 
-&nbsp;
+
 
 In addition, users can compare the results from multiple methods.
 
@@ -259,7 +259,7 @@ boxplot_multi(actual = actual, predicted = predicted, label = label, method = "r
     padding: 2px;">Boxplot of rmse value for 4 different methods</div>
 </center>
 
-&nbsp;
+
 
 
 For generating more comparison results between different methods under a certain dataset, please check the **Section 4**.
@@ -286,7 +286,7 @@ res$plot
     padding: 2px;">Scatter-plot of rmse value for 50 samples</div>
 </center>
 
-&nbsp;
+
 
 Generally, when a new deconvolution approach is proposed, cross-comparison between different methods is needed. decone provides multi-level comparison and visualization functions. The cross-comparison function will be introduced along with the next parts.
 
@@ -427,7 +427,7 @@ The output figures are as follows.
 
 It is clear that with the growth of noise power, the deconvolution results become worse.
 
-&nbsp;
+
 
 <center>
     <img style="border-radius: 0.3125em;
@@ -486,7 +486,7 @@ The boxplot and heatmap for rmse and mape are as follows.
     padding: 2px;">Boxplot of rmse for different deconvolution method</div>
 </center>
 
-&nbsp;
+
 
 <center>
     <img style="border-radius: 0.3125em;
