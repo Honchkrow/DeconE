@@ -59,7 +59,7 @@ exprSim <- function(n_sample = 50,
         outputPath <- "."
     } else {
         if (!dir.exists(outputPath)) {
-            stop("output path do not exist!")
+            dir.create(outputPath)
         }
     }
 

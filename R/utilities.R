@@ -1,3 +1,50 @@
+#' @title Get input matrix data
+#'
+#' @description Get input data
+#'
+#' @param data Input
+#' @param name variable name
+#'
+#' @return output
+#'
+#' @keywords internal
+#'
+getInput <- function(data = NULL, name = NULL) {
+    if (is.character(data)) {
+        if(!file.exists(data)){
+            mess <- paste("The file of ", name, " does not exist!", sep = " ")
+            stop(mess)
+        }
+        p_true <- as.matrix(read.csv(file = data,
+                                     header = TRUE,
+                                     row.names = 1,
+                                     encoding = "UTF-8"))
+    } else if (is.matrix(data)) {
+        p_true <- data
+    } else {
+        mess <- paste("The file of ", name, "must be a matrix or csv file!", sep = " ")
+        stop(mess)
+    }
+
+    return(p_true)
+}
+
+#' @title compute sd or se
+#'
+#' @importFrom stats sd
+#'
+#' @keywords internal
+#'
+sde <- function (x, type = "SD") {
+    if (type == "SD") {
+        tmp_data <- sd(x)
+    } else {
+        tmp_data <- sd(x) / sqrt(length(x))
+    }
+
+    return(tmp_data)
+}
+
 #' @title Add noise to gene expression data
 #'
 #' @description Add noise based on negtive bionomial distribution. Please see
@@ -81,6 +128,7 @@ G <- function (shape, scale) {
 #' @description Normalize a vector
 #'
 #' @param x a numeric vector
+#' @param scale a number to scaled
 #'
 #' @return Normalized numeric vector
 #'
@@ -89,8 +137,13 @@ G <- function (shape, scale) {
 #' @examples
 #' res <- v_norm(seq(100))
 #'
-v_norm <- function(x = NULL){
+v_norm <- function(x = NULL, scale = NULL){
     normRes <- x / sum(x)
+
+    if (!(is.null(scale))) {
+        normRes <- normRes * scale
+    }
+
     return(normRes)
 }
 

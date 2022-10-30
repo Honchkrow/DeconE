@@ -10,8 +10,8 @@
 #' Deconvolution problem.
 #' \url{https://www.synapse.org/#!Synapse:syn15589870/wiki/}.
 #'
-#' @param unknown Character to select one cell type as unknown component.
-#' Default: NULL, mean randomly select one cell type to drop.
+#' @param unknown a numeric vector defines the proportion of unknown content.
+#' Default: c(0.001, 0.005, 0.01, 0.05, 0.1, 0.15, 0.2)
 #' @param n_sample Sample number to be generated, default: 50.
 #' @param p Proportion of sample in train set, default: 0.6.
 #' @param type "coarse" or "fine".
@@ -28,10 +28,6 @@
 #' @param ref_name reference output file name in csv.
 #' @param prop_name simulated proportion file name in csv, unknown component
 #' will be removed.
-#' @param ref_total_name simulated reference file name in csv, unknown component
-#' is contained.
-#' @param prop_total_name simulated proportion file name in csv, unknown component
-#' is contained.
 #' @param refVar_name reference variance file name in csv.
 #' @param train_name file name for all data in train set in csv.
 #' This data can be used for differential gene analysis.
@@ -41,13 +37,14 @@
 #' @importFrom tibble tibble
 #' @importFrom magrittr %>%
 #' @importFrom utils write.csv
+#' @importFrom tools file_path_sans_ext
 #'
 #' @export
 #'
 #' @examples
 #' res <- unExprSim()
 #'
-unExprSim <- function(unknown = NULL,
+unExprSim <- function(unknown = c(0.001, 0.005, 0.01, 0.05, 0.1, 0.15, 0.2),
                       n_sample = 50,
                       p = 0.6,
                       type = "coarse",
@@ -56,10 +53,12 @@ unExprSim <- function(unknown = NULL,
                       mix_name = "coarse_gene_expr.csv",
                       ref_name = "coarse_ref.csv",
                       prop_name = "coarse_prop.csv",
-                      ref_total_name = NULL,
-                      prop_total_name = NULL,
                       refVar_name = NULL,
                       train_name = NULL) {
+    if (is.null(unknown)) {
+        stop( "Parameter unknown must be provided!" )
+    }
+
     writeLines("Loading RNA-seq data......")
     attr <- readRDS(file = system.file(package="decone", "extdata", "RNAseq_attr.rds"))
     raw_data <- readRDS(file = system.file(package="decone", "extdata", "RNAseq_matrix.rds"))
@@ -69,7 +68,7 @@ unExprSim <- function(unknown = NULL,
         outputPath <- "."
     } else {
         if (!dir.exists(outputPath)) {
-            stop("output path do not exist!")
+            dir.create(outputPath)
         }
     }
 
@@ -79,10 +78,10 @@ unExprSim <- function(unknown = NULL,
 
     if(transform == "TPM"){
         writeLines("Transform data into TPM......")
-        data <- TPM(data = merge.all(data, raw_data["Length"]))
+        data <- decone:::TPM(data = decone:::merge.all(data, raw_data["Length"]))
     }else if(transform == "CPM"){
         writeLines("Transform data into CPM......")
-        data <- CPM(data = merge.all(data, raw_data["Length"]))
+        data <- decone:::CPM(data = merge.all(decone:::data, raw_data["Length"]))
     } else {
         writeLines("Note: data transformation is not specified!")
     }
@@ -102,7 +101,7 @@ unExprSim <- function(unknown = NULL,
 
     writeLines("Performing train test split......")
     this.attr <- attr[which(attr$Required_Cell_Type %in% this.celltypes), ]
-    this.list <- multiClassSample(df = this.attr, p = p)
+    this.list <- decone:::multiClassSample(df = this.attr, p = p)
 
     this.train <- this.list[["train"]]
     this.test <- this.list[["test"]]
@@ -115,6 +114,42 @@ unExprSim <- function(unknown = NULL,
     this.test_matrix <- data %>%
         subset(subset = TRUE, select = this.list[["test"]])
 
+
+    writeLines("Generating train reference data......")
+    this.train <- decone:::refGenerator(df = this.train_matrix,
+                                        attr = this.attr,
+                                        cellTypes = this.celltypes)
+    thisref.train <- this.train$ref
+    thisstd.train <- this.train$std
+
+    writeLines("Generating test reference data......")
+    this.test <- decone:::refGenerator(df = this.test_matrix,
+                                       attr = this.attr,
+                                       cellTypes = this.celltypes)
+    thisref.test <- this.test$ref
+    thisstd.test <- this.test$std
+
+
+    writeLines("Creating simulated mixture samples......")
+
+    writeLines("Now, generating samples without unknown content......")
+    prop <- matrix(data = sample(x = 1000, size = n_sample * length(this.celltypes), replace = TRUE),
+                   nrow = length(this.celltypes), ncol = n_sample)
+    prop <- apply(X = prop, MARGIN = 2, FUN = v_norm)
+    colnames(prop) <- paste("S", seq(n_sample), sep = "")
+    rownames(prop) <- colnames(thisref.test)
+    this.mix <- thisref.test %*% prop
+
+    write.csv(x = as.data.frame(thisref.train),
+              file = file.path(outputPath, ref_name),
+              row.names = TRUE)
+    write.csv(x = prop,
+              file = file.path(outputPath, prop_name),
+              row.names = TRUE)
+    write.csv(x = this.mix,
+              file = file.path(outputPath, mix_name),
+              row.names = TRUE)
+
     if (!is.null(train_name)) {
         writeLines("Output all samples in train set......")
         this.train_counts <- data_counts %>%
@@ -124,21 +159,6 @@ unExprSim <- function(unknown = NULL,
                   row.names = TRUE)
     }
 
-
-    writeLines("Generating train reference data......")
-    this.train <- refGenerator(df = this.train_matrix,
-                               attr = this.attr,
-                               cellTypes = this.celltypes)
-    thisref.train <- this.train$ref
-    thisstd.train <- this.train$std
-
-    writeLines("Generating test reference data......")
-    this.test <- refGenerator(df = this.test_matrix,
-                              attr = this.attr,
-                              cellTypes = this.celltypes)
-    thisref.test <- this.test$ref
-    thisstd.test <- this.test$std
-
     if (!is.null(refVar_name)) {
         writeLines("Output reference variance file......")
         write.csv(x = thisstd.train,
@@ -147,49 +167,20 @@ unExprSim <- function(unknown = NULL,
     }
 
 
-    writeLines("Creating simulated mixture samples......")
-    prop <- matrix(data = sample(x = 1000, size = n_sample * length(this.celltypes), replace = TRUE),
-                   nrow = length(this.celltypes), ncol = n_sample)
-    prop <- apply(X = prop, MARGIN = 2, FUN = v_norm)
-    colnames(prop) <- paste("S", seq(n_sample), sep = "")
-    rownames(prop) <- colnames(thisref.test)
-    this.mix <- thisref.test %*% prop
 
-    if (is.null(unknown)) {
-        writeLines("Parameter unknown is NULL, selecting unknown cell type.....")
-        unknown <- sample(x = rownames(prop), size = 1)
-        mess <- paste("Unknown Component:", unknown, sep = " ")
+    for (un_p in unknown) {
+        mess <- paste("Now, generating samples with", un_p, "unknown content......", sep = " ")
         writeLines(mess)
-    }
+        prop <- matrix(data = sample(x = 1000, size = n_sample * length(this.celltypes), replace = TRUE),
+                       nrow = length(this.celltypes), ncol = n_sample)
+        prop <- apply(X = prop, MARGIN = 2, FUN = v_norm, scale = (1 - un_p))
+        colnames(prop) <- paste("S", seq(n_sample), sep = "")
+        rownames(prop) <- colnames(thisref.test)
+        this.mix <- thisref.test %*% prop
 
-    if (!(unknown %in% rownames(prop))) {
-        stop("Parameter unknown must in cell types!")
-    }
-
-    thisref.train_unknown <- thisref.train[ , -which(colnames(thisref.train) %in% c(unknown))]
-    prop_unknown <- prop[-which(rownames(prop) %in% c(unknown)), ]
-
-
-    if (!is.null(ref_total_name)) {
-        write.csv(x = as.data.frame(thisref.train),
-                  file = file.path(outputPath, ref_total_name),
+        tmp_name <- paste0(file_path_sans_ext(mix_name), "_un_", un_p, ".csv")
+        write.csv(x = this.mix,
+                  file = file.path(outputPath, tmp_name),
                   row.names = TRUE)
     }
-
-    if (!is.null(prop_total_name)) {
-        write.csv(x = prop,
-                  file = file.path(outputPath, prop_total_name),
-                  row.names = TRUE)
-    }
-
-    write.csv(x = as.data.frame(thisref.train_unknown),
-              file = file.path(outputPath, ref_name),
-              row.names = TRUE)
-    write.csv(x = prop_unknown,
-              file = file.path(outputPath, prop_name),
-              row.names = TRUE)
-    write.csv(x = this.mix,
-              file = file.path(outputPath, mix_name),
-              row.names = TRUE)
-
 }

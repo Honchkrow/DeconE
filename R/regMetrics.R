@@ -6,10 +6,12 @@
 #' row: cell types, column: samples.
 #' @param predicted The predicted proportion of cell types in matrix.
 #' row: cell types, column: samples.
-#' @param method "rmse", "mape", "mae", "pearson", "spearman", "pearson2", "spearman2".
+#' @param method One of c("rmse", "mape", "mae", "kendall", "pearson", "spearman"),
+#' @param type One of c("sample.", "celltype", "all").
+#' For "sample.", generate metric for each sample.
+#' For "celltype", generate metric for each cell type.
+#' For "all", generate metric for all data, which means flattening all data into an vector.
 #' Note: for mape, cell types with read proportion 0 will be ignored.
-#' For pearson2 and spearman2, all data in matrix will be taken into
-#' consideration, which mean only one number will be reported.
 #'
 #' @return a vector with the value for each sample.
 #'
@@ -22,7 +24,7 @@
 #' res <- regMetrics(actual = matrix(data = seq(9), nrow = 3),
 #'                   predicted = matrix(data = seq(9), nrow = 3),
 #'                   method = "rmse")
-regMetrics <- function(actual, predicted, method = NULL) {
+regMetrics <- function(actual, predicted, method = NULL, type = NULL) {
     if (!all(dim(actual) == dim(predicted))) {
         stop("Dimension of matrix actual and predicted are inconsistent.")
     } else {
@@ -31,40 +33,100 @@ regMetrics <- function(actual, predicted, method = NULL) {
     }
 
     res <- c()
-    if (method == "rmse") {
-        for (i in seq(num_sample)) {
-            res <- c(res, rmse(actual = actual[, i], predicted = predicted[, i]))
+
+    if (type == "sample") {
+        if (method == "rmse") {
+            for (i in seq(num_sample)) {
+                res <- c(res, rmse(actual = actual[, i], predicted = predicted[, i]))
+            }
+            names(res) <- colnames(actual)
+
+        } else if (method == "mape") {
+            for (i in seq(num_sample)) {
+                tmp_x <- actual[, i]
+                tmp_y <- predicted[, i]
+                idx <- which(tmp_x > 0)
+                res <- c(res, mape(actual = tmp_x[idx], predicted = tmp_y[idx]))
+            }
+            names(res) <- colnames(actual)
+
+        } else if (method == "mae"){
+            for (i in seq(num_sample)) {
+                res <- c(res, mae(actual = actual[, i], predicted = predicted[, i]))
+            }
+            names(res) <- colnames(actual)
+
+        } else if (method %in% c("pearson", "kendall", "spearman")){
+            for (i in seq(num_sample)) {
+                res <- c(res, cor(x = actual[, i], y = predicted[, i], method = method))
+            }
+            names(res) <- colnames(actual)
+
+        } else {
+            stop("Parameter 'method' is invalid.")
+
         }
-        names(res) <- colnames(actual)
-    } else if (method == "mape") {
-        for (i in seq(num_sample)) {
-            tmp_x <- actual[, i]
-            tmp_y <- predicted[, i]
+
+    } else if (type == "celltype") {
+        if (method == "rmse") {
+            for (i in seq(num_celltype)) {
+                res <- c(res, rmse(actual = actual[i, ], predicted = predicted[i, ]))
+            }
+            names(res) <- rownames(actual)
+
+        } else if (method == "mape") {
+            for (i in seq(num_celltype)) {
+                tmp_x <- actual[i, ]
+                tmp_y <- predicted[i, ]
+                idx <- which(tmp_x > 0)
+                res <- c(res, mape(actual = tmp_x[idx], predicted = tmp_y[idx]))
+            }
+            names(res) <- rownames(actual)
+
+        } else if (method == "mae"){
+            for (i in seq(num_celltype)) {
+                res <- c(res, mae(actual = actual[i, ], predicted = predicted[i, ]))
+            }
+            names(res) <- rownames(actual)
+
+        } else if (method %in% c("pearson", "kendall", "spearman")){
+            for (i in seq(num_celltype)) {
+                res <- c(res, cor(x = actual[i, ], y = predicted[i, ], method = method))
+            }
+            names(res) <- rownames(actual)
+
+        } else {
+            stop("Parameter 'method' is invalid.")
+
+        }
+
+    } else if (type == "all") {
+        actual <- as.vector(actual)
+        predicted <- as.vector(predicted)
+        if (method == "rmse") {
+            res <- c(res, rmse(actual = actual, predicted = predicted))
+
+        } else if (method == "mape") {
+            tmp_x <- actual
+            tmp_y <- predicted
             idx <- which(tmp_x > 0)
-            res <- c(res, mape(actual = tmp_x[idx], predicted = tmp_y[idx]))
+            res <- c(res, mape(actual = tmp_x, predicted = tmp_y))
+
+        } else if (method == "mae"){
+            res <- c(res, mae(actual = actual, predicted = predicted))
+
+        } else if (method %in% c("pearson", "kendall", "spearman")){
+            res <- c(res, cor(x = actual, y = predicted, method = method))
+
+        } else {
+            stop("Parameter 'method' is invalid.")
+
         }
-        names(res) <- colnames(actual)
-    } else if (method == "mae"){
-        for (i in seq(num_sample)) {
-            res <- c(res, mae(actual = actual[, i], predicted = predicted[, i]))
-        }
-        names(res) <- colnames(actual)
-    } else if (method == "pearson"){
-        for (i in seq(num_sample)) {
-            res <- c(res, cor(x = actual[, i], y = predicted[, i], method = "pearson"))
-        }
-        names(res) <- colnames(actual)
-    } else if (method == "spearman") {
-        for (i in seq(num_sample)) {
-            res <- c(res, cor(x = actual[, i], y = predicted[, i], method = "spearman"))
-        }
-        names(res) <- colnames(actual)
-    } else if (method == "pearson2"){
-        res <- c(res, cor(x = as.vector(actual), y = as.vector(predicted), method = "pearson"))
-    } else if (method == "spearman2") {
-        res <- c(res, cor(x = as.vector(actual), y = as.vector(predicted), method = "spearman"))
+
     } else {
-        stop("Parameter 'method' is invalid.")
+        stop("Parameter type must be 'col', 'row' or 'all'!")
+
     }
+
     return(res)
 }

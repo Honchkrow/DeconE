@@ -64,7 +64,7 @@ rareExprSim <- function(p_rare = c(0.001, 0.003, 0.005, 0.008, 0.01, 0.03, 0.05)
         outputPath <- "."
     } else {
         if (!dir.exists(outputPath)) {
-            stop("output path do not exist!")
+            dir.create(outputPath)
         }
     }
 

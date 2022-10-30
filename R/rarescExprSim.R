@@ -21,6 +21,7 @@
 #' @param prop_name simulated proportion file name in csv.
 #' @param train_name file name for all data in train set in csv.
 #' This data can be used for differential gene analysis.
+#' @param type 'mouse_tissue' or 'human_PBMC'. Default: 'mouse_tissue'
 #'
 #' @return All the information will be written in the output path.
 #'
@@ -41,27 +42,33 @@ rarescExprSim <- function (p_rare = c(0.001, 0.003, 0.005, 0.008, 0.01, 0.03, 0.
                            mix_name = "scMouse_gene_expr.csv",
                            ref_name = "scMouse_ref.csv",
                            prop_name = "scMouse_prop.csv",
-                           train_name = "scMouse_ref_rawCount.csv") {
+                           train_name = "scMouse_ref_rawCount.csv",
+                           type = 'mouse_tissue') {
     writeLines("Loading scRNA-seq data......")
-    raw_data <- readRDS(file = system.file(package="decone", "extdata", "scRNAseq_matrix_mouse.rds"))
+
+    if(type == 'mouse_tissue') {
+        raw_data <- readRDS(file = system.file(package="decone", "extdata", "scRNAseq_matrix_mouse.rds"))
+        this.celltypes <- c("FetalStomach", "FetalLung", "FetalLiver", "FetalKidney",
+                            "FetalIntestine", "FetalBrain", "Female.fetal.Gonad")
+    } else if (type == 'human_PBMC') {
+        raw_data <- readRDS(file = system.file(package="decone", "extdata", "scRNAseq_matrix_PBMC.rds"))
+        this.celltypes <- c("intermediate_mono", "CD8+_naïve_T", "mDC", "CD4+_naïve_T", "NK",
+                            "memory_B", "CD4+_memory_T", "CD16_mono", "pDC", "naïve_B",
+                            "CD8+_activated_T", "CD14_mono", "MAIT")
+    } else {
+        stop(" Parameter 'type' is not valid! ")
+    }
 
     if (is.null(outputPath)) {
         writeLines("output path is not specified, all the file will be saved in work directory.")
         outputPath <- "."
     } else {
         if (!dir.exists(outputPath)) {
-            stop("output path do not exist!")
+            dir.create(outputPath)
         }
     }
 
-    data <- raw_data[ , -which(names(raw_data) %in% c("Length"))]
-    data_counts <- data
-
-    this.celltypes <- c("FetalStomach", "FetalLung", "FetalLiver", "FetalKidney",
-                        "FetalIntestine", "FetalBrain", "Female.fetal.Gonad")
-
-    train_num <- as.integer(1500 * p)
-    test_num <- as.integer(1500 - train_num)
+    data <- raw_data[ , -which(colnames(raw_data) %in% c("Length"))]
 
     train_v <- c()
     test_v <- c()
@@ -72,8 +79,11 @@ rarescExprSim <- function (p_rare = c(0.001, 0.003, 0.005, 0.008, 0.01, 0.03, 0.
     for (ct in this.celltypes) {
         mess <- paste("Now, sampling cell type", ct, "......", sep = " ")
         writeLines(mess)
-        idx <- which(str_detect(string = colnames(data), pattern = ct) == TRUE)
-        train_idx <- sample(x = idx, size = train_num)
+        idx <- which(grepl(pattern = ct, x = colnames(data), fixed = TRUE) == TRUE)
+        total_num <- length(idx)
+        ct_trainNum <- as.integer(total_num * p)
+        ct_testNum <- as.integer(total_num - ct_trainNum)
+        train_idx <- sample(x = idx, size = ct_trainNum)
         test_idx <- setdiff(idx, train_idx)
 
         train_v <- c(train_v, train_idx)
@@ -96,33 +106,20 @@ rarescExprSim <- function (p_rare = c(0.001, 0.003, 0.005, 0.008, 0.01, 0.03, 0.
     train_raw <- data[, train_v]
     test_raw <- data[, test_v]
 
-
-    if (!is.null(train_name)) {
-        writeLines("Output raw train counts......")
-        fwrite(x = train_raw,
-               file = file.path(outputPath, train_name),
-               sep = ",",
-               row.names = TRUE,
-               quote = FALSE)
-    }
-
-
     if(transform == "TPM"){
         writeLines("Transform data into TPM......")
-        train_df <- TPM(data = merge.all(train_df, raw_data["Length"]))
-        test_df <- TPM(data = merge.all(test_df, raw_data["Length"]))
+        train_df <- decone:::TPM(data = decone:::merge.all(train_df, raw_data["Length"]))
+        test_df <- decone:::TPM(data = decone:::merge.all(test_df, raw_data["Length"]))
     }else if(transform == "CPM"){
         writeLines("Transform data into CPM......")
-        train_df <- CPM(data = merge.all(train_df, raw_data["Length"]))
-        test_df <- CPM(data = merge.all(test_df, raw_data["Length"]))
+        train_df <- decone:::CPM(data = decone:::merge.all(train_df, raw_data["Length"]))
+        test_df <- decone:::CPM(data = decone:::merge.all(test_df, raw_data["Length"]))
     } else {
         writeLines("Note: data transformation is not specified!")
     }
 
 
     writeLines("Creating simulated mixture samples......")
-
-
     n_sample <- length(p_rare) * length(this.celltypes)
     mess <- paste("There are",
                   length(this.celltypes),
@@ -162,6 +159,15 @@ rarescExprSim <- function (p_rare = c(0.001, 0.003, 0.005, 0.008, 0.01, 0.03, 0.
            sep = ",",
            row.names = TRUE,
            quote = FALSE)
+
+    if (!is.null(train_name)) {
+        writeLines("Output raw train counts......")
+        fwrite(x = train_raw,
+               file = file.path(outputPath, train_name),
+               sep = ",",
+               row.names = TRUE,
+               quote = FALSE)
+    }
 
 }
 

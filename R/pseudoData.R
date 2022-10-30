@@ -13,16 +13,18 @@
 #' res <- pseudoData(type = 1)
 #'
 pseudoData <- function(type = 1, outputPath = 'test_file') {
-    if (!dir.exists(outputPath)) {
-        dir.create(outputPath)
+    if(type %in% c(1, 2, 3)) {
+        if (!dir.exists(outputPath)) {
+            dir.create(outputPath)
+        }
     }
 
     if (type == 1) {
-        actual <- matrix(data = seq(50), nrow = 5)
+        actual <- matrix(data = sample.int(n = 100, size = 50), nrow = 5)
         colnames(actual) <- paste0("S", seq(10))
         rownames(actual) <- paste0("ct", seq(5))
 
-        predicted <- matrix(data = seq(50), nrow = 5) + 1
+        predicted <- matrix(data = sample.int(n = 100, size = 50), nrow = 5)
         colnames(predicted) <- paste0("S", seq(10))
         rownames(predicted) <- paste0("ct", seq(5))
 
