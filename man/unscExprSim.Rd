@@ -5,7 +5,7 @@
 \title{Generate in silico mixture expression matrix based on scRNA-seq}
 \usage{
 unscExprSim(
-  unknown = NULL,
+  unknown = c(0.001, 0.005, 0.01, 0.05, 0.1, 0.15, 0.2),
   n_sample = 50,
   p = 2/3,
   transform = "TPM",
@@ -14,13 +14,12 @@ unscExprSim(
   ref_name = "scMouse_ref.csv",
   prop_name = "scMouse_prop.csv",
   train_name = "scMouse_ref_rawCount.csv",
-  ref_total_name = NULL,
-  prop_total_name = NULL
+  type = "mouse_tissue"
 )
 }
 \arguments{
-\item{unknown}{Character to select one cell type as unknown component.
-Default: NULL, mean randomly select one cell type to drop.}
+\item{unknown}{a numeric vector defines the proportion of unknown content.
+Default: c(0.001, 0.005, 0.01, 0.05, 0.1, 0.15, 0.2)}
 
 \item{n_sample}{Sample number to be generated, default: 50.}
 
@@ -39,11 +38,7 @@ Default: NULL, mean randomly select one cell type to drop.}
 \item{train_name}{file name for all data in train set in csv.
 This data can be used for differential gene analysis.}
 
-\item{ref_total_name}{simulated reference file name in csv, unknown component
-is contained.}
-
-\item{prop_total_name}{simulated proportion file name in csv, unknown component
-is contained.}
+\item{type}{'mouse_tissue' or 'human_PBMC'. Default: 'mouse_tissue'}
 }
 \value{
 All the information will be written in the output path.

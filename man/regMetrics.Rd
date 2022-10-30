@@ -4,7 +4,7 @@
 \alias{regMetrics}
 \title{Compute regression Metrics for matrix results.}
 \usage{
-regMetrics(actual, predicted, method = NULL)
+regMetrics(actual, predicted, method = NULL, type = NULL)
 }
 \arguments{
 \item{actual}{The groundcloth proportion of cell types in matrix.
@@ -13,10 +13,13 @@ row: cell types, column: samples.}
 \item{predicted}{The predicted proportion of cell types in matrix.
 row: cell types, column: samples.}
 
-\item{method}{"rmse", "mape", "mae", "pearson", "spearman", "pearson2", "spearman2".
-Note: for mape, cell types with read proportion 0 will be ignored.
-For pearson2 and spearman2, all data in matrix will be taken into
-consideration, which mean only one number will be reported.}
+\item{method}{One of c("rmse", "mape", "mae", "kendall", "pearson", "spearman"),}
+
+\item{type}{One of c("sample.", "celltype", "all").
+For "sample.", generate metric for each sample.
+For "celltype", generate metric for each cell type.
+For "all", generate metric for all data, which means flattening all data into an vector.
+Note: for mape, cell types with read proportion 0 will be ignored.}
 }
 \value{
 a vector with the value for each sample.

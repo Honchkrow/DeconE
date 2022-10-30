@@ -12,7 +12,8 @@ rarescExprSim(
   mix_name = "scMouse_gene_expr.csv",
   ref_name = "scMouse_ref.csv",
   prop_name = "scMouse_prop.csv",
-  train_name = "scMouse_ref_rawCount.csv"
+  train_name = "scMouse_ref_rawCount.csv",
+  type = "mouse_tissue"
 )
 }
 \arguments{
@@ -36,6 +37,8 @@ For example, if 8 cell types need to be tested, this function will generate
 
 \item{train_name}{file name for all data in train set in csv.
 This data can be used for differential gene analysis.}
+
+\item{type}{'mouse_tissue' or 'human_PBMC'. Default: 'mouse_tissue'}
 }
 \value{
 All the information will be written in the output path.

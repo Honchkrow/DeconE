@@ -5,7 +5,7 @@
 \title{Generate in silico expression dataset with unknown component.}
 \usage{
 unExprSim(
-  unknown = NULL,
+  unknown = c(0.001, 0.005, 0.01, 0.05, 0.1, 0.15, 0.2),
   n_sample = 50,
   p = 0.6,
   type = "coarse",
@@ -14,15 +14,13 @@ unExprSim(
   mix_name = "coarse_gene_expr.csv",
   ref_name = "coarse_ref.csv",
   prop_name = "coarse_prop.csv",
-  ref_total_name = NULL,
-  prop_total_name = NULL,
   refVar_name = NULL,
   train_name = NULL
 )
 }
 \arguments{
-\item{unknown}{Character to select one cell type as unknown component.
-Default: NULL, mean randomly select one cell type to drop.}
+\item{unknown}{a numeric vector defines the proportion of unknown content.
+Default: c(0.001, 0.005, 0.01, 0.05, 0.1, 0.15, 0.2)}
 
 \item{n_sample}{Sample number to be generated, default: 50.}
 
@@ -47,12 +45,6 @@ Only 8 cell types will be used, including ("B.cells", "CD4.T.cells",
 
 \item{prop_name}{simulated proportion file name in csv, unknown component
 will be removed.}
-
-\item{ref_total_name}{simulated reference file name in csv, unknown component
-is contained.}
-
-\item{prop_total_name}{simulated proportion file name in csv, unknown component
-is contained.}
 
 \item{refVar_name}{reference variance file name in csv.}
 

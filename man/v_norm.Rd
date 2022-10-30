@@ -4,10 +4,12 @@
 \alias{v_norm}
 \title{Normalize a vector}
 \usage{
-v_norm(x = NULL)
+v_norm(x = NULL, scale = NULL)
 }
 \arguments{
 \item{x}{a numeric vector}
+
+\item{scale}{a number to scaled}
 }
 \value{
 Normalized numeric vector

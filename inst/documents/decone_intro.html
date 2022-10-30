@@ -12,7 +12,7 @@
 
 <meta name="author" content="Wei Zhang" />
 
-<meta name="date" content="2022-10-13" />
+<meta name="date" content="2022-10-29" />
 
 <title>decone: An easy-to-use and comprehensive evaluation toolkit for cell type deconvolution from expression data</title>
 
@@ -145,7 +145,7 @@ a.sourceLine {
 <h1 class="title toc-ignore">decone: An easy-to-use and comprehensive
 evaluation toolkit for cell type deconvolution from expression data</h1>
 <h3 class="author">Wei Zhang</h3>
-<h3 class="date">2022-10-13</h3>
+<h3 class="date">2022-10-29</h3>
 </div>
 </header>
 
@@ -191,26 +191,25 @@ below.</p>
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] stats     graphics  grDevices utils     datasets  methods   base     </span></span>
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; other attached packages:</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] decone_1.0.0</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] decone_1.0.1</span></span>
 <span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; loaded via a namespace (and not attached):</span></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1] prettydoc_0.4.1    progress_1.2.2     Metrics_0.1.4      tidyselect_1.1.2  </span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [5] xfun_0.33          bslib_0.4.0        reshape2_1.4.4     purrr_0.3.4       </span></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [9] carData_3.0-5      colorspace_2.0-3   vctrs_0.4.2        generics_0.1.3    </span></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [13] htmltools_0.5.3    yaml_2.3.5         utf8_1.2.2         rlang_1.0.6       </span></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [17] jquerylib_0.1.4    pillar_1.8.1       ggpubr_0.4.0       glue_1.6.2        </span></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [21] DBI_1.1.3          RColorBrewer_1.1-3 plyr_1.8.7         lifecycle_1.0.2   </span></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [25] stringr_1.4.1      munsell_0.5.0      ggsignif_0.6.3     gtable_0.3.1      </span></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [29] evaluate_0.16      knitr_1.40         forcats_0.5.2      fastmap_1.1.0     </span></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [33] fansi_1.0.3        Rcpp_1.0.9         broom_1.0.1        scales_1.2.1      </span></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [37] backports_1.4.1    cachem_1.0.6       jsonlite_1.8.2     abind_1.4-5       </span></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [41] hms_1.1.2          ggplot2_3.3.6      digest_0.6.29      stringi_1.7.8     </span></span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [45] rstatix_0.7.0      dplyr_1.0.10       grid_4.2.1         cli_3.4.1         </span></span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [49] tools_4.2.1        magrittr_2.0.3     sass_0.4.2         tibble_3.1.8      </span></span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [53] crayon_1.5.2       tidyr_1.2.1        car_3.1-0          pkgconfig_2.0.3   </span></span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [57] ellipsis_0.3.2     pheatmap_1.0.12    prettyunits_1.1.1  data.table_1.14.2 </span></span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [61] assertthat_0.2.1   rmarkdown_2.16     rstudioapi_0.14    R6_2.5.1          </span></span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [65] compiler_4.2.1</span></span></code></pre></div>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1] prettydoc_0.4.1   progress_1.2.2    Metrics_0.1.4     tidyselect_1.1.2 </span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [5] xfun_0.33         bslib_0.4.0       reshape2_1.4.4    purrr_0.3.4      </span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [9] carData_3.0-5     colorspace_2.0-3  vctrs_0.4.2       generics_0.1.3   </span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [13] htmltools_0.5.3   yaml_2.3.5        utf8_1.2.2        rlang_1.0.6      </span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [17] jquerylib_0.1.4   pillar_1.8.1      ggpubr_0.4.0      glue_1.6.2       </span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [21] DBI_1.1.3         plyr_1.8.7        lifecycle_1.0.2   stringr_1.4.1    </span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [25] munsell_0.5.0     ggsignif_0.6.3    gtable_0.3.1      evaluate_0.16    </span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [29] knitr_1.40        fastmap_1.1.0     fansi_1.0.3       Rcpp_1.0.9       </span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [33] broom_1.0.1       scales_1.2.1      backports_1.4.1   cachem_1.0.6     </span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [37] jsonlite_1.8.2    abind_1.4-5       hms_1.1.2         ggplot2_3.3.6    </span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [41] digest_0.6.29     stringi_1.7.8     rstatix_0.7.0     dplyr_1.0.10     </span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [45] grid_4.2.1        cli_3.4.1         tools_4.2.1       magrittr_2.0.3   </span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [49] sass_0.4.2        tibble_3.1.8      crayon_1.5.2      tidyr_1.2.1      </span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [53] car_3.1-0         pkgconfig_2.0.3   ellipsis_0.3.2    prettyunits_1.1.1</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [57] data.table_1.14.2 assertthat_0.2.1  rmarkdown_2.16    rstudioapi_0.14  </span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [61] R6_2.5.1          compiler_4.2.1</span></span></code></pre></div>
     </section>
   </div>
 </div>
