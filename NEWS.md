@@ -5,3 +5,7 @@
 # decone 1.0.0
 
 * The first release.
+
+# decone 1.0.1
+
+* Add human PBMC dataset.
