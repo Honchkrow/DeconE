@@ -361,8 +361,11 @@ In the above 2 model, $\textbf{M}$ means the mixture sample, $\textbf{R}$ and $\
 - **Negative Binomial Model**
 
 $$\mu_{i0} = r_{i0} \times L_{j}$$
+
 $$\mu_{ij} = Gamma(shape = \frac{1}{\sigma_{i}^{2}}, scale = \frac{\mu_{i0}}{shape})$$
+
 $$sigma_{i} = (1.8 \times p_{t} + \frac{1}{\sqrt{\mu_{i0}}}) \times exp(\frac{\delta}{2}) \qquad \delta \sim N(0, 0.25)$$
+
 $$v_{ij} = Possion(\mu_{ij})$$
 
 The simulation strategy is proposed by [Jin, *et al.*](https://doi.org/10.1186/s13059-021-02290-6) and [Law, *et al.*](https://doi.org/10.1186/gb-2014-15-2-r29). $p_t$ is also used to control noise level, from 0 to 1. $r_{i0}$ is the expected genomic feature proportion of gene i in a cellular component. $L_{j}$ is the library size of sample $j$. $\mu_{i0}$ is the expected gene expression in the simulation. Two layers of variance are added from the gamma distribution and poisson distribution. For more information, please see [this article](https://doi.org/10.1186/s13059-021-02290-6).
