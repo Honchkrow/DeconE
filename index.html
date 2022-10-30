@@ -1,0 +1,1028 @@
+<!DOCTYPE html><html><head>
+      <title>README</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="file:///c:\Users\zhang\.vscode\extensions\shd101wyy.markdown-preview-enhanced-0.6.3\node_modules\@shd101wyy\mume\dependencies\katex\katex.min.css">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <style>
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}
+
+/* highlight */
+pre[data-line] {
+  position: relative;
+  padding: 1em 0 1em 3em;
+}
+pre[data-line] .line-highlight-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  display: block;
+  width: 100%;
+}
+
+pre[data-line] .line-highlight {
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: inherit 0;
+  margin-top: 1em;
+  background: hsla(24, 20%, 50%,.08);
+  background: linear-gradient(to right, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
+  pointer-events: none;
+  line-height: inherit;
+  white-space: pre;
+}
+
+pre[data-line] .line-highlight:before, 
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-start);
+  position: absolute;
+  top: .4em;
+  left: .6em;
+  min-width: 1em;
+  padding: 0 .5em;
+  background-color: hsla(24, 20%, 50%,.4);
+  color: hsl(24, 20%, 95%);
+  font: bold 65%/1.5 sans-serif;
+  text-align: center;
+  vertical-align: .3em;
+  border-radius: 999px;
+  text-shadow: none;
+  box-shadow: 0 1px white;
+}
+
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-end);
+  top: auto;
+  bottom: .4em;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview  ">
+      <h2 class="mume-header" id="decone-an-easy-to-use-and-comprehensive-evaluation-toolkit-for-cell-type-deconvolution-from-expression-data"><strong>decone</strong>: An easy-to-use and comprehensive evaluation toolkit for cell type deconvolution from expression data</h2>
+
+<ul>
+<li><a href="#section-1-introduction">Section 1: Introduction</a></li>
+<li><a href="#section-2-installation">Section 2: Installation</a></li>
+<li><a href="#section-3-gnerating-pseudo-bulk-data">Section 3: Gnerating Pseudo Bulk Data</a>
+<ul>
+<li><a href="#section-31-gnerating-pseudo-bulk-data-from-massive-rna-seq-studies">Section 3.1: Gnerating Pseudo Bulk Data From Massive RNA-seq Studies</a></li>
+<li><a href="#section-32-gnerating-pseudo-bulk-data-from-scrna-seq-data">Section 3.2: Gnerating Pseudo Bulk Data From scRNA-seq data</a></li>
+<li><a href="#code-demo-1-evaluating-the-deconvolution-results-in-a-simple-manner">Code Demo 1: Evaluating The Deconvolution Results In A Simple Manner</a></li>
+</ul>
+</li>
+<li><a href="#section-4-noise-analysis">Section 4: Noise Analysis</a>
+<ul>
+<li><a href="#section-41-generating-noised-bulk-data-with-different-models">Section 4.1: Generating Noised Bulk Data With Different Models</a></li>
+<li><a href="#code-demo-2-evaluating-the-deconvolution-results-for-multiple-method">Code Demo 2: Evaluating The Deconvolution Results For Multiple Method</a></li>
+</ul>
+</li>
+<li><a href="#section-5-rare-component-analysis">Section 5: Rare Component Analysis</a></li>
+<li><a href="#section-6-unknown-component-analysis">Section 6: Unknown Component Analysis</a></li>
+<li><a href="#section-7-single-cell-related-functions">Section 7: Single Cell Related Functions</a></li>
+<li><a href="#section-8-well-characterized-deconvolution-datasets">Section 8: Well-Characterized Deconvolution Datasets</a></li>
+<li><a href="#citation">Citation</a></li>
+</ul>
+<p><strong>Links</strong>:</p>
+<ul>
+<li><a href="https://honchkrow.github.io/decone/inst/documents/decone_manual.pdf">decone manual</a></li>
+<li><a href="https://honchkrow.github.io/decone/inst/documents/decone_intro.html">decone vignettes</a></li>
+</ul>
+<h2 class="mume-header" id="section-1-introduction">Section 1: Introduction</h2>
+
+<p>Cell type proportion is related to phenotypes or diseases (<a href="https://doi.org/10.1038/s41467-018-08023-x">Wang, <em>et al.</em></a>, <a href="https://doi.org/10.1093/bib/bbab362">Wei, <em>et al.</em></a>). Therefore, quantifying cell or tissue proportions is important for understanding the mechanisms in biological processes.</p>
+<p>Here, we proposed a cell type <u><strong>decon</strong></u>volution <u><strong>e</strong></u>valuating toolkit named &apos;<strong>decone</strong>&apos; to perform comprehensive and systematic evaluation of different algorithms.</p>
+<p><strong>decone</strong> consists of 6 main part functions as below.</p>
+<ul>
+<li>Pseudo bulk data generation (from massive bulk data and single cell data).</li>
+<li>Stability analysis under different types of noise.</li>
+<li>Rare component analysis.</li>
+<li>Unknown component analysis.</li>
+<li>Comprehensive evaluation metrics as well as pretty figure generation.</li>
+<li>Well-characterized datasets for deconvolution utilities.</li>
+</ul>
+<p>In the following parts, we will give a comprehensive tutorial about decone.</p>
+<h2 class="mume-header" id="section-2-installation">Section 2: Installation</h2>
+
+<p>decone is based on R and can be easily installed on Windows, Linux as well as MAC OS.</p>
+<p>First, users should install <a href="https://www.r-project.org/">R &gt;= 4.1.0</a>.</p>
+<p>Next, install devtools and decone.</p>
+<pre data-role="codeBlock" data-info class="language-"><code># install devtools
+install.packages(&apos;devtools&apos;)
+
+# install the decone package
+devtools::install_github(&apos;Honchkrow/decone&apos;)
+
+# load decone
+library(decone)
+</code></pre><h2 class="mume-header" id="section-3-gnerating-pseudo-bulk-data">Section 3: Gnerating Pseudo Bulk Data</h2>
+
+<p>Generating pseudo-bulk data is a challenging problem. Inspired by the former work (<a href="https://doi.org/10.1038/s41467-020-20288-9">Francisco, <em>et al.</em></a>, <a href="https://doi.org/10.1038/s41467-018-08023-x">Wang, <em>et al.</em></a>, <a href="https://doi.org/10.1093/bib/bbab362">Wei, <em>et al.</em></a>, <a href="https://doi.org/10.7554/eLife.26476">Racle, <em>et al.</em></a>) and <a href="https://www.synapse.org/#!Synapse:syn15589870/wiki/">Tumor Deconvolution DREAM Challenge</a>, decone provides different pseudo data generation strategies from massive bulk RNA-seq data as well as scRNA-seq data.</p>
+<h3 class="mume-header" id="section-31-gnerating-pseudo-bulk-data-from-massive-rna-seq-studies">Section 3.1: Gnerating Pseudo Bulk Data From Massive RNA-seq Studies</h3>
+
+<p>Many deconvolution methods need cell type-specific bulk data as the prior knowledge during deconvolution. To have a more realistic simulation, we collected 302 well-characterized bulk RNA-seq data to generate pseudo bulk data. When generating data, 1/3 samples will be used for generating the mixture and the rest will be used for generating external reference.</p>
+<p>Inspired by <a href="https://www.synapse.org/#!Synapse:syn15589870/wiki/">Tumor Deconvolution DREAM Challenge</a>, decone also provides function to generate &apos;coarse&apos; and &apos;fine&apos; level mixture samples.</p>
+<p>For <strong>&apos;coarse&apos;</strong> level, decone generates mixture samples which contains the following 8 cell types.</p>
+<ul>
+<li>B cells</li>
+<li>CD4 T cells</li>
+<li>CD8 T cells</li>
+<li>endothelial cells</li>
+<li>macrophages</li>
+<li>monocytes</li>
+<li>neutrophils</li>
+<li>NK cells</li>
+</ul>
+<p>For <strong>&apos;fine&apos;</strong> level, there will be 14 cell types.</p>
+<ul>
+<li>memory B cells</li>
+<li>naive B cells</li>
+<li>memory CD4 T cells</li>
+<li>active CD4 T cells</li>
+<li>regulatory T cells</li>
+<li>memory CD8 T cells</li>
+<li>naive CD8 T cells</li>
+<li>NK cells</li>
+<li>neutrophils</li>
+<li>monocytes</li>
+<li>myeloid dendritic cells</li>
+<li>macrophages</li>
+<li>fibroblasts</li>
+<li>endothelial cells</li>
+</ul>
+<p>The following demo shows how to generate simulated samples. Considering that different deconvolution methods may be written in different languages, we output the simulated data as CSV files which can be easily loaded to R, Python as well as MATLAB.</p>
+<pre data-role="codeBlock" data-info="R" class="language-r">library<span class="token punctuation">(</span>decone<span class="token punctuation">)</span>
+
+exprSim<span class="token punctuation">(</span>n_sample <span class="token operator">=</span> <span class="token number">50</span><span class="token punctuation">,</span>  <span class="token comment"># generate 50 samples</span>
+        type <span class="token operator">=</span> <span class="token string">&apos;coarse&apos;</span><span class="token punctuation">,</span>  <span class="token comment"># can be changed to &apos;fine&apos;</span>
+        transform <span class="token operator">=</span> <span class="token string">&apos;TPM&apos;</span><span class="token punctuation">,</span>
+        outputPath <span class="token operator">=</span> <span class="token string">&quot;./function_test/exprSim&quot;</span><span class="token punctuation">,</span>
+        mix_name <span class="token operator">=</span> <span class="token string">&quot;coarse_mix.csv&quot;</span><span class="token punctuation">,</span>  <span class="token comment"># mixture samples</span>
+        ref_name <span class="token operator">=</span> <span class="token string">&quot;coarse_ref.csv&quot;</span><span class="token punctuation">,</span>   <span class="token comment"># cell type specific reference</span>
+        prop_name <span class="token operator">=</span> <span class="token string">&quot;coarse_prop.csv&quot;</span><span class="token punctuation">,</span>  <span class="token comment"># groundtruth proportions</span>
+        refVar_name <span class="token operator">=</span> <span class="token string">&quot;coarse_refVar.csv&quot;</span><span class="token punctuation">,</span>  <span class="token comment"># expression variance for cell type specific reference</span>
+        train_name <span class="token operator">=</span> <span class="token string">&quot;train_data.csv&quot;</span><span class="token punctuation">)</span>  <span class="token comment"># data for generating reference, can be used for differential analysis</span>
+</pre><p>All the output files will be save in folder &apos;exprSim&apos;. The proportion will be generated randomly from a uniform distribution (<a href="https://doi.org/10.1093/bib/bbab362">Wei, <em>et al.</em></a>). decone also outputs the data for generating the external reference (parameter &apos;<strong>train_name</strong>&apos; in function <strong>exprSim</strong>) which can be used for differential expression analysis in marker gene selection.</p>
+<h3 class="mume-header" id="section-32-gnerating-pseudo-bulk-data-from-scrna-seq-data">Section 3.2: Gnerating Pseudo Bulk Data From scRNA-seq data</h3>
+
+<p>With the development of single cell technologies, the prediction of cell type proportion becomes more accurate. Lots of single cell-based methods had been proposed such as <a href="https://doi.org/10.1038/s41467-018-08023-x">MuSiC</a> and <a href="https://doi.org/10.1093/bib/bbz166">SCDC</a>. In addition, constructing in silico bulk data also becomes direct.</p>
+<p>For a comprehensive simulation, decone provides two types of simulated bulk data.</p>
+<p>The first one is <a href="https://support.10xgenomics.com/single-cell-multiome-atac-gex/datasets/1.0.0/pbmc_granulocyte_sorted_10k">human PBMC data from 10X</a>. This single cell dataset contains more than 10k single cell from huamn blood. We processed this dataset with <a href="https://support.10xgenomics.com/single-cell-gene-expression/software/pipelines/latest/what-is-cell-ranger">10X Cell Ranger</a> as well as <a href="https://muon.readthedocs.io/en/latest/">muon</a>. Cell type annotation is performed followed by the tutorial <a href="https://muon-tutorials.readthedocs.io/en/latest/single-cell-rna-atac/pbmc10k/1-Gene-Expression-Processing.html">&apos;Processing gene expression of 10k PBMCs&apos;</a>. We annotataed 13 cell types as below.</p>
+<ul>
+<li>intermediate_mono</li>
+<li>CD8+_na&#xEF;ve_T</li>
+<li>mDC</li>
+<li>CD4+_na&#xEF;ve_T</li>
+<li>NK</li>
+<li>memory_B</li>
+<li>CD4+_memory_T</li>
+<li>CD16_mono</li>
+<li>pDC</li>
+<li>na&#xEF;ve_B</li>
+<li>CD8+_activated_T</li>
+<li>CD14_mono</li>
+<li>MAIT</li>
+</ul>
+<p>The second dataset comes from mouse tissue. Tissue level deconvolution is also an important question, such as the prediction of tissue origin from human liquid biopsy. <a href="https://doi.org/10.1016/j.cell.2018.02.001">Han, <em>et al.</em></a> built a scRNA-seq atlas for the mouse with high quality and decone adopted this study to perform in silico mixing. For a solid simulation, decone adopted 7 tissues from the femal fetal mouse and 1500 cells for each.</p>
+<ul>
+<li>stomach</li>
+<li>lung</li>
+<li>liver</li>
+<li>kidney</li>
+<li>intestine</li>
+<li>brain</li>
+<li>gonad</li>
+</ul>
+<p>The method for generating bulk data is similar with Section 3.1.</p>
+<pre data-role="codeBlock" data-info="R" class="language-r">scExprSim<span class="token punctuation">(</span>n_sample <span class="token operator">=</span> <span class="token number">50</span><span class="token punctuation">,</span>  <span class="token comment"># generate 50 samples</span>
+          p <span class="token operator">=</span> <span class="token number">2</span> <span class="token operator">/</span> <span class="token number">3</span><span class="token punctuation">,</span>  <span class="token comment"># the proportion of cell number of building reference for each cell type</span>
+          transform <span class="token operator">=</span> <span class="token string">&quot;TPM&quot;</span><span class="token punctuation">,</span>
+          outputPath <span class="token operator">=</span> <span class="token string">&quot;./function_test/scExprSim&quot;</span><span class="token punctuation">,</span>
+          mix_name <span class="token operator">=</span> <span class="token string">&quot;scMouse_gene_expr.csv&quot;</span><span class="token punctuation">,</span>
+          ref_name <span class="token operator">=</span> <span class="token string">&quot;scMouse_ref.csv&quot;</span><span class="token punctuation">,</span>
+          prop_name <span class="token operator">=</span> <span class="token string">&quot;scMouse_prop.csv&quot;</span><span class="token punctuation">,</span>
+          train_name <span class="token operator">=</span> <span class="token string">&quot;scMouse_ref_rawCount.csv&quot;</span><span class="token punctuation">,</span>  <span class="token comment">## this file can be used for differential expression analysis</span>
+          type <span class="token operator">=</span> <span class="token string">&apos;mouse_tissue&apos;</span><span class="token punctuation">)</span>  <span class="token comment">## &apos;mouse_tissue&apos; or &apos;human_PBMC&apos;</span>
+</pre><h3 class="mume-header" id="code-demo-1-evaluating-the-deconvolution-results-in-a-simple-manner">Code Demo 1: Evaluating The Deconvolution Results In A Simple Manner</h3>
+
+<p>Generally, when a new deconvolution approach is proposed, cross-comparison between different methods is needed. decone provides multi-level comparison and visualization functions. In this part, we will demonstrate how to perform a simple evaluation of deconvolution results.</p>
+<p>We adopted <a href="https://www.bioconductor.org/packages/release/bioc/html/EpiDISH.html">EpiDISH</a>, <a href="http://bioconductor.org/packages/release/bioc/html/DeconRNASeq.html">DeconRNASeq</a> as well as <a href="https://cran.r-project.org/web/packages/FARDEEP/index.html">FARDEEP</a> from Bioconductor as the demo methods. Users can follow the steps below to reproduce the results easily.</p>
+<p>First, generate simulated expression data. Here, we adopted the massive RNA-seq dataset as am example.</p>
+<pre data-role="codeBlock" data-info="R" class="language-r">library<span class="token punctuation">(</span>decone<span class="token punctuation">)</span>
+
+<span class="token comment"># generate bulk data</span>
+exprSim<span class="token punctuation">(</span>n_sample <span class="token operator">=</span> <span class="token number">50</span><span class="token punctuation">,</span>  <span class="token comment"># generating 50 samples</span>
+        type <span class="token operator">=</span> <span class="token string">&apos;coarse&apos;</span><span class="token punctuation">,</span>
+        transform <span class="token operator">=</span> <span class="token string">&apos;TPM&apos;</span><span class="token punctuation">,</span> 
+        outputPath <span class="token operator">=</span> <span class="token string">&quot;./function_test/exprSim&quot;</span><span class="token punctuation">,</span>
+        mix_name <span class="token operator">=</span> <span class="token string">&quot;coarse_mix.csv&quot;</span><span class="token punctuation">,</span>
+        ref_name <span class="token operator">=</span> <span class="token string">&quot;coarse_ref.csv&quot;</span><span class="token punctuation">,</span>   <span class="token comment"># cell type specific reference</span>
+        prop_name <span class="token operator">=</span> <span class="token string">&quot;coarse_prop.csv&quot;</span><span class="token punctuation">,</span>  <span class="token comment"># simulated/groudtruth proportions</span>
+        refVar_name <span class="token operator">=</span> <span class="token string">&quot;coarse_refVar.csv&quot;</span><span class="token punctuation">)</span>  <span class="token comment"># expression variance for cell type specific reference</span>
+</pre><p>Second, use <a href="https://www.bioconductor.org/packages/release/bioc/html/EpiDISH.html">EpiDISH</a>, <a href="http://bioconductor.org/packages/release/bioc/html/DeconRNASeq.html">DeconRNASeq</a> and <a href="https://cran.r-project.org/web/packages/FARDEEP/index.html">FARDEEP</a> to deconvolute the bulk data and save the result.</p>
+<pre data-role="codeBlock" data-info="R" class="language-r">library<span class="token punctuation">(</span>EpiDISH<span class="token punctuation">)</span>
+library<span class="token punctuation">(</span>DeconRNASeq<span class="token punctuation">)</span>
+library<span class="token punctuation">(</span>FARDEEP<span class="token punctuation">)</span>
+
+mix <span class="token operator">&lt;-</span> read.csv<span class="token punctuation">(</span>file <span class="token operator">=</span> <span class="token string">&quot;./function_test/exprSim/coarse_mix.csv&quot;</span><span class="token punctuation">,</span> header <span class="token operator">=</span> T<span class="token punctuation">,</span> row.names <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">)</span>
+ref <span class="token operator">&lt;-</span> read.csv<span class="token punctuation">(</span>file <span class="token operator">=</span> <span class="token string">&quot;./function_test/exprSim/coarse_ref.csv&quot;</span><span class="token punctuation">,</span> header <span class="token operator">=</span> T<span class="token punctuation">,</span> row.names <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">)</span>
+
+<span class="token comment"># For a fast demo, we use only 500 markers.</span>
+mix <span class="token operator">&lt;-</span> as.matrix<span class="token punctuation">(</span>mix<span class="token punctuation">[</span><span class="token number">1</span><span class="token operator">:</span><span class="token number">500</span><span class="token punctuation">,</span> <span class="token punctuation">]</span><span class="token punctuation">)</span>
+ref <span class="token operator">&lt;-</span> as.matrix<span class="token punctuation">(</span>ref<span class="token punctuation">[</span><span class="token number">1</span><span class="token operator">:</span><span class="token number">500</span><span class="token punctuation">,</span> <span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+<span class="token comment"># deconvolute with CIBERSORT algorithm</span>
+res1 <span class="token operator">&lt;-</span> epidish<span class="token punctuation">(</span>beta.m <span class="token operator">=</span> mix<span class="token punctuation">,</span> ref.m <span class="token operator">=</span> ref<span class="token punctuation">,</span> method <span class="token operator">=</span> <span class="token string">&quot;CBS&quot;</span><span class="token punctuation">)</span>
+p1 <span class="token operator">&lt;-</span> t<span class="token punctuation">(</span>res1<span class="token operator">$</span>estF<span class="token punctuation">)</span>
+<span class="token comment"># deconvolute with RPC algorithm</span>
+res2 <span class="token operator">&lt;-</span> epidish<span class="token punctuation">(</span>beta.m <span class="token operator">=</span> mix<span class="token punctuation">,</span> ref.m <span class="token operator">=</span> ref<span class="token punctuation">,</span> method <span class="token operator">=</span> <span class="token string">&quot;RPC&quot;</span><span class="token punctuation">)</span>
+p2 <span class="token operator">&lt;-</span> t<span class="token punctuation">(</span>res2<span class="token operator">$</span>estF<span class="token punctuation">)</span>
+<span class="token comment"># deconvolute with DeconRNASeq algorithm</span>
+res3 <span class="token operator">&lt;-</span> DeconRNASeq<span class="token punctuation">(</span>datasets <span class="token operator">=</span> as.data.frame<span class="token punctuation">(</span>mix<span class="token punctuation">)</span><span class="token punctuation">,</span> signatures <span class="token operator">=</span> as.data.frame<span class="token punctuation">(</span>ref<span class="token punctuation">)</span><span class="token punctuation">)</span>
+p3 <span class="token operator">&lt;-</span> t<span class="token punctuation">(</span>res3<span class="token operator">$</span>out.all<span class="token punctuation">)</span>
+colnames<span class="token punctuation">(</span>p3<span class="token punctuation">)</span> <span class="token operator">&lt;-</span> colnames<span class="token punctuation">(</span>mix<span class="token punctuation">)</span>
+<span class="token comment"># deconvolute with FARDEEP algorithm</span>
+res4 <span class="token operator">&lt;-</span> fardeep<span class="token punctuation">(</span>X <span class="token operator">=</span> ref<span class="token punctuation">,</span> Y <span class="token operator">=</span> mix<span class="token punctuation">)</span>
+p4 <span class="token operator">&lt;-</span> t<span class="token punctuation">(</span>res4<span class="token operator">$</span>relative.beta<span class="token punctuation">)</span>
+
+<span class="token comment"># save the results</span>
+write.csv<span class="token punctuation">(</span>x <span class="token operator">=</span> p1<span class="token punctuation">,</span> file <span class="token operator">=</span> paste0<span class="token punctuation">(</span><span class="token string">&quot;./function_test/exprSim/CBS.csv&quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span> row.names <span class="token operator">=</span> T<span class="token punctuation">,</span> quote <span class="token operator">=</span> F<span class="token punctuation">)</span>
+write.csv<span class="token punctuation">(</span>x <span class="token operator">=</span> p2<span class="token punctuation">,</span> file <span class="token operator">=</span> paste0<span class="token punctuation">(</span><span class="token string">&quot;./function_test/exprSim/RPC.csv&quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span> row.names <span class="token operator">=</span> T<span class="token punctuation">,</span> quote <span class="token operator">=</span> F<span class="token punctuation">)</span>
+write.csv<span class="token punctuation">(</span>x <span class="token operator">=</span> p3<span class="token punctuation">,</span> file <span class="token operator">=</span> paste0<span class="token punctuation">(</span><span class="token string">&quot;./function_test/exprSim/DeconRNASeq.csv&quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span> row.names <span class="token operator">=</span> T<span class="token punctuation">,</span> quote <span class="token operator">=</span> F<span class="token punctuation">)</span>
+write.csv<span class="token punctuation">(</span>x <span class="token operator">=</span> p4<span class="token punctuation">,</span> file <span class="token operator">=</span> paste0<span class="token punctuation">(</span><span class="token string">&quot;./function_test/exprSim/FARDEEP.csv&quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span> row.names <span class="token operator">=</span> T<span class="token punctuation">,</span> quote <span class="token operator">=</span> F<span class="token punctuation">)</span>
+</pre><p>Next, users can compare the deconvolution results from multiple aspects.</p>
+<p>For example, we can compare the rmse of each cell type directly.</p>
+<pre data-role="codeBlock" data-info="R" class="language-r">actual <span class="token operator">&lt;-</span> <span class="token string">&quot;./function_test/exprSim/coarse_prop.csv&quot;</span>
+predicted <span class="token operator">&lt;-</span> c<span class="token punctuation">(</span><span class="token string">&quot;./function_test/exprSim/CBS.csv&quot;</span><span class="token punctuation">,</span>
+               <span class="token string">&quot;./function_test/exprSim/RPC.csv&quot;</span><span class="token punctuation">,</span>
+               <span class="token string">&quot;./function_test/exprSim/DeconRNASeq.csv&quot;</span><span class="token punctuation">,</span>
+               <span class="token string">&quot;./function_test/exprSim/FARDEEP.csv&quot;</span><span class="token punctuation">)</span>
+label <span class="token operator">&lt;-</span> c<span class="token punctuation">(</span><span class="token string">&quot;CBS&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;RPC&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;DeconRNASeq&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;FARDEEP&quot;</span><span class="token punctuation">)</span>
+
+plot_multiple<span class="token punctuation">(</span>actual <span class="token operator">=</span> actual<span class="token punctuation">,</span>
+              predicted <span class="token operator">=</span> predicted<span class="token punctuation">,</span>
+              label <span class="token operator">=</span> label<span class="token punctuation">,</span>
+              method <span class="token operator">=</span> <span class="token string">&quot;rmse&quot;</span><span class="token punctuation">,</span>
+              type <span class="token operator">=</span> <span class="token string">&quot;celltype&quot;</span><span class="token punctuation">,</span>  <span class="token comment"># can be changed to &apos;sample&apos; </span>
+              figure <span class="token operator">=</span> <span class="token string">&quot;boxplot&quot;</span><span class="token punctuation">)</span>
+</pre><center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="./inst/figures/box_ct_rmse.png">
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">Boxplot of rmse value for each cell type</div>
+</center>
+<p>We can also compare the rmse of each sample by changing parameter type from &apos;celltype&apos; to &apos;sample&apos;.</p>
+<p>Also, the overall rmse can be illustrated by barplot.</p>
+<pre data-role="codeBlock" data-info="R" class="language-r">plot_multiple<span class="token punctuation">(</span>actual <span class="token operator">=</span> actual<span class="token punctuation">,</span>
+              predicted <span class="token operator">=</span> predicted<span class="token punctuation">,</span>
+              label <span class="token operator">=</span> label<span class="token punctuation">,</span>
+              method <span class="token operator">=</span> <span class="token string">&quot;rmse&quot;</span><span class="token punctuation">,</span>
+              type <span class="token operator">=</span> <span class="token string">&quot;all&quot;</span><span class="token punctuation">,</span>
+              figure <span class="token operator">=</span> <span class="token string">&quot;barplot&quot;</span><span class="token punctuation">)</span>
+</pre><center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="./inst/figures/bat_all_rmse.png">
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">Barplot for overall rmse of each method</div>
+</center>
+<p>In addition, the results can be revealed more specific through heatmap.</p>
+<pre data-role="codeBlock" data-info="R" class="language-r">plot_multiple<span class="token punctuation">(</span>actual <span class="token operator">=</span> actual<span class="token punctuation">,</span>
+              predicted <span class="token operator">=</span> predicted<span class="token punctuation">,</span>
+              label <span class="token operator">=</span> label<span class="token punctuation">,</span>
+              method <span class="token operator">=</span> <span class="token string">&quot;rmse&quot;</span><span class="token punctuation">,</span>
+              type <span class="token operator">=</span> <span class="token string">&quot;celltype&quot;</span><span class="token punctuation">,</span>
+              figure <span class="token operator">=</span> <span class="token string">&quot;heatmap&quot;</span><span class="token punctuation">)</span>
+</pre><center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="./inst/figures/heatmap_ct_rmse.png">
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">Heatmap for cell type rmse of each method</div>
+</center>
+<p>The scatter plot with Pearson Correlation Coefficient (PCC) for each method can also be produced.</p>
+<pre data-role="codeBlock" data-info="R" class="language-r">plot_multiple<span class="token punctuation">(</span>actual <span class="token operator">=</span> actual<span class="token punctuation">,</span>
+              predicted <span class="token operator">=</span> predicted<span class="token punctuation">,</span>
+              label <span class="token operator">=</span> label<span class="token punctuation">,</span>
+              method <span class="token operator">=</span> <span class="token string">&quot;pearson&quot;</span><span class="token punctuation">,</span>
+              type <span class="token operator">=</span> <span class="token string">&quot;celltype&quot;</span><span class="token punctuation">,</span>  <span class="token comment"># the color is assigned for each cell type</span>
+              figure <span class="token operator">=</span> <span class="token string">&quot;scatterplot&quot;</span><span class="token punctuation">,</span>
+              nrow <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">)</span>
+</pre><center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="./inst/figures/scatter_ct_pearson.png">
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">Scatter plot for each method</div>
+</center>
+<p>The combined heatmap with circles can be used for illustrating multiple metrics at once.</p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="./inst/figures/cheatmap_ct.png">
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">Heatmap with circles</div>
+</center>
+<p>If the users want to plot the results for a single method, the &apos;plot_single&apos; function can be used. For more information, please see <a href="https://honchkrow.github.io/decone/inst/documents/decone_manual.pdf">decone manual</a></p>
+<h2 class="mume-header" id="section-4-noise-analysis">Section 4: Noise Analysis</h2>
+
+<p>In expression data analysis, technical and biological noise cannot be ignored. Noise existing in bulk data brings a negative influence on deconvolution. In order to measure the stability and accuracy of different methods, decone provides functions to add noise with the different structures on bulk data.</p>
+<h3 class="mume-header" id="section-41-generating-noised-bulk-data-with-different-models">Section 4.1: Generating Noised Bulk Data With Different Models</h3>
+
+<p>Many of the noise model had been used in different studies, such as the normal, log-normal and negative binomial model (<a href="https://doi.org/10.1186/s13059-021-02290-6">Jin, <em>et al.</em></a>). decone realized these methods and provided flexible interface for users.</p>
+<ul>
+<li><strong>Normal Model</strong></li>
+</ul>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext mathvariant="bold">M</mtext><mo>=</mo><msup><mn>2</mn><mrow><mi>l</mi><mi>o</mi><msub><mi>g</mi><mn>2</mn></msub><mo stretchy="false">(</mo><mtext mathvariant="bold">R</mtext><mo>&#xD7;</mo><mtext mathvariant="bold">p</mtext><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo><mo>+</mo><mi>N</mi><mo stretchy="false">(</mo><mn>0</mn><mo separator="true">,</mo><mi>&#x3C3;</mi><msub><mi>p</mi><mi>t</mi></msub><mo stretchy="false">)</mo></mrow></msup></mrow><annotation encoding="application/x-tex">\textbf{M} = 2^{log_{2}(\textbf{R} \times \textbf{p} + 1) + N(0, \sigma p_t)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6861em;"></span><span class="mord text"><span class="mord textbf">M</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.938em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.938em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.01968em;">l</span><span class="mord mathnormal mtight">o</span><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3173em;"><span style="top:-2.357em;margin-left:-0.0359em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span><span class="mopen mtight">(</span><span class="mord text mtight"><span class="mord textbf mtight">R</span></span><span class="mbin mtight">&#xD7;</span><span class="mord text mtight"><span class="mord textbf mtight">p</span></span><span class="mbin mtight">+</span><span class="mord mtight">1</span><span class="mclose mtight">)</span><span class="mbin mtight">+</span><span class="mord mathnormal mtight" style="margin-right:0.10903em;">N</span><span class="mopen mtight">(</span><span class="mord mtight">0</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.03588em;">&#x3C3;</span><span class="mord mtight"><span class="mord mathnormal mtight">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2963em;"><span style="top:-2.357em;margin-left:0em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span><span class="mclose mtight">)</span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+<ul>
+<li><strong>Log-Nomal Model</strong></li>
+</ul>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext mathvariant="bold">M</mtext><mo>=</mo><mtext mathvariant="bold">R</mtext><mo>&#xD7;</mo><mtext mathvariant="bold">p</mtext><mo>+</mo><msup><mn>2</mn><mrow><mi>N</mi><mo stretchy="false">(</mo><mn>0</mn><mo separator="true">,</mo><mi>&#x3C3;</mi><msub><mi>p</mi><mi>t</mi></msub><mo stretchy="false">)</mo></mrow></msup></mrow><annotation encoding="application/x-tex">\textbf{M} = \textbf{R} \times \textbf{p} + 2^{N(0, \sigma p_t)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6861em;"></span><span class="mord text"><span class="mord textbf">M</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7694em;vertical-align:-0.0833em;"></span><span class="mord text"><span class="mord textbf">R</span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#xD7;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7778em;vertical-align:-0.1944em;"></span><span class="mord text"><span class="mord textbf">p</span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.938em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.938em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.10903em;">N</span><span class="mopen mtight">(</span><span class="mord mtight">0</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.03588em;">&#x3C3;</span><span class="mord mtight"><span class="mord mathnormal mtight">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2963em;"><span style="top:-2.357em;margin-left:0em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span><span class="mclose mtight">)</span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+<p>In the above 2 model, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="bold">M</mtext></mrow><annotation encoding="application/x-tex">\textbf{M}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6861em;"></span><span class="mord text"><span class="mord textbf">M</span></span></span></span></span> means the mixture sample, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="bold">R</mtext></mrow><annotation encoding="application/x-tex">\textbf{R}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6861em;"></span><span class="mord text"><span class="mord textbf">R</span></span></span></span></span> and <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="bold">p</mtext></mrow><annotation encoding="application/x-tex">\textbf{p}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6389em;vertical-align:-0.1944em;"></span><span class="mord text"><span class="mord textbf">p</span></span></span></span></span> represent the reference and proportion respectively. The level of noise is controlled by  the product of a constant parameter <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>&#x3C3;</mi></mrow><annotation encoding="application/x-tex">\sigma</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">&#x3C3;</span></span></span></span> and a perturbation level parameter <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>p</mi><mi>t</mi></msub></mrow><annotation encoding="application/x-tex">p_t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> (<a href="https://doi.org/10.1186/s13059-021-02290-6">Jin, <em>et al.</em></a>). As the former study pointed, the <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>&#x3C3;</mi></mrow><annotation encoding="application/x-tex">\sigma</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">&#x3C3;</span></span></span></span> is set to 10 and <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>p</mi><mi>t</mi></msub></mrow><annotation encoding="application/x-tex">p_t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> is set from 0 to 1 by 0.1.</p>
+<ul>
+<li><strong>Negative Binomial Model</strong></li>
+</ul>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>&#x3BC;</mi><mrow><mi>i</mi><mn>0</mn></mrow></msub><mo>=</mo><msub><mi>r</mi><mrow><mi>i</mi><mn>0</mn></mrow></msub><mo>&#xD7;</mo><msub><mi>L</mi><mi>j</mi></msub></mrow><annotation encoding="application/x-tex">\mu_{i0} = r_{i0} \times L_{j}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal">&#x3BC;</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#xD7;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span></span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span></span></p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>&#x3BC;</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><mo>=</mo><mi>G</mi><mi>a</mi><mi>m</mi><mi>m</mi><mi>a</mi><mo stretchy="false">(</mo><mi>s</mi><mi>h</mi><mi>a</mi><mi>p</mi><mi>e</mi><mo>=</mo><mfrac><mn>1</mn><msubsup><mi>&#x3C3;</mi><mi>i</mi><mn>2</mn></msubsup></mfrac><mo separator="true">,</mo><mi>s</mi><mi>c</mi><mi>a</mi><mi>l</mi><mi>e</mi><mo>=</mo><mfrac><msub><mi>&#x3BC;</mi><mrow><mi>i</mi><mn>0</mn></mrow></msub><mrow><mi>s</mi><mi>h</mi><mi>a</mi><mi>p</mi><mi>e</mi></mrow></mfrac><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mu_{ij} = Gamma(shape = \frac{1}{\sigma_{i}^{2}}, scale = \frac{\mu_{i0}}{shape})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7167em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal">&#x3BC;</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.05724em;">ij</span></span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">G</span><span class="mord mathnormal">amma</span><span class="mopen">(</span><span class="mord mathnormal">s</span><span class="mord mathnormal">ha</span><span class="mord mathnormal">p</span><span class="mord mathnormal">e</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.2843em;vertical-align:-0.9629em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">&#x3C3;</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.7959em;"><span style="top:-2.4231em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span style="top:-3.0448em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.2769em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.9629em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">sc</span><span class="mord mathnormal">a</span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mord mathnormal">e</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.988em;vertical-align:-0.8804em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.1076em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">s</span><span class="mord mathnormal">ha</span><span class="mord mathnormal">p</span><span class="mord mathnormal">e</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal">&#x3BC;</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.8804em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose">)</span></span></span></span></span></p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>s</mi><mi>i</mi><mi>g</mi><mi>m</mi><msub><mi>a</mi><mi>i</mi></msub><mo>=</mo><mo stretchy="false">(</mo><mn>1.8</mn><mo>&#xD7;</mo><msub><mi>p</mi><mi>t</mi></msub><mo>+</mo><mfrac><mn>1</mn><msqrt><msub><mi>&#x3BC;</mi><mrow><mi>i</mi><mn>0</mn></mrow></msub></msqrt></mfrac><mo stretchy="false">)</mo><mo>&#xD7;</mo><mi>e</mi><mi>x</mi><mi>p</mi><mo stretchy="false">(</mo><mfrac><mi>&#x3B4;</mi><mn>2</mn></mfrac><mo stretchy="false">)</mo><mspace width="2em"></mspace><mi>&#x3B4;</mi><mo>&#x223C;</mo><mi>N</mi><mo stretchy="false">(</mo><mn>0</mn><mo separator="true">,</mo><mn>0.25</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">sigma_{i} = (1.8 \times p_{t} + \frac{1}{\sqrt{\mu_{i0}}}) \times exp(\frac{\delta}{2}) \qquad \delta \sim N(0, 0.25)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.854em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">s</span><span class="mord mathnormal">i</span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mord mathnormal">m</span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span></span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1.8</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#xD7;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7778em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span></span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:2.3444em;vertical-align:-1.0229em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.7031em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord" style="padding-left:0.833em;"><span class="mord"><span class="mord mathnormal">&#x3BC;</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span style="top:-2.6631em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail" style="min-width:0.853em;height:1.08em;"><svg xmlns="http://www.w3.org/2000/svg" width="400em" height="1.08em" viewBox="0 0 400000 1080" preserveAspectRatio="xMinYMin slice"><path d="M95,702
+c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,-10,-9.5,-14
+c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54
+c44.2,-33.3,65.8,-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10
+s173,378,173,378c0.7,0,35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429
+c69,-144,104.5,-217.7,106.5,-221
+l0 -0
+c5.3,-9.3,12,-14,20,-14
+H400000v40H845.2724
+s-225.272,467,-225.272,467s-235,486,-235,486c-2.7,4.7,-9,7,-19,7
+c-6,0,-10,-1,-12,-3s-194,-422,-194,-422s-65,47,-65,47z
+M834 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.3369em;"><span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:1.0229em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#xD7;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:2.0574em;vertical-align:-0.686em;"></span><span class="mord mathnormal">e</span><span class="mord mathnormal">x</span><span class="mord mathnormal">p</span><span class="mopen">(</span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3714em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03785em;">&#x3B4;</span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:2em;"></span><span class="mord mathnormal" style="margin-right:0.03785em;">&#x3B4;</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#x223C;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="mopen">(</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">0.25</span><span class="mclose">)</span></span></span></span></span></p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>v</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><mo>=</mo><mi>P</mi><mi>o</mi><mi>s</mi><mi>s</mi><mi>i</mi><mi>o</mi><mi>n</mi><mo stretchy="false">(</mo><msub><mi>&#x3BC;</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">v_{ij} = Possion(\mu_{ij})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7167em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.05724em;">ij</span></span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.0361em;vertical-align:-0.2861em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mord mathnormal">oss</span><span class="mord mathnormal">i</span><span class="mord mathnormal">o</span><span class="mord mathnormal">n</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">&#x3BC;</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.05724em;">ij</span></span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></span></p>
+<p>The simulation strategy is proposed by <a href="https://doi.org/10.1186/s13059-021-02290-6">Jin, <em>et al.</em></a> and <a href="https://doi.org/10.1186/gb-2014-15-2-r29">Law, <em>et al.</em></a>. <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>p</mi><mi>t</mi></msub></mrow><annotation encoding="application/x-tex">p_t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> is also used to control noise level, from 0 to 1. <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>r</mi><mrow><mi>i</mi><mn>0</mn></mrow></msub></mrow><annotation encoding="application/x-tex">r_{i0}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> is the expected genomic feature proportion of gene i in a cellular component. <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>L</mi><mi>j</mi></msub></mrow><annotation encoding="application/x-tex">L_{j}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span></span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span> is the library size of sample <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>j</mi></mrow><annotation encoding="application/x-tex">j</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.854em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.05724em;">j</span></span></span></span>. <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>&#x3BC;</mi><mrow><mi>i</mi><mn>0</mn></mrow></msub></mrow><annotation encoding="application/x-tex">\mu_{i0}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal">&#x3BC;</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> is the expected gene expression in the simulation. Two layers of variance are added from the gamma distribution and poisson distribution. For more information, please see <a href="https://doi.org/10.1186/s13059-021-02290-6">this article</a>.</p>
+<p>Function &quot;addNoiseExpr&quot; can produce noise based on normal, log-normal or negative binomial model (<a href="https://doi.org/10.1186/s13059-021-02290-6">Jin, <em>et al.</em></a>). We strongly recommended using the <strong>negative binomial</strong> model. A simple example is provided as the following code.</p>
+<pre data-role="codeBlock" data-info="R" class="language-r"><span class="token comment"># first, generate a simple dataset with 50 samples and 200 marker genes with function &apos;pseudoExpr&apos;</span>
+res <span class="token operator">&lt;-</span> pseudoExpr<span class="token punctuation">(</span>n_sample <span class="token operator">=</span> <span class="token number">50</span><span class="token punctuation">,</span> n_gene <span class="token operator">=</span> <span class="token number">200</span><span class="token punctuation">)</span>
+
+<span class="token comment"># users can check the dimension of output</span>
+dim<span class="token punctuation">(</span>res<span class="token operator">$</span>mix<span class="token punctuation">)</span>
+dim<span class="token punctuation">(</span>res<span class="token operator">$</span>ref<span class="token punctuation">)</span>
+dim<span class="token punctuation">(</span>res<span class="token operator">$</span>prop<span class="token punctuation">)</span>
+
+<span class="token comment"># save the bulk data</span>
+<span class="token comment"># save the bulk data</span>
+write.csv<span class="token punctuation">(</span>x <span class="token operator">=</span> res<span class="token operator">$</span>mix<span class="token punctuation">,</span> file <span class="token operator">=</span> <span class="token string">&quot;./function_test/addNoiseExpr/mix.csv&quot;</span><span class="token punctuation">,</span> row.names <span class="token operator">=</span> T<span class="token punctuation">,</span> quote <span class="token operator">=</span> F<span class="token punctuation">)</span>
+write.csv<span class="token punctuation">(</span>x <span class="token operator">=</span> res<span class="token operator">$</span>ref<span class="token punctuation">,</span> file <span class="token operator">=</span> <span class="token string">&quot;./function_test/addNoiseExpr/ref.csv&quot;</span><span class="token punctuation">,</span> row.names <span class="token operator">=</span> T<span class="token punctuation">,</span> quote <span class="token operator">=</span> F<span class="token punctuation">)</span>
+write.csv<span class="token punctuation">(</span>x <span class="token operator">=</span> res<span class="token operator">$</span>prop<span class="token punctuation">,</span> file <span class="token operator">=</span> <span class="token string">&quot;./function_test/addNoiseExpr/prop.csv&quot;</span><span class="token punctuation">,</span> row.names <span class="token operator">=</span> T<span class="token punctuation">,</span> quote <span class="token operator">=</span> F<span class="token punctuation">)</span>
+
+
+<span class="token comment"># the new data will be generated in a folder</span>
+addNoiseExpr<span class="token punctuation">(</span>exprFile <span class="token operator">=</span> <span class="token string">&quot;./function_test/addNoiseExpr/mix.csv&quot;</span><span class="token punctuation">,</span>
+             Pt <span class="token operator">=</span> seq<span class="token punctuation">(</span><span class="token number">0.1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0.1</span><span class="token punctuation">)</span><span class="token punctuation">,</span>  <span class="token comment"># parameter to control noise level</span>
+             type <span class="token operator">=</span> <span class="token string">&quot;NB&quot;</span><span class="token punctuation">)</span>  <span class="token comment"># &quot;NB&quot;, &quot;N&quot; or &quot;LN&quot;. 3 types of model.</span>
+</pre><p>A folder named &quot;mix&quot; will be generated in the path &apos;./function_test/addNoiseExpr&apos; and bulk data with different levels of noise will be saved in each file respectively like below.</p>
+<pre data-role="codeBlock" data-info class="language-"><code>mix.csv
+ref.csv
+prop.csv
+mix/  
+  &#x251C;&#x2500;&#x2500; mix_NL_0.csv     # original data without in silico noise
+  &#x251C;&#x2500;&#x2500; mix_NL_0.1.csv   # noise level 0.1
+  &#x251C;&#x2500;&#x2500; mix_NL_0.2.csv 
+  &#x251C;&#x2500;&#x2500; mix_NL_0.3.csv 
+  &#x251C;&#x2500;&#x2500; mix_NL_0.4.csv 
+  &#x251C;&#x2500;&#x2500; mix_NL_0.5.csv 
+  &#x251C;&#x2500;&#x2500; mix_NL_0.6.csv 
+  &#x251C;&#x2500;&#x2500; mix_NL_0.7.csv 
+  &#x251C;&#x2500;&#x2500; mix_NL_0.8.csv 
+  &#x251C;&#x2500;&#x2500; mix_NL_0.9.csv 
+  &#x2514;&#x2500;&#x2500; mix_NL_1.csv     # noise level 1
+</code></pre><p>After this, users can test the performance of different methods easily. The next demo shows how to analysis stability of different methods with different noise levels.</p>
+<h3 class="mume-header" id="code-demo-2-evaluating-the-deconvolution-results-for-multiple-method">Code Demo 2: Evaluating The Deconvolution Results For Multiple Method</h3>
+
+<p>Comparison the deconvolution performance between different algorithms helps to find the appropriate method for a certain biology scenario.</p>
+<p>Here, taking stability analysis as an example, we show how to use decone to perform cross-comparison between different methods. In order to give a direct and fast example, we also adopted <a href="https://www.bioconductor.org/packages/release/bioc/html/EpiDISH.html">EpiDISH</a>, <a href="https://www.bioconductor.org/packages/release/bioc/html/DeconRNASeq.html">DeconRNAseq</a> as well as <a href="https://cran.r-project.org/web/packages/FARDEEP/index.html">FARDEEP</a> to perform deconvolution.</p>
+<p>First, profoem deconvolution with different methods.</p>
+<pre data-role="codeBlock" data-info="R" class="language-r">library<span class="token punctuation">(</span>EpiDISH<span class="token punctuation">)</span>
+library<span class="token punctuation">(</span>DeconRNASeq<span class="token punctuation">)</span>
+library<span class="token punctuation">(</span>FARDEEP<span class="token punctuation">)</span>
+
+ref <span class="token operator">&lt;-</span> as.matrix<span class="token punctuation">(</span>read.csv<span class="token punctuation">(</span>file <span class="token operator">=</span> <span class="token string">&quot;./function_test/addNoiseExpr/ref.csv&quot;</span><span class="token punctuation">,</span> header <span class="token operator">=</span> T<span class="token punctuation">,</span> row.names <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token keyword keyword-for">for</span> <span class="token punctuation">(</span>NL <span class="token keyword keyword-in">in</span> seq<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0.1</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    writeLines<span class="token punctuation">(</span>paste<span class="token punctuation">(</span><span class="token string">&quot;Now, processing noise level:&quot;</span><span class="token punctuation">,</span> NL<span class="token punctuation">,</span> sep <span class="token operator">=</span> <span class="token string">&quot; &quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    mixFile <span class="token operator">&lt;-</span> paste0<span class="token punctuation">(</span><span class="token string">&quot;./function_test/addNoiseExpr/mix/mix_NL_&quot;</span><span class="token punctuation">,</span> NL<span class="token punctuation">,</span> <span class="token string">&quot;.csv&quot;</span><span class="token punctuation">)</span>
+    mix <span class="token operator">&lt;-</span> as.matrix<span class="token punctuation">(</span>read.csv<span class="token punctuation">(</span>file <span class="token operator">=</span> mixFile<span class="token punctuation">,</span> header <span class="token operator">=</span> T<span class="token punctuation">,</span> row.names <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+    <span class="token comment"># deconvolute with CIBERSORT algorithm</span>
+    res1 <span class="token operator">&lt;-</span> epidish<span class="token punctuation">(</span>beta.m <span class="token operator">=</span> mix<span class="token punctuation">,</span> ref.m <span class="token operator">=</span> ref<span class="token punctuation">,</span> method <span class="token operator">=</span> <span class="token string">&quot;CBS&quot;</span><span class="token punctuation">)</span>
+    p1 <span class="token operator">&lt;-</span> t<span class="token punctuation">(</span>res1<span class="token operator">$</span>estF<span class="token punctuation">)</span>
+    <span class="token comment"># deconvolute with RPC algorithm</span>
+    res2 <span class="token operator">&lt;-</span> epidish<span class="token punctuation">(</span>beta.m <span class="token operator">=</span> mix<span class="token punctuation">,</span> ref.m <span class="token operator">=</span> ref<span class="token punctuation">,</span> method <span class="token operator">=</span> <span class="token string">&quot;RPC&quot;</span><span class="token punctuation">)</span>
+    p2 <span class="token operator">&lt;-</span> t<span class="token punctuation">(</span>res2<span class="token operator">$</span>estF<span class="token punctuation">)</span>
+    <span class="token comment"># deconvolute with DeconRNASeq algorithm</span>
+    res3 <span class="token operator">&lt;-</span> DeconRNASeq<span class="token punctuation">(</span>datasets <span class="token operator">=</span> as.data.frame<span class="token punctuation">(</span>mix<span class="token punctuation">)</span><span class="token punctuation">,</span> signatures <span class="token operator">=</span> as.data.frame<span class="token punctuation">(</span>ref<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    p3 <span class="token operator">&lt;-</span> t<span class="token punctuation">(</span>res3<span class="token operator">$</span>out.all<span class="token punctuation">)</span>
+    <span class="token comment"># deconvolute with FARDEEP algorithm</span>
+    res4 <span class="token operator">&lt;-</span> fardeep<span class="token punctuation">(</span>X <span class="token operator">=</span> ref<span class="token punctuation">,</span> Y <span class="token operator">=</span> mix<span class="token punctuation">)</span>
+    p4 <span class="token operator">&lt;-</span> t<span class="token punctuation">(</span>res4<span class="token operator">$</span>relative.beta<span class="token punctuation">)</span>
+
+    <span class="token comment"># save the results</span>
+    write.csv<span class="token punctuation">(</span>x <span class="token operator">=</span> p1<span class="token punctuation">,</span> file <span class="token operator">=</span> paste0<span class="token punctuation">(</span><span class="token string">&quot;./function_test/addNoiseExpr/mix/CBS_&quot;</span><span class="token punctuation">,</span> NL<span class="token punctuation">,</span> <span class="token string">&quot;.csv&quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span> row.names <span class="token operator">=</span> T<span class="token punctuation">,</span> quote <span class="token operator">=</span> F<span class="token punctuation">)</span>
+    write.csv<span class="token punctuation">(</span>x <span class="token operator">=</span> p2<span class="token punctuation">,</span> file <span class="token operator">=</span> paste0<span class="token punctuation">(</span><span class="token string">&quot;./function_test/addNoiseExpr/mix/RPC_&quot;</span><span class="token punctuation">,</span> NL<span class="token punctuation">,</span> <span class="token string">&quot;.csv&quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span> row.names <span class="token operator">=</span> T<span class="token punctuation">,</span> quote <span class="token operator">=</span> F<span class="token punctuation">)</span>
+    write.csv<span class="token punctuation">(</span>x <span class="token operator">=</span> p3<span class="token punctuation">,</span> file <span class="token operator">=</span> paste0<span class="token punctuation">(</span><span class="token string">&quot;./function_test/addNoiseExpr/mix/DeconRNASeq_&quot;</span><span class="token punctuation">,</span> NL<span class="token punctuation">,</span> <span class="token string">&quot;.csv&quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span> row.names <span class="token operator">=</span> T<span class="token punctuation">,</span> quote <span class="token operator">=</span> F<span class="token punctuation">)</span>
+    write.csv<span class="token punctuation">(</span>x <span class="token operator">=</span> p4<span class="token punctuation">,</span> file <span class="token operator">=</span> paste0<span class="token punctuation">(</span><span class="token string">&quot;./function_test/addNoiseExpr/mix/FARDEEP_&quot;</span><span class="token punctuation">,</span> NL<span class="token punctuation">,</span> <span class="token string">&quot;.csv&quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span> row.names <span class="token operator">=</span> T<span class="token punctuation">,</span> quote <span class="token operator">=</span> F<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</pre><p>First, we want to see the performance of a single method under different levels of noise. Let&apos;s take CIBERSORT algorithm provided by <a href="https://www.bioconductor.org/packages/release/bioc/html/EpiDISH.html">EpiDISH</a> as an example.</p>
+<p>We can generate the rmse trend along with noise levels. Also, we can plot the cell type-specific metrics to see the <font color="red">estimation bias</font> for each <font color="red">cell types</font>.</p>
+<pre data-role="codeBlock" data-info="R" class="language-r"><span class="token comment"># the real proportion</span>
+actual <span class="token operator">&lt;-</span> <span class="token string">&quot;./function_test/addNoiseExpr/prop.csv&quot;</span>
+
+<span class="token comment"># predicted proportions</span>
+predicted <span class="token operator">&lt;-</span> paste0<span class="token punctuation">(</span><span class="token string">&quot;./function_test/addNoiseExpr/mix/CBS_&quot;</span><span class="token punctuation">,</span> seq<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0.1</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">&quot;.csv&quot;</span><span class="token punctuation">)</span>
+
+<span class="token comment"># label for each file</span>
+noise_level <span class="token operator">&lt;-</span> paste0<span class="token punctuation">(</span><span class="token string">&quot;NL&quot;</span><span class="token punctuation">,</span> seq<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0.1</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token comment"># boxplot</span>
+plot_multiple<span class="token punctuation">(</span>actual <span class="token operator">=</span> actual<span class="token punctuation">,</span>
+              predicted <span class="token operator">=</span> predicted<span class="token punctuation">,</span>
+              label <span class="token operator">=</span> noise_level<span class="token punctuation">,</span>
+              method <span class="token operator">=</span> <span class="token string">&quot;rmse&quot;</span><span class="token punctuation">,</span>
+              type <span class="token operator">=</span> <span class="token string">&quot;celltype&quot;</span><span class="token punctuation">,</span>
+              figure <span class="token operator">=</span> <span class="token string">&quot;boxplot&quot;</span><span class="token punctuation">)</span>
+
+<span class="token comment"># heatmap</span>
+plot_multiple<span class="token punctuation">(</span>actual <span class="token operator">=</span> actual<span class="token punctuation">,</span>
+              predicted <span class="token operator">=</span> predicted<span class="token punctuation">,</span>
+              label <span class="token operator">=</span> noise_level<span class="token punctuation">,</span>
+              method <span class="token operator">=</span> <span class="token string">&quot;rmse&quot;</span><span class="token punctuation">,</span>
+              type <span class="token operator">=</span> <span class="token string">&quot;celltype&quot;</span><span class="token punctuation">,</span>
+              figure <span class="token operator">=</span> <span class="token string">&quot;heatmap&quot;</span><span class="token punctuation">)</span>
+</pre><p>The output figures are as follows.</p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="./inst/figures/noise_rmse_single_boxplot.png">
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">Box plot for rmse value of CIBERSORT</div>
+</center>
+<p>It is clear that with the growth of noise power, the deconvolution results become worse.</p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="./inst/figures/noise_rmse_single_heatmap.png">
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">Cell type specific mape value for CIBERSORT</div>
+</center>
+<p>Of course, cell types specific results are influenced by noise power. <strong>However, this issue is still not fully studied.</strong></p>
+<p>Next, we will illustrate how to have a comprehensive cross-comparison between different methods.</p>
+<pre data-role="codeBlock" data-info="R" class="language-r"><span class="token comment"># the real proportion</span>
+actual <span class="token operator">&lt;-</span> <span class="token string">&quot;./function_test/addNoiseExpr/prop.csv&quot;</span>
+
+<span class="token comment"># predicted proportions as a list</span>
+RPC <span class="token operator">&lt;-</span> paste0<span class="token punctuation">(</span><span class="token string">&quot;./function_test/addNoiseExpr/mix/RPC_&quot;</span><span class="token punctuation">,</span> seq<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0.1</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">&quot;.csv&quot;</span><span class="token punctuation">)</span>
+CBS <span class="token operator">&lt;-</span> paste0<span class="token punctuation">(</span><span class="token string">&quot;./function_test/addNoiseExpr/mix/CBS_&quot;</span><span class="token punctuation">,</span> seq<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0.1</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">&quot;.csv&quot;</span><span class="token punctuation">)</span>
+DeconRNASeq <span class="token operator">&lt;-</span> paste0<span class="token punctuation">(</span><span class="token string">&quot;./function_test/addNoiseExpr/mix/DeconRNASeq_&quot;</span><span class="token punctuation">,</span> seq<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0.1</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">&quot;.csv&quot;</span><span class="token punctuation">)</span>
+FARDEEP <span class="token operator">&lt;-</span> paste0<span class="token punctuation">(</span><span class="token string">&quot;./function_test/addNoiseExpr/mix/FARDEEP_&quot;</span><span class="token punctuation">,</span> seq<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0.1</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">&quot;.csv&quot;</span><span class="token punctuation">)</span>
+predicted <span class="token operator">&lt;-</span> list<span class="token punctuation">(</span>RPC <span class="token operator">=</span> RPC<span class="token punctuation">,</span>
+                  CBS <span class="token operator">=</span> CBS<span class="token punctuation">,</span>
+                  DeconRNASeq <span class="token operator">=</span> DeconRNASeq<span class="token punctuation">,</span>
+                  FARDEEP <span class="token operator">=</span> FARDEEP<span class="token punctuation">)</span>
+
+noise_level <span class="token operator">&lt;-</span> paste0<span class="token punctuation">(</span><span class="token string">&quot;NL_&quot;</span><span class="token punctuation">,</span> seq<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0.1</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token comment"># boxplot</span>
+plot_multiple2<span class="token punctuation">(</span>actual <span class="token operator">=</span> actual<span class="token punctuation">,</span>
+               predicted <span class="token operator">=</span> predicted<span class="token punctuation">,</span>
+               condition <span class="token operator">=</span> noise_level<span class="token punctuation">,</span>
+               method <span class="token operator">=</span> <span class="token string">&apos;rmse&apos;</span><span class="token punctuation">,</span>  <span class="token comment"># compute rmse</span>
+               type <span class="token operator">=</span> <span class="token string">&apos;celltype&apos;</span><span class="token punctuation">,</span>
+               figure <span class="token operator">=</span> <span class="token string">&apos;boxplot&apos;</span><span class="token punctuation">)</span>
+
+<span class="token comment"># heatmap</span>
+plot_multiple2<span class="token punctuation">(</span>actual <span class="token operator">=</span> actual<span class="token punctuation">,</span>
+               predicted <span class="token operator">=</span> predicted<span class="token punctuation">,</span>
+               condition <span class="token operator">=</span> noise_level<span class="token punctuation">,</span>
+               method <span class="token operator">=</span> <span class="token string">&apos;mape&apos;</span><span class="token punctuation">,</span>  <span class="token comment"># compute mape</span>
+               type <span class="token operator">=</span> <span class="token string">&apos;celltype&apos;</span><span class="token punctuation">,</span>
+               figure <span class="token operator">=</span> <span class="token string">&apos;heatmap&apos;</span><span class="token punctuation">)</span>
+
+</pre><p>The boxplot and heatmap for rmse and mape are as follows.</p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="./inst/figures/noise_rmse_multi_boxplot.png">
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">Boxplot of rmse for different deconvolution method</div>
+</center>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="./inst/figures/noise_mape_multi_heatmap.png">
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">Heatmap of mape for different deconvolution method</div>
+</center>
+<p>Usually, only one metric may not be sufficient to reveal the deconvolution efficacy, especially for rare components (<a href="https://doi.org/10.1093/bib/bbab362">Wei, <em>et al.</em></a>). decone provides heatmap with circles for illustrating the double metrics in one figure.</p>
+<pre data-role="codeBlock" data-info="R" class="language-r"><span class="token comment"># generate figure for rmse and pearson </span>
+plot_multiple2<span class="token punctuation">(</span>actual <span class="token operator">=</span> actual<span class="token punctuation">,</span>
+               predicted <span class="token operator">=</span> predicted<span class="token punctuation">,</span>
+               condition <span class="token operator">=</span> noise_level<span class="token punctuation">,</span>
+               method <span class="token operator">=</span> <span class="token string">&apos;rmse&apos;</span><span class="token punctuation">,</span>
+               method2 <span class="token operator">=</span> <span class="token string">&apos;mape&apos;</span><span class="token punctuation">,</span>
+               type <span class="token operator">=</span> <span class="token string">&apos;celltype&apos;</span><span class="token punctuation">,</span>
+               figure <span class="token operator">=</span> <span class="token string">&apos;cheatmap&apos;</span><span class="token punctuation">)</span>
+</pre><center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="./inst/figures/noise_multi_cheatmap.png">
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">circle heatmap of rmse and mape for different deconvolution method</div>
+</center>
+<h2 class="mume-header" id="section-5-rare-component-analysis">Section 5: Rare Component Analysis</h2>
+
+<p>In the cell type deconvolution problem, cell types with extremely small proportion are always been ignored. However, these cell types play vital roles in some situations, like TILs which exhibit low fractions in many cancer tissues. Some methods have been proposed to tackle this problem like <a href="https://doi.org/10.1038/s41467-019-10802-z">DWLS</a> and <a href="https://doi.org/10.1093/bib/bbab362">ARIC</a>.</p>
+<p>decone provides functions &apos;rareExprSim&apos; and &apos;rarescExprSim&apos; to simulate bulk data with the rare component. In order to perform a comprehensive analysis, decone takes all the cell types as potential rare components in a loop with a pre-set rare proportion gradient.</p>
+<p>Here is an example with 6 different deconvolution algorithms.</p>
+<p>First, generate in silico rare proportion dataset.</p>
+<pre data-role="codeBlock" data-info="R" class="language-r"><span class="token comment"># rare proportion is set to 0.001, 0.003, 0.005, 0.008, 0.01, 0.03 and 0.05</span>
+rareExprSim<span class="token punctuation">(</span>p_rare <span class="token operator">=</span> c<span class="token punctuation">(</span><span class="token number">0.001</span><span class="token punctuation">,</span> <span class="token number">0.003</span><span class="token punctuation">,</span> <span class="token number">0.005</span><span class="token punctuation">,</span> <span class="token number">0.008</span><span class="token punctuation">,</span> <span class="token number">0.01</span><span class="token punctuation">,</span> <span class="token number">0.03</span><span class="token punctuation">,</span> <span class="token number">0.05</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            outputPath <span class="token operator">=</span> <span class="token string">&quot;./function_test/rareExprSim/&quot;</span><span class="token punctuation">,</span>
+            type <span class="token operator">=</span> <span class="token string">&quot;coarse&quot;</span><span class="token punctuation">,</span>
+            transform <span class="token operator">=</span> <span class="token string">&quot;TPM&quot;</span><span class="token punctuation">)</span>
+</pre><p>Second, deconvolute the simulated bulk data with different algorithms. Here, we directly takes the deconvolution results from <a href="https://doi.org/10.1093/bib/bbab362">ARIC</a>, <a href="https://doi.org/10.1038/nmeth.3337">CIBERSORT</a>, <a href="https://doi.org/10.1007/978-1-0716-0327-7_17">EPIC</a>, <a href="https://doi.org/10.1093/bioinformatics/bty926">dtangle</a>, <a href="10.1371/journal.pcbi.1006976">FARDEEP</a> as well as <a href="https://doi.org/10.1093/bioinformatics/btt090">DeconRNAseq</a> as an example.</p>
+<p>We can generate a scatter plot for each method like below.</p>
+<pre data-role="codeBlock" data-info="R" class="language-r">p_rare <span class="token operator">=</span> c<span class="token punctuation">(</span><span class="token number">0.001</span><span class="token punctuation">,</span> <span class="token number">0.003</span><span class="token punctuation">,</span> <span class="token number">0.005</span><span class="token punctuation">,</span> <span class="token number">0.008</span><span class="token punctuation">,</span> <span class="token number">0.01</span><span class="token punctuation">,</span> <span class="token number">0.03</span><span class="token punctuation">,</span> <span class="token number">0.05</span><span class="token punctuation">)</span>
+
+actual <span class="token operator">&lt;-</span> <span class="token string">&quot;coarse_prop.csv&quot;</span>
+
+<span class="token comment"># use EPIC as an example</span>
+predicted <span class="token operator">&lt;-</span> <span class="token string">&quot;EPIC_coarse_coarse_p-0.01_fc-2.csv&quot;</span>
+
+plot_rare<span class="token punctuation">(</span>actual <span class="token operator">=</span> actual<span class="token punctuation">,</span>
+          predicted <span class="token operator">=</span> predicted<span class="token punctuation">,</span>
+          p_rare <span class="token operator">=</span> p_rare<span class="token punctuation">,</span>
+          method <span class="token operator">=</span> <span class="token string">&quot;spearman&quot;</span><span class="token punctuation">,</span>
+          celltype <span class="token operator">=</span> <span class="token boolean">TRUE</span><span class="token punctuation">,</span>
+          figure <span class="token operator">=</span> <span class="token string">&quot;scatterplot&quot;</span><span class="token punctuation">)</span>
+</pre><center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="./inst/figures/scatter_R.png">
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">Scatter plot of rare component for EPIC</div>
+</center>
+<p>From the above figure, users can analyze the deconvolution power for each cell type.</p>
+<p>Also, we can plot heatmap and circle heatmap to have a cross-comparison.</p>
+<pre data-role="codeBlock" data-info="R" class="language-r">actual <span class="token operator">&lt;-</span> <span class="token string">&quot;./coarse_prop.csv&quot;</span>
+predicted <span class="token operator">&lt;-</span> Sys.glob<span class="token punctuation">(</span>paths <span class="token operator">=</span> <span class="token string">&quot;./*_coarse_coarse_p-0.01_fc-2.csv&quot;</span><span class="token punctuation">)</span>
+label <span class="token operator">&lt;-</span> c<span class="token punctuation">(</span><span class="token string">&quot;ARIC&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;CBS&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;EPIC&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;dRNAseq&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;dtangle&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;fardeep&quot;</span><span class="token punctuation">)</span>
+p_rare <span class="token operator">=</span> c<span class="token punctuation">(</span><span class="token number">0.001</span><span class="token punctuation">,</span> <span class="token number">0.003</span><span class="token punctuation">,</span> <span class="token number">0.005</span><span class="token punctuation">,</span> <span class="token number">0.008</span><span class="token punctuation">,</span> <span class="token number">0.01</span><span class="token punctuation">,</span> <span class="token number">0.03</span><span class="token punctuation">,</span> <span class="token number">0.05</span><span class="token punctuation">)</span>
+
+plot_rare<span class="token punctuation">(</span>actual <span class="token operator">=</span> actual<span class="token punctuation">,</span>
+          predicted <span class="token operator">=</span> predicted<span class="token punctuation">,</span>
+          p_rare <span class="token operator">=</span> p_rare<span class="token punctuation">,</span>
+          method <span class="token operator">=</span> <span class="token string">&quot;rmse&quot;</span><span class="token punctuation">,</span>
+          figure <span class="token operator">=</span> <span class="token string">&quot;heatmap&quot;</span><span class="token punctuation">)</span>
+
+plot_rare<span class="token punctuation">(</span>actual <span class="token operator">=</span> actual<span class="token punctuation">,</span>
+          predicted <span class="token operator">=</span> predicted<span class="token punctuation">,</span>
+          p_rare <span class="token operator">=</span> p_rare<span class="token punctuation">,</span>
+          method <span class="token operator">=</span> <span class="token string">&quot;rmse&quot;</span><span class="token punctuation">,</span>
+          method2 <span class="token operator">=</span> <span class="token string">&quot;mape&quot;</span><span class="token punctuation">,</span>
+          figure <span class="token operator">=</span> <span class="token string">&quot;cheatmap&quot;</span><span class="token punctuation">)</span>
+</pre><center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="./inst/figures/rare_multi_heatmap.png">
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">Heatmap plot for rmse</div>
+</center>
+<br>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="./inst/figures/rare_multi_cheatmap.png">
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">circle heatmap plot for rmse and mape</div>
+</center>
+<h2 class="mume-header" id="section-6-unknown-component-analysis">Section 6: Unknown Component Analysis</h2>
+
+<p>Almost all physiological and pathological processes in multicellular organisms involve multiple cell types (<a href="https://doi.org/10.1093/bib/bbab362">Wei, <em>et al.</em></a>). It is hard to identify all the cell types in the microenvironment. The unknown component is a nonnegligible problem for all deconvolution algorithms and methods like <a href="https://doi.org/10.1007/978-1-0716-0327-7_17">EPIC</a> have considered this problem.</p>
+<p>To test the estimation accuracy when there exists a nonnegligible cell type, decone provides the function to generate simulated bulk data with different unknown content.</p>
+<pre data-role="codeBlock" data-info="R" class="language-r"><span class="token comment"># generate bulk data</span>
+unExprSim<span class="token punctuation">(</span>unknown <span class="token operator">=</span> c<span class="token punctuation">(</span><span class="token number">0.001</span><span class="token punctuation">,</span> <span class="token number">0.005</span><span class="token punctuation">,</span> <span class="token number">0.01</span><span class="token punctuation">,</span> <span class="token number">0.05</span><span class="token punctuation">,</span> <span class="token number">0.1</span><span class="token punctuation">,</span> <span class="token number">0.15</span><span class="token punctuation">,</span> <span class="token number">0.2</span><span class="token punctuation">)</span><span class="token punctuation">,</span>  <span class="token comment"># the unknown content proportion</span>
+          n_sample <span class="token operator">=</span> <span class="token number">50</span><span class="token punctuation">,</span>
+          p <span class="token operator">=</span> <span class="token number">0.6</span><span class="token punctuation">,</span>
+          type <span class="token operator">=</span> <span class="token string">&quot;coarse&quot;</span><span class="token punctuation">,</span>
+          transform <span class="token operator">=</span> <span class="token string">&quot;TPM&quot;</span><span class="token punctuation">,</span>
+          outputPath <span class="token operator">=</span> <span class="token string">&quot;./function_test/unExprSim&quot;</span><span class="token punctuation">,</span>
+          mix_name <span class="token operator">=</span> <span class="token string">&quot;coarse_gene_expr.csv&quot;</span><span class="token punctuation">,</span>
+          ref_name <span class="token operator">=</span> <span class="token string">&quot;coarse_ref.csv&quot;</span><span class="token punctuation">,</span>
+          prop_name <span class="token operator">=</span> <span class="token string">&quot;coarse_prop.csv&quot;</span><span class="token punctuation">)</span>
+</pre><p>The output will be as follows.</p>
+<pre data-role="codeBlock" data-info class="language-"><code>coarse_gene_expr.csv
+coarse_prop.csv
+coarse_ref.csv
+coarse_gene_expr_un_0.001.csv
+coarse_gene_expr_un_0.005.csv
+coarse_gene_expr_un_0.01.csv
+coarse_gene_expr_un_0.05.csv
+coarse_gene_expr_un_0.1.csv
+coarse_gene_expr_un_0.15.csv
+coarse_gene_expr_un_0.2.csv
+</code></pre><p>Users can use the functions mentioned in &apos;Code Demo 2&apos; to perform single-method evaluation or cross-comparison evaluation.</p>
+<h2 class="mume-header" id="section-7-single-cell-related-functions">Section 7: Single Cell Related Functions</h2>
+
+<p>Single cell related functions are similar with functions used for massive bulk data, like &apos;scExprSim&apos;, &apos;rarescExprSim&apos; and &apos;unscExprSim&apos;. For more information, please refer to <a href="https://honchkrow.github.io/decone/inst/documents/decone_manual.pdf">decone manual</a>.</p>
+<h2 class="mume-header" id="section-8-well-characterized-deconvolution-datasets">Section 8: Well-Characterized Deconvolution Datasets</h2>
+
+<p>In addition, we collected 14 well-characterized deconvolution datasets for users. Some of them are known cell-type proportions. Some datasets without know the true proportion, but the related phenotype can be accessed. We provide the processed datasets with <strong>bulk data</strong>, <strong>reference data</strong> as well as <strong>true proportions</strong>, which means that these datasets can be used directly. We summarized the datasets in the following table.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">NO.</th>
+<th style="text-align:center">NAME</th>
+<th style="text-align:center">Description</th>
+<th style="text-align:center">Reference Type</th>
+<th style="text-align:center">Proportion</th>
+<th style="text-align:center">Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">Abbas</td>
+<td style="text-align:center">Microarray</td>
+<td style="text-align:center">Bulk</td>
+<td style="text-align:center">known</td>
+<td style="text-align:center"><a href="https://doi.org/10.1371/journal.pone.0006098">Abbas, <em>et al.</em></a></td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">Becht</td>
+<td style="text-align:center">Microarray</td>
+<td style="text-align:center">Bulk</td>
+<td style="text-align:center">known</td>
+<td style="text-align:center"><a href="https://doi.org/10.1186/s13059-016-1070-5">Becht, <em>et al.</em></a></td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">Gong</td>
+<td style="text-align:center">Microarray</td>
+<td style="text-align:center">Bulk</td>
+<td style="text-align:center">known</td>
+<td style="text-align:center"><a href="https://doi.org/10.1371/journal.pone.0027156">Gong, <em>et al.</em></a></td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td style="text-align:center">Kuhn</td>
+<td style="text-align:center">Microarray</td>
+<td style="text-align:center">Bulk</td>
+<td style="text-align:center">known</td>
+<td style="text-align:center"><a href="https://doi.org/10.1038/nmeth.1710">Kuhn, <em>et al.</em></a></td>
+</tr>
+<tr>
+<td style="text-align:center">5</td>
+<td style="text-align:center">Linsley</td>
+<td style="text-align:center">RNA-seq</td>
+<td style="text-align:center">Bulk</td>
+<td style="text-align:center">known</td>
+<td style="text-align:center"><a href="https://doi.org/10.1371/journal.pone.0109760">Linsley, <em>et al.</em></a></td>
+</tr>
+<tr>
+<td style="text-align:center">6</td>
+<td style="text-align:center">Liu</td>
+<td style="text-align:center">RNA-seq</td>
+<td style="text-align:center">Bulk</td>
+<td style="text-align:center">known</td>
+<td style="text-align:center"><a href="https://doi.org/10.1093/nar/gkv412">Liu, <em>et al.</em></a></td>
+</tr>
+<tr>
+<td style="text-align:center">7</td>
+<td style="text-align:center">Parsons</td>
+<td style="text-align:center">RNA-seq</td>
+<td style="text-align:center">Bulk</td>
+<td style="text-align:center">known</td>
+<td style="text-align:center"><a href="https://doi.org/10.1186/s12864-015-1912-7">Parsons, <em>et al.</em></a></td>
+</tr>
+<tr>
+<td style="text-align:center">8</td>
+<td style="text-align:center">Shen-Orr</td>
+<td style="text-align:center">Microarray</td>
+<td style="text-align:center">Bulk</td>
+<td style="text-align:center">known</td>
+<td style="text-align:center"><a href="https://doi.org/10.1038/nmeth.1439">Shen-Orr, <em>et al.</em></a></td>
+</tr>
+<tr>
+<td style="text-align:center">9</td>
+<td style="text-align:center">Shi</td>
+<td style="text-align:center">Microarray</td>
+<td style="text-align:center">Bulk</td>
+<td style="text-align:center">known</td>
+<td style="text-align:center"><a href="https://doi.org/10.1038/nbt1239">Shi, <em>et al.</em></a></td>
+</tr>
+<tr>
+<td style="text-align:center">10</td>
+<td style="text-align:center">T2D</td>
+<td style="text-align:center">RNA-seq</td>
+<td style="text-align:center">Single Cell</td>
+<td style="text-align:center">known</td>
+<td style="text-align:center"><a href="https://doi.org/10.1073/pnas.1402665111">Fadista, <em>et al.</em></a></td>
+</tr>
+<tr>
+<td style="text-align:center">11</td>
+<td style="text-align:center">TCGA_LUSC</td>
+<td style="text-align:center">RNA-seq</td>
+<td style="text-align:center">Bulk</td>
+<td style="text-align:center">known</td>
+<td style="text-align:center"><a href="https://doi.org/10.1093/nar/gkx1090">Vasaikar, <em>et al.</em></a></td>
+</tr>
+<tr>
+<td style="text-align:center">12</td>
+<td style="text-align:center">TCGA_OV</td>
+<td style="text-align:center">RNA-seq</td>
+<td style="text-align:center">Bulk</td>
+<td style="text-align:center">known</td>
+<td style="text-align:center"><a href="https://doi.org/10.1093/nar/gkx1090">Vasaikar, <em>et al.</em></a></td>
+</tr>
+<tr>
+<td style="text-align:center">13</td>
+<td style="text-align:center">kidney_Arvaniti</td>
+<td style="text-align:center">RNA-seq</td>
+<td style="text-align:center">Single Cell</td>
+<td style="text-align:center">known</td>
+<td style="text-align:center"><a href="https://doi.org/10.1038/srep26235">	Arvaniti, <em>et al.</em></a></td>
+</tr>
+<tr>
+<td style="text-align:center">14</td>
+<td style="text-align:center">kidney_Arvaniti_TPM</td>
+<td style="text-align:center">RNA-seq</td>
+<td style="text-align:center">Bulk</td>
+<td style="text-align:center">known</td>
+<td style="text-align:center"><a href="https://doi.org/10.1038/srep26235">	Arvaniti, <em>et al.</em></a></td>
+</tr>
+<tr>
+<td style="text-align:center">15</td>
+<td style="text-align:center">kidney_Craciun</td>
+<td style="text-align:center">RNA-seq</td>
+<td style="text-align:center">Single Cell</td>
+<td style="text-align:center">known</td>
+<td style="text-align:center"><a href="https://doi.org/10.1681/ASN.2015020225">Craciun, <em>et al.</em></a></td>
+</tr>
+<tr>
+<td style="text-align:center">16</td>
+<td style="text-align:center">kidney_Craciun_TPM</td>
+<td style="text-align:center">RNA-seq</td>
+<td style="text-align:center">Bulk</td>
+<td style="text-align:center">known</td>
+<td style="text-align:center"><a href="https://doi.org/10.1681/ASN.2015020225">Craciun, <em>et al.</em></a></td>
+</tr>
+</tbody>
+</table>
+<p>Users can download the datasets from this <a href="https://github.com/Honchkrow/decone_dataset">page</a>.</p>
+<p>Note: some dataset are collected from <a href="https://doi.org/10.1093/bioinformatics/bty926">dtangle</a> and <a href="https://doi.org/10.1038/s41467-018-08023-x">MuSiC</a>.</p>
+<p>Please cite the corresponding article when you use the datasets.</p>
+<h2 class="mume-header" id="citation">Citation</h2>
+
+<p>Zhang, W., Xu, H., Qiao, R., Zhong, B., Zhang, X., Gu, J., Zhang, X., Wei, L. and Wang, X., 2022. ARIC: accurate and robust inference of cell type proportions from bulk gene expression or DNA methylation data. Briefings in Bioinformatics, 23(1), p.bbab362.</p>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    </body></html>
