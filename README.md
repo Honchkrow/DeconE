@@ -1,20 +1,33 @@
+<head>
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: {
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+            inlineMath: [['$','$']]
+            }
+        });
+    </script>
+</head>
+
 ## **decone**: An easy-to-use and comprehensive evaluation toolkit for cell type deconvolution from expression data
 
 
-* [Section 1: Introduction](#section-1-introduction)
-* [Section 2: Installation](#section-2-installation)
-* [Section 3: Gnerating Pseudo Bulk Data](#section-3-gnerating-pseudo-bulk-data)
-    * [Section 3.1: Gnerating Pseudo Bulk Data From Massive RNA-seq Studies](#section-31-gnerating-pseudo-bulk-data-from-massive-rna-seq-studies)
-    * [Section 3.2: Gnerating Pseudo Bulk Data From scRNA-seq data](#section-32-gnerating-pseudo-bulk-data-from-scrna-seq-data)
-    * [Code Demo 1: Evaluating The Deconvolution Results In A Simple Manner](#code-demo-1-evaluating-the-deconvolution-results-in-a-simple-manner)
-* [Section 4: Noise Analysis](#section-4-noise-analysis)
-    * [Section 4.1: Generating Noised Bulk Data With Different Models](#section-41-generating-noised-bulk-data-with-different-models)
-    * [Code Demo 2: Evaluating The Deconvolution Results For Multiple Method](#code-demo-2-evaluating-the-deconvolution-results-for-multiple-method)
-* [Section 5: Rare Component Analysis](#section-5-rare-component-analysis)
-* [Section 6: Unknown Component Analysis](#section-6-unknown-component-analysis)
-* [Section 7: Single Cell Related Functions](#section-7-single-cell-related-functions)
-* [Section 8: Well-Characterized Deconvolution Datasets](#section-8-well-characterized-deconvolution-datasets)
-* [Citation](#citation)
+- [**decone**: An easy-to-use and comprehensive evaluation toolkit for cell type deconvolution from expression data](#decone-an-easy-to-use-and-comprehensive-evaluation-toolkit-for-cell-type-deconvolution-from-expression-data)
+- [Section 1: Introduction](#section-1-introduction)
+- [Section 2: Installation](#section-2-installation)
+- [Section 3: Gnerating Pseudo Bulk Data](#section-3-gnerating-pseudo-bulk-data)
+  - [Section 3.1: Gnerating Pseudo Bulk Data From Massive RNA-seq Studies](#section-31-gnerating-pseudo-bulk-data-from-massive-rna-seq-studies)
+  - [Section 3.2: Gnerating Pseudo Bulk Data From scRNA-seq data](#section-32-gnerating-pseudo-bulk-data-from-scrna-seq-data)
+  - [Code Demo 1: Evaluating The Deconvolution Results In A Simple Manner](#code-demo-1-evaluating-the-deconvolution-results-in-a-simple-manner)
+- [Section 4: Noise Analysis](#section-4-noise-analysis)
+  - [Section 4.1: Generating Noised Bulk Data With Different Models](#section-41-generating-noised-bulk-data-with-different-models)
+  - [Code Demo 2: Evaluating The Deconvolution Results For Multiple Method](#code-demo-2-evaluating-the-deconvolution-results-for-multiple-method)
+- [Section 5: Rare Component Analysis](#section-5-rare-component-analysis)
+- [Section 6: Unknown Component Analysis](#section-6-unknown-component-analysis)
+- [Section 7: Single Cell Related Functions](#section-7-single-cell-related-functions)
+- [Section 8: Well-Characterized Deconvolution Datasets](#section-8-well-characterized-deconvolution-datasets)
+- [Citation](#citation)
 
 
 **Links**:
