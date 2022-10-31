@@ -348,7 +348,7 @@ The combined heatmap with circles can be used for illustrating multiple metrics 
     padding: 2px;">Heatmap with circles</div>
 </center>
 
-If the users want to plot the results for a single method, the 'plot_single' function can be used. For more information, please see [decone manual](https://honchkrow.github.io/decone/inst/documents/decone_manual.pdf)
+If the users want to plot the results for a single method, the 'plot_single' function can be used. For more information, please see [decone manual](https://honchkrow.github.io/decone/inst/documents/decone_manual.pdf).
 
 
 
