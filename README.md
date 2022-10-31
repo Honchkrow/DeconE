@@ -13,6 +13,7 @@
 ## **decone**: An easy-to-use and comprehensive evaluation toolkit for cell type deconvolution from expression data
 
 
+
 - [**decone**: An easy-to-use and comprehensive evaluation toolkit for cell type deconvolution from expression data](#decone-an-easy-to-use-and-comprehensive-evaluation-toolkit-for-cell-type-deconvolution-from-expression-data)
 - [Section 1: Introduction](#section-1-introduction)
 - [Section 2: Installation](#section-2-installation)
@@ -38,7 +39,7 @@
 ## Section 1: Introduction
 Cell type proportion is related to phenotypes or diseases ([Wang, *et al.*](https://doi.org/10.1038/s41467-018-08023-x), [Wei, *et al.*](https://doi.org/10.1093/bib/bbab362)). Therefore, quantifying cell or tissue proportions is important for understanding the mechanisms in biological processes.
 
-Here, we proposed a cell type <u>**decon**</u>volution <u>**e**</u>valuating toolkit named '**decone**' to perform comprehensive and systematic evaluation of different algorithms.
+Here, we proposed a cell type <u>decon</u>volution <u>e</u>valuating toolkit named '**decone**' to perform comprehensive and systematic evaluation of different algorithms.
 
 **decone** consists of 6 main part functions as below.
 - Pseudo bulk data generation (from massive bulk data and single cell data).
