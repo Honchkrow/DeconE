@@ -790,6 +790,9 @@ In addition, we collected 14 well-characterized deconvolution datasets for users
 | 14 | kidney_Arvaniti_TPM | RNA-seq | Bulk | known | [	Arvaniti, *et al.*](https://doi.org/10.1038/srep26235) |
 | 15 | kidney_Craciun | RNA-seq | Single Cell | known | [Craciun, *et al.*](https://doi.org/10.1681/ASN.2015020225) |
 | 16 | kidney_Craciun_TPM | RNA-seq | Bulk | known | [Craciun, *et al.*](https://doi.org/10.1681/ASN.2015020225) |
+| 17 | TCGA 35 cancer datasets | RNA-seq | Bulk | known | [Vasaikar, *et al.*](https://doi.org/10.1093/nar/gkx1090) |
+
+We provided the processed 'LUSC' and 'OV' datasets from TCGA which were validated by [FARDEEP](https://cran.r-project.org/web/packages/FARDEEP/index.html). Datasets about other cancers are also provided in the form of an expression matrix along with the original information.
 
 Users can download the datasets from this [page](https://github.com/Honchkrow/decone_dataset).
 
