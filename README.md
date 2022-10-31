@@ -61,7 +61,7 @@ First, users should install [R >= 4.1.0](https://www.r-project.org/).
 
 Next, install devtools and decone.
 
-```
+```R
 # install devtools
 install.packages('devtools')
 
@@ -410,7 +410,7 @@ addNoiseExpr(exprFile = "./function_test/addNoiseExpr/mix.csv",
 
 A folder named "mix" will be generated in the path './function_test/addNoiseExpr' and bulk data with different levels of noise will be saved in each file respectively like below.
 
-``` 
+```shell
 mix.csv
 ref.csv
 prop.csv
@@ -746,7 +746,7 @@ unExprSim(unknown = c(0.001, 0.005, 0.01, 0.05, 0.1, 0.15, 0.2),  # the unknown 
 
 The output will be as follows.
 
-```
+```shell
 coarse_gene_expr.csv
 coarse_prop.csv
 coarse_ref.csv
