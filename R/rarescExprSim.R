@@ -3,24 +3,22 @@
 #' @description Generate in silico mixture expression matrix based on the
 #' internal scRNA-seq database. The internal RNA-seq database is collected from
 #' PMID:29474909. All the samples are passed the quality filter.
-#' This function use the real cell type specific expression data to generate
-#' mixture data. The cell type include c("FetalStomach", "FetalLung",
-#' "FetalLiver", "FetalKidney", "FetalIntestine",
-#' "FetalBrain", "Female.fetal.Gonad")
 #'
 #' @param p_rare A vector of proportions.
 #' Default: c(0.001, 0.003, 0.005, 0.008, 0.01, 0.03, 0.05)
 #' Note: Every cell type will be treated as rare component.
 #' For example, if 8 cell types need to be tested, this function will generate
-#' 7 * 8 = 56 samples. 7 mean 7 rare proportions and 8 means 8 cell types.
+#' 7 * 8 = 56 samples. 7 means 7 rare proportions and 8 means 8 cell types.
 #' @param p Proportion of sample in train set, default: 2 / 3.
-#' @param transform "TPM", "CPM" or "NO". Transform the data into TPM, CPM or in counts.
+#' @param transform "TPM", "CPM" or "NO". Transform the data into TPM, CPM or in raw counts.
 #' @param outputPath output file save path.
-#' @param mix_name mixture output file name.
-#' @param ref_name reference output file name in csv.
-#' @param prop_name simulated proportion file name in csv.
-#' @param train_name file name for all data in train set in csv.
+#' @param bulk_name Pseudo bulk output file name.
+#' @param ref_bulk_name reference output file name in csv, for the deconvolution method based on bulk data.
+#' @param ref_cell_number number of cells of each cell type for generating reference, default: 1000.
+#' @param ref_sc_name File name for all data in train set in csv.
 #' This data can be used for differential gene analysis.
+#' @param ref_sc_label cell labels for ref_sc_name.
+#' @param prop_name simulated proportion file name in csv.
 #' @param type 'mouse_tissue' or 'human_PBMC'. Default: 'mouse_tissue'
 #'
 #' @return All the information will be written in the output path.
@@ -35,15 +33,18 @@
 #' @examples
 #' rarescExprSim()
 #'
-rarescExprSim <- function (p_rare = c(0.001, 0.003, 0.005, 0.008, 0.01, 0.03, 0.05),
+rarescExprSim <- function (cell_number = 2000,
                            p = 2 / 3,
                            transform = "TPM",
                            outputPath = NULL,
-                           mix_name = "scMouse_gene_expr.csv",
-                           ref_name = "scMouse_ref.csv",
-                           prop_name = "scMouse_prop.csv",
-                           train_name = "scMouse_ref_rawCount.csv",
-                           type = 'mouse_tissue') {
+                           bulk_name = "scPBMC_gene_expr.csv",
+                           ref_bulk_name = "scPBMC_ref.csv",
+                           ref_cell_number = 1000,
+                           ref_sc_name = "scPBMC_ref_sc.csv",
+                           ref_sc_label = "scPBMC_ref_sc_label.csv",
+                           prop_name = "scPBMC_prop.csv",
+                           type = 'human_PBMC',
+                           p_rare = c(0.001, 0.003, 0.005, 0.008, 0.01, 0.03, 0.05)) {
     writeLines("Loading scRNA-seq data......")
 
     if(type == 'mouse_tissue') {
@@ -70,55 +71,26 @@ rarescExprSim <- function (p_rare = c(0.001, 0.003, 0.005, 0.008, 0.01, 0.03, 0.
 
     data <- raw_data[ , -which(colnames(raw_data) %in% c("Length"))]
 
-    train_v <- c()
-    test_v <- c()
+    cell_idx_list_train <- c()
+    cell_idx_list_test <- c()
 
-    train_df <- list()
-    test_df <- list()
-
+    # separate train and test cells
     for (ct in this.celltypes) {
-        mess <- paste("Now, sampling cell type", ct, "......", sep = " ")
+        mess <- paste("Now, split cell type", ct, "into train and test set......", sep = " ")
         writeLines(mess)
         idx <- which(grepl(pattern = ct, x = colnames(data), fixed = TRUE) == TRUE)
-        total_num <- length(idx)
-        ct_trainNum <- as.integer(total_num * p)
-        ct_testNum <- as.integer(total_num - ct_trainNum)
-        train_idx <- sample(x = idx, size = ct_trainNum)
+        ct_cellnumber <- length(idx)
+        ct_trainNum <- as.integer(ct_cellnumber * p)
+        ct_testNum <- as.integer(ct_cellnumber - ct_trainNum)
+
+        train_idx <- sample(x = idx, size = ct_trainNum, replace = FALSE)
         test_idx <- setdiff(idx, train_idx)
 
-        train_v <- c(train_v, train_idx)
-        test_v <- c(test_v, test_idx)
-
-        train_df[[ct]] <- apply(X = data[, train_idx], MARGIN = 1, FUN = sum)
-        test_df[[ct]] <- apply(X = data[, test_idx], MARGIN = 1, FUN = sum)
+        cell_idx_list_train[[ct]] <- train_idx
+        cell_idx_list_test[[ct]] <- test_idx
     }
 
-    train_df <- as.data.frame(do.call(cbind, train_df))
-    test_df <- as.data.frame(do.call(cbind, test_df))
-
-    if (all(rownames(train_df) == rownames(test_df))) {
-        writeLines("Train and test data consistency checking: PASSED!")
-    } else {
-        stop("Train and test data consistency checking: FAILED!")
-    }
-
-    # output for DE
-    train_raw <- data[, train_v]
-    test_raw <- data[, test_v]
-
-    if(transform == "TPM"){
-        writeLines("Transform data into TPM......")
-        train_df <- decone:::TPM(data = decone:::merge.all(train_df, raw_data["Length"]))
-        test_df <- decone:::TPM(data = decone:::merge.all(test_df, raw_data["Length"]))
-    }else if(transform == "CPM"){
-        writeLines("Transform data into CPM......")
-        train_df <- decone:::CPM(data = decone:::merge.all(train_df, raw_data["Length"]))
-        test_df <- decone:::CPM(data = decone:::merge.all(test_df, raw_data["Length"]))
-    } else {
-        writeLines("Note: data transformation is not specified!")
-    }
-
-
+    # creating pseudo bulk data
     writeLines("Creating simulated mixture samples......")
     n_sample <- length(p_rare) * length(this.celltypes)
     mess <- paste("There are",
@@ -127,8 +99,7 @@ rarescExprSim <- function (p_rare = c(0.001, 0.003, 0.005, 0.008, 0.01, 0.03, 0.
                   length(p_rare), "sample......")
     writeLines(mess)
 
-
-    prop <- matrix(data = sample(x = 5000, size = n_sample * length(this.celltypes), replace = TRUE),
+    prop <- matrix(data = sample(x = 10000, size = n_sample * length(this.celltypes), replace = TRUE),
                    nrow = length(this.celltypes), ncol = n_sample)
     for (ii in seq(length(this.celltypes))) {
         for (jj in seq(length(p_rare))) {
@@ -139,13 +110,114 @@ rarescExprSim <- function (p_rare = c(0.001, 0.003, 0.005, 0.008, 0.01, 0.03, 0.
             prop[, idx_column] <- append(x = other_p, values = p_rare[jj], (ii - 1))
         }
     }
-
     colnames(prop) <- paste("S", seq(n_sample), sep = "")
-    rownames(prop) <- colnames(test_df)
-    mix <- test_df %*% prop
+    rownames(prop) <- this.celltypes
 
-    fwrite(x = as.data.frame(train_df),
-           file = file.path(outputPath, ref_name),
+    # convert to integer matrix
+    cell_number_matrix <- prop * cell_number
+    mode(cell_number_matrix) <- "integer"
+
+    # # re-norm prop
+    # prop <- apply(X = prop, MARGIN = 2, FUN = decone:::v_norm)
+
+
+    ## generatebulk data
+    writeLines("Now, generating pseudo bulk data......")
+
+    pseudo_bulk_expr <- list()
+
+    # creating processing bar
+    pb <- progress_bar$new(total = n_sample)
+
+    for(i in colnames(cell_number_matrix)) {
+        pb$tick()
+        selected_cell_idx <- c()
+        this_sample_cell_number <- cell_number_matrix[, i]
+        for (ct in this.celltypes) {  # sampling single cells
+            this_celltype_cell_number <- this_sample_cell_number[[ct]]
+            this_celltype_train_idx <- cell_idx_list_test[[ct]]
+
+            if (length(this_celltype_train_idx) < this_celltype_cell_number) {
+                this_celltype_selected_idx <- sample(x = this_celltype_train_idx,
+                                                     size = this_celltype_cell_number,
+                                                     replace = TRUE)
+            } else {
+                this_celltype_selected_idx <- sample(x = this_celltype_train_idx,
+                                                     size = this_celltype_cell_number,
+                                                     replace = FALSE)
+            }
+            selected_cell_idx <- c(selected_cell_idx, this_celltype_selected_idx)
+        }
+        pseudo_bulk_expr[[i]] <- apply(X = data[, selected_cell_idx], MARGIN = 1, FUN = sum)
+
+    }
+
+    pseudo_bulk_expr <- as.data.frame(do.call(cbind, pseudo_bulk_expr))
+
+
+    ## creating reference data
+    writeLines("Now, generating reference data......")
+    pb <- progress_bar$new(total = length(this.celltypes))
+    reference_expr <- list()
+    for (ct in this.celltypes) {  # sampling single cells
+        pb$tick()
+        this_celltype_cell_number <- ref_cell_number
+        this_celltype_train_idx <- cell_idx_list_train[[ct]]
+
+        if (length(this_celltype_train_idx) < this_celltype_cell_number) {
+            this_celltype_selected_idx <- sample(x = this_celltype_train_idx,
+                                                 size = this_celltype_cell_number,
+                                                 replace = TRUE)
+        } else {
+            this_celltype_selected_idx <- sample(x = this_celltype_train_idx,
+                                                 size = this_celltype_cell_number,
+                                                 replace = FALSE)
+        }
+        reference_expr[[ct]] <- apply(X = data[, this_celltype_selected_idx], MARGIN = 1, FUN = sum)
+    }
+
+    reference_expr <- as.data.frame(do.call(cbind, reference_expr))
+
+    # check the gene order
+    if (all(rownames(pseudo_bulk_expr) == rownames(data))) {
+        writeLines("pseudo bulk data consistency checking: PASSED!")
+    } else {
+        stop("pseudo bulk data consistency checking: FAILED!")
+    }
+
+    if (all(rownames(reference_expr) == rownames(data))) {
+        writeLines("reference data consistency checking: PASSED!")
+    } else {
+        stop("reference data consistency checking: FAILED!")
+    }
+
+    # convert data
+    if(transform == "TPM"){
+        writeLines("Transform data into TPM......")
+        pseudo_bulk_expr <- decone:::TPM(data = decone:::merge.all(pseudo_bulk_expr, raw_data["Length"]))
+        reference_expr <- decone:::TPM(data = decone:::merge.all(reference_expr, raw_data["Length"]))
+    }else if(transform == "CPM"){
+        writeLines("Transform data into CPM......")
+        pseudo_bulk_expr <- decone:::CPM(data = decone:::merge.all(pseudo_bulk_expr, raw_data["Length"]))
+        reference_expr <- decone:::CPM(data = decone:::merge.all(reference_expr, raw_data["Length"]))
+    } else {
+        writeLines("Note: data transformation is not specified!")
+    }
+
+    ## creating reference in single cell format
+    reference_celltype_vector <- c()
+    reference_idx_vector <- c()
+    for (ct in this.celltypes) {  # sampling single cells
+        this_celltype_train_idx <- cell_idx_list_train[[ct]]
+        reference_celltype_vector <- c(reference_celltype_vector, rep(ct, length(this_celltype_train_idx)))
+        reference_idx_vector <- c(reference_idx_vector, this_celltype_train_idx)
+    }
+    reference_celltype_df <- data.frame(CellType = reference_celltype_vector)
+
+    reference_expr_sc <- data[, reference_idx_vector]
+
+    fwrite(x = as.data.frame(reference_expr),
+           file = file.path(outputPath, ref_bulk_name),
            sep = ",",
            row.names = TRUE,
            quote = FALSE)
@@ -154,21 +226,24 @@ rarescExprSim <- function (p_rare = c(0.001, 0.003, 0.005, 0.008, 0.01, 0.03, 0.
            sep = ",",
            row.names = TRUE,
            quote = FALSE)
-    fwrite(x = as.data.frame(mix),
-           file = file.path(outputPath, mix_name),
+    fwrite(x = as.data.frame(pseudo_bulk_expr),
+           file = file.path(outputPath, bulk_name),
            sep = ",",
            row.names = TRUE,
            quote = FALSE)
-
-    if (!is.null(train_name)) {
+    if (!is.null(ref_sc_name)) {
         writeLines("Output raw train counts......")
-        fwrite(x = train_raw,
-               file = file.path(outputPath, train_name),
+        fwrite(x = as.data.frame(reference_expr_sc),
+               file = file.path(outputPath, ref_sc_name),
                sep = ",",
                row.names = TRUE,
                quote = FALSE)
+        fwrite(x = reference_celltype_df,
+               file = file.path(outputPath, ref_sc_label),
+               sep = "\n",
+               row.names = FALSE,
+               quote = FALSE)
     }
-
 }
 
 

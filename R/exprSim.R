@@ -11,7 +11,7 @@
 #' \url{https://www.synapse.org/#!Synapse:syn15589870/wiki/}.
 #'
 #' @param n_sample Sample number to be generated, default: 50.
-#' @param p Proportion of sample in train set, default: 0.6.
+#' @param p Proportion of sample in train set, default: 2/3.
 #' @param type "coarse" or "fine".
 #' "coarse" means the simulation will be performed in a coarse level.
 #' Only 8 cell types will be used, including ("B.cells", "CD4.T.cells",
