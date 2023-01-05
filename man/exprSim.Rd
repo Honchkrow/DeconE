@@ -20,7 +20,7 @@ exprSim(
 \arguments{
 \item{n_sample}{Sample number to be generated, default: 50.}
 
-\item{p}{Proportion of sample in train set, default: 0.6.}
+\item{p}{Proportion of sample in train set, default: 2/3.}
 
 \item{type}{"coarse" or "fine".
 "coarse" means the simulation will be performed in a coarse level.

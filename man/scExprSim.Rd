@@ -6,33 +6,44 @@
 \usage{
 scExprSim(
   n_sample = 50,
+  cell_number = 3000,
   p = 2/3,
   transform = "TPM",
   outputPath = NULL,
-  mix_name = "scMouse_gene_expr.csv",
-  ref_name = "scMouse_ref.csv",
-  prop_name = "scMouse_prop.csv",
-  train_name = "scMouse_ref_rawCount.csv",
-  type = "mouse_tissue"
+  bulk_name = "scPBMC_gene_expr.csv",
+  ref_bulk_name = "scPBMC_ref.csv",
+  ref_cell_number = 1000,
+  ref_sc_name = "scPBMC_ref_sc.csv",
+  ref_sc_label = "scPBMC_ref_sc_label.csv",
+  prop_name = "scPBMC_prop.csv",
+  type = "human_PBMC"
 )
 }
 \arguments{
 \item{n_sample}{Sample number to be generated, default: 50.}
 
+\item{cell_number}{Total cell number for each generated bulk sample, default: 3000.
+Note: if the cell number is less than the required number, Parameter
+'replace = TRUE' will be used in sampling single cell.}
+
 \item{p}{Proportion of sample in train set, default: 2 / 3.}
 
-\item{transform}{"TPM", "CPM" or "NO". Transform the data into TPM, CPM or in counts.}
+\item{transform}{"TPM", "CPM" or "NO". Transform the data into TPM, CPM or in raw counts.}
 
 \item{outputPath}{output file save path.}
 
-\item{mix_name}{mixture output file name.}
+\item{bulk_name}{Pseudo bulk output file name.}
 
-\item{ref_name}{reference output file name in csv.}
+\item{ref_bulk_name}{reference output file name in csv, for the deconvolution method based on bulk data.}
+
+\item{ref_cell_number}{number of cells of each cell type for generating reference, default: 1000.}
+
+\item{ref_sc_name}{File name for all data in train set in csv.
+This data can be used for differential gene analysis.}
+
+\item{ref_sc_label}{cell labels for ref_sc_name.}
 
 \item{prop_name}{simulated proportion file name in csv.}
-
-\item{train_name}{file name for all data in train set in csv.
-This data can be used for differential gene analysis.}
 
 \item{type}{'mouse_tissue' or 'human_PBMC'. Default: 'mouse_tissue'}
 }
@@ -43,10 +54,6 @@ All the information will be written in the output path.
 Generate in silico mixture expression matrix based on the
 internal scRNA-seq database. The internal RNA-seq database is collected from
 PMID:29474909. All the samples are passed the quality filter.
-This function use the real cell type specific expression data to generate
-mixture data. The cell type include c("FetalStomach", "FetalLung",
-"FetalLiver", "FetalKidney", "FetalIntestine",
-"FetalBrain", "Female.fetal.Gonad")
 }
 \examples{
 res <- scExprSim()
