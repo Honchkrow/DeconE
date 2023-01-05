@@ -124,7 +124,7 @@ regMetrics <- function(actual, predicted, method = NULL, type = NULL) {
         }
 
     } else {
-        stop("Parameter type must be 'col', 'row' or 'all'!")
+        stop("Parameter type must be 'sample', 'celltype' or 'all'!")
 
     }
 
