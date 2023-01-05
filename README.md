@@ -726,7 +726,7 @@ plot_rare(actual = actual,
 
 ## Section 6: Single Cell Related Functions
 
-Single cell related functions are similar with functions used for massive bulk data, like 'scExprSim', 'rarescExprSim' and 'unscExprSim'. For more information, please refer to [decone manual](https://honchkrow.github.io/decone/inst/documents/decone_manual.pdf).
+Single cell related functions are similar with functions used for massive bulk data, like 'scExprSim', 'rarescExprSim'. For more information, please refer to [decone manual](https://honchkrow.github.io/decone/inst/documents/decone_manual.pdf).
 
 
 
