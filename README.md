@@ -25,9 +25,8 @@
   - [Section 4.1: Generating Noised Bulk Data With Different Models](#section-41-generating-noised-bulk-data-with-different-models)
   - [Code Demo 2: Evaluating The Deconvolution Results For Multiple Method](#code-demo-2-evaluating-the-deconvolution-results-for-multiple-method)
 - [Section 5: Rare Component Analysis](#section-5-rare-component-analysis)
-- [Section 6: Unknown Component Analysis](#section-6-unknown-component-analysis)
-- [Section 7: Single Cell Related Functions](#section-7-single-cell-related-functions)
-- [Section 8: Well-Characterized Deconvolution Datasets](#section-8-well-characterized-deconvolution-datasets)
+- [Section 6: Single Cell Related Functions](#section-6-single-cell-related-functions)
+- [Section 7: Well-Characterized Deconvolution Datasets](#section-7-well-characterized-deconvolution-datasets)
 - [Citation](#citation)
 
 
@@ -725,50 +724,13 @@ plot_rare(actual = actual,
 
 
 
-## Section 6: Unknown Component Analysis
-
-Almost all physiological and pathological processes in multicellular organisms involve multiple cell types ([Wei, *et al.*](https://doi.org/10.1093/bib/bbab362)). It is hard to identify all the cell types in the microenvironment. The unknown component is a nonnegligible problem for all deconvolution algorithms and methods like [EPIC](https://doi.org/10.1007/978-1-0716-0327-7_17) have considered this problem.
-
-To test the estimation accuracy when there exists a nonnegligible cell type, decone provides the function to generate simulated bulk data with different unknown content.
-
-```R
-# generate bulk data
-unExprSim(unknown = c(0.001, 0.005, 0.01, 0.05, 0.1, 0.15, 0.2),  # the unknown content proportion
-          n_sample = 50,
-          p = 0.6,
-          type = "coarse",
-          transform = "TPM",
-          outputPath = "./function_test/unExprSim",
-          mix_name = "coarse_gene_expr.csv",
-          ref_name = "coarse_ref.csv",
-          prop_name = "coarse_prop.csv")
-```
-
-The output will be as follows.
-
-```shell
-coarse_gene_expr.csv
-coarse_prop.csv
-coarse_ref.csv
-coarse_gene_expr_un_0.001.csv
-coarse_gene_expr_un_0.005.csv
-coarse_gene_expr_un_0.01.csv
-coarse_gene_expr_un_0.05.csv
-coarse_gene_expr_un_0.1.csv
-coarse_gene_expr_un_0.15.csv
-coarse_gene_expr_un_0.2.csv
-```
-
-Users can use the functions mentioned in 'Code Demo 2' to perform single-method evaluation or cross-comparison evaluation.
-
-
-## Section 7: Single Cell Related Functions
+## Section 6: Single Cell Related Functions
 
 Single cell related functions are similar with functions used for massive bulk data, like 'scExprSim', 'rarescExprSim' and 'unscExprSim'. For more information, please refer to [decone manual](https://honchkrow.github.io/decone/inst/documents/decone_manual.pdf).
 
 
 
-## Section 8: Well-Characterized Deconvolution Datasets
+## Section 7: Well-Characterized Deconvolution Datasets
 
 In addition, we collected 14 well-characterized deconvolution datasets for users. Some of them are known cell-type proportions. Some datasets without know the true proportion, but the related phenotype can be accessed. We provide the processed datasets with **bulk data**, **reference data** as well as **true proportions**, which means that these datasets can be used directly. We summarized the datasets in the following table. 
 
