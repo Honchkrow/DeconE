@@ -19,7 +19,7 @@
 #' This data can be used for differential gene analysis.
 #' @param ref_sc_label cell labels for ref_sc_name.
 #' @param prop_name simulated proportion file name in csv.
-#' @param type 'mouse_tissue' or 'human_PBMC'. Default: 'mouse_tissue'
+#' @param type 'mouse_tissue' or 'human_PBMC'. Default: 'human_PBMC'
 #'
 #' @return All the information will be written in the output path.
 #'
