@@ -39,7 +39,7 @@ This data can be used for differential gene analysis.}
 
 \item{prop_name}{simulated proportion file name in csv.}
 
-\item{type}{'mouse_tissue' or 'human_PBMC'. Default: 'mouse_tissue'}
+\item{type}{'mouse_tissue' or 'human_PBMC'. Default: 'human_PBMC'}
 
 \item{p_rare}{A vector of proportions.
 Default: c(0.001, 0.003, 0.005, 0.008, 0.01, 0.03, 0.05)

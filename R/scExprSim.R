@@ -118,14 +118,14 @@ scExprSim <- function (n_sample = 50,
         this_sample_cell_number <- cell_number_matrix[, i]
         for (ct in this.celltypes) {  # sampling single cells
             this_celltype_cell_number <- this_sample_cell_number[[ct]]
-            this_celltype_train_idx <- cell_idx_list_test[[ct]]
+            this_celltype_test_idx <- cell_idx_list_test[[ct]]
 
-            if (length(this_celltype_train_idx) < this_celltype_cell_number) {
-                this_celltype_selected_idx <- sample(x = this_celltype_train_idx,
+            if (length(this_celltype_test_idx) < this_celltype_cell_number) {
+                this_celltype_selected_idx <- sample(x = this_celltype_test_idx,
                                                      size = this_celltype_cell_number,
                                                      replace = TRUE)
             } else {
-                this_celltype_selected_idx <- sample(x = this_celltype_train_idx,
+                this_celltype_selected_idx <- sample(x = this_celltype_test_idx,
                                                      size = this_celltype_cell_number,
                                                      replace = FALSE)
             }

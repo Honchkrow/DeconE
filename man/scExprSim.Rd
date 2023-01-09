@@ -45,7 +45,7 @@ This data can be used for differential gene analysis.}
 
 \item{prop_name}{simulated proportion file name in csv.}
 
-\item{type}{'mouse_tissue' or 'human_PBMC'. Default: 'mouse_tissue'}
+\item{type}{'mouse_tissue' or 'human_PBMC'. Default: 'human_PBMC'}
 }
 \value{
 All the information will be written in the output path.
