@@ -138,7 +138,7 @@ scExprSim <- function (n_sample = 50,
     pseudo_bulk_expr <- as.data.frame(do.call(cbind, pseudo_bulk_expr))
 
 
-    ## creating reference data
+    ## creating reference data, this reference will be in a bulk format
     writeLines("Now, generating reference data......")
     pb <- progress_bar$new(total = length(this.celltypes))
     reference_expr <- list()
