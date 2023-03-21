@@ -153,7 +153,7 @@ The first one is [human PBMC data from 10X](https://support.10xgenomics.com/sing
 - CD14_mono
 - MAIT
 
-The second dataset comes from mouse tissue. Tissue level deconvolution is also an important question, such as the prediction of tissue origin from human liquid biopsy. [Han, *et al.*](https://doi.org/10.1016/j.cell.2018.02.001) built a scRNA-seq atlas for the mouse with high quality and decone adopted this study to perform in silico mixing. For a solid simulation, decone adopted 7 tissues from the femal fetal mouse and 1500 cells for each.
+The second dataset comes from mouse tissue. Tissue level deconvolution is also an important question, such as the prediction of tissue origin from human liquid biopsy. [Han, *et al.*](https://doi.org/10.1016/j.cell.2018.02.001) built a scRNA-seq atlas for the mouse with high quality and decone adopted this study to perform in silico mixing. For a solid simulation, decone adopted 7 tissues from the femal fetal mouse and 1500 cells for each tissue.
 
 - stomach
 - lung
@@ -359,7 +359,7 @@ In expression data analysis, technical and biological noise cannot be ignored. N
 
 ### Section 4.1: Generating Noised Bulk Data With Different Models
 
-Many of the noise model had been used in different studies, such as the normal, log-normal and negative binomial model ([Jin, *et al.*](https://doi.org/10.1186/s13059-021-02290-6)). decone realized these methods and provided flexible interface for users.
+Many of the noise model had been used in different studies, such as the normal, log-normal and negative binomial model ([Jin, *et al.*](https://doi.org/10.1186/s13059-021-02290-6)). decone implemented these models and provided flexible interface for users.
 
 - **Normal Model**
 
