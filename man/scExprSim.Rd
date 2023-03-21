@@ -7,12 +7,12 @@
 scExprSim(
   n_sample = 50,
   cell_number = 3000,
+  ref_cell_number = 1000,
   p = 2/3,
   transform = "TPM",
   outputPath = NULL,
-  bulk_name = "scPBMC_gene_expr.csv",
-  ref_bulk_name = "scPBMC_ref.csv",
-  ref_cell_number = 1000,
+  bulk_name = "scPBMC_expr.csv",
+  ref_bulk_name = "scPBMC_ref_bulk.csv",
   ref_sc_name = "scPBMC_ref_sc.csv",
   ref_sc_label = "scPBMC_ref_sc_label.csv",
   prop_name = "scPBMC_prop.csv",
@@ -26,6 +26,8 @@ scExprSim(
 Note: if the cell number is less than the required number, Parameter
 'replace = TRUE' will be used in sampling single cell.}
 
+\item{ref_cell_number}{number of cells of each cell type for generating reference, default: 1000.}
+
 \item{p}{Proportion of sample in train set, default: 2 / 3.}
 
 \item{transform}{"TPM", "CPM" or "NO". Transform the data into TPM, CPM or in raw counts.}
@@ -35,8 +37,6 @@ Note: if the cell number is less than the required number, Parameter
 \item{bulk_name}{Pseudo bulk output file name.}
 
 \item{ref_bulk_name}{reference output file name in csv, for the deconvolution method based on bulk data.}
-
-\item{ref_cell_number}{number of cells of each cell type for generating reference, default: 1000.}
 
 \item{ref_sc_name}{File name for all data in train set in csv.
 This data can be used for differential gene analysis.}
