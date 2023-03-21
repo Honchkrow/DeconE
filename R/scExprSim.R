@@ -26,6 +26,7 @@
 #' @importFrom magrittr %>%
 #' @importFrom data.table fwrite
 #' @importFrom stringr str_detect
+#' @importFrom tools file_path_sans_ext
 #'
 #' @export
 #'
@@ -34,12 +35,12 @@
 #'
 scExprSim <- function (n_sample = 50,
                        cell_number = 3000,
+                       ref_cell_number = 1000,
                        p = 2 / 3,
                        transform = "TPM",
                        outputPath = NULL,
-                       bulk_name = "scPBMC_gene_expr.csv",
-                       ref_bulk_name = "scPBMC_ref.csv",
-                       ref_cell_number = 1000,
+                       bulk_name = "scPBMC_expr.csv",
+                       ref_bulk_name = "scPBMC_ref_bulk.csv",
                        ref_sc_name = "scPBMC_ref_sc.csv",
                        ref_sc_label = "scPBMC_ref_sc_label.csv",
                        prop_name = "scPBMC_prop.csv",
@@ -177,12 +178,12 @@ scExprSim <- function (n_sample = 50,
     # convert data
     if(transform == "TPM"){
         writeLines("Transform data into TPM......")
-        pseudo_bulk_expr <- decone:::TPM(data = decone:::merge.all(pseudo_bulk_expr, raw_data["Length"]))
-        reference_expr <- decone:::TPM(data = decone:::merge.all(reference_expr, raw_data["Length"]))
+        pseudo_bulk_expr_transformed <- decone:::TPM(data = decone:::merge.all(pseudo_bulk_expr, raw_data["Length"]))
+        reference_expr_transformed <- decone:::TPM(data = decone:::merge.all(reference_expr, raw_data["Length"]))
     }else if(transform == "CPM"){
         writeLines("Transform data into CPM......")
-        pseudo_bulk_expr <- decone:::CPM(data = decone:::merge.all(pseudo_bulk_expr, raw_data["Length"]))
-        reference_expr <- decone:::CPM(data = decone:::merge.all(reference_expr, raw_data["Length"]))
+        pseudo_bulk_expr_transformed <- decone:::CPM(data = decone:::merge.all(pseudo_bulk_expr, raw_data["Length"]))
+        reference_expr_transformed <- decone:::CPM(data = decone:::merge.all(reference_expr, raw_data["Length"]))
     } else {
         writeLines("Note: data transformation is not specified!")
     }
@@ -214,6 +215,24 @@ scExprSim <- function (n_sample = 50,
            sep = ",",
            row.names = TRUE,
            quote = FALSE)
+    if (transform %in% c("TPM", "CPM")) {
+        tmp_name <- file_path_sans_ext(bulk_name)
+        bulk_name_transformed <- paste0(tmp_name, "_", transform, ".csv")
+        fwrite(x = as.data.frame(pseudo_bulk_expr_transformed),
+               file = bulk_name_transformed,
+               sep = ",",
+               row.names = TRUE,
+               quote = FALSE)
+
+        tmp_name <- file_path_sans_ext(ref_bulk_name)
+        ref_bulk_name_transformed <- paste0(tmp_name, "_", transform, ".csv")
+        fwrite(x = as.data.frame(reference_expr_transformed),
+               file = ref_bulk_name_transformed,
+               sep = ",",
+               row.names = TRUE,
+               quote = FALSE)
+    }
+
     if (!is.null(ref_sc_name)) {
         writeLines("Output raw train counts......")
         fwrite(x = as.data.frame(reference_expr_sc),
