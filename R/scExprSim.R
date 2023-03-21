@@ -215,11 +215,11 @@ scExprSim <- function (n_sample = 50,
            sep = ",",
            row.names = TRUE,
            quote = FALSE)
-    if (transform %in% c("TPM", "CPM")) {
+    if (transform == "TPM") {
         tmp_name <- file_path_sans_ext(bulk_name)
         bulk_name_transformed <- paste0(tmp_name, "_", transform, ".csv")
         fwrite(x = as.data.frame(pseudo_bulk_expr_transformed),
-               file = bulk_name_transformed,
+               file = file.path(outputPath, bulk_name_transformed),
                sep = ",",
                row.names = TRUE,
                quote = FALSE)
@@ -227,7 +227,7 @@ scExprSim <- function (n_sample = 50,
         tmp_name <- file_path_sans_ext(ref_bulk_name)
         ref_bulk_name_transformed <- paste0(tmp_name, "_", transform, ".csv")
         fwrite(x = as.data.frame(reference_expr_transformed),
-               file = ref_bulk_name_transformed,
+               file = file.path(outputPath, ref_bulk_name_transformed),
                sep = ",",
                row.names = TRUE,
                quote = FALSE)
