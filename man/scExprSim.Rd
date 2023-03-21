@@ -11,7 +11,7 @@ scExprSim(
   p = 2/3,
   transform = "TPM",
   outputPath = NULL,
-  bulk_name = "scPBMC_expr.csv",
+  bulk_name = "scPBMC_gene_expr.csv",
   ref_bulk_name = "scPBMC_ref_bulk.csv",
   ref_sc_name = "scPBMC_ref_sc.csv",
   ref_sc_label = "scPBMC_ref_sc_label.csv",
