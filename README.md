@@ -10,11 +10,7 @@
     </script>
 </head>
 
-## **decone**: An easy-to-use and comprehensive evaluation toolkit for cell type deconvolution from expression data
 
-
-
-- [**decone**: An easy-to-use and comprehensive evaluation toolkit for cell type deconvolution from expression data](#decone-an-easy-to-use-and-comprehensive-evaluation-toolkit-for-cell-type-deconvolution-from-expression-data)
 - [Section 1: Introduction](#section-1-introduction)
 - [Section 2: Installation](#section-2-installation)
 - [Section 3: Gnerating Pseudo Bulk Data](#section-3-gnerating-pseudo-bulk-data)
