@@ -728,14 +728,14 @@ In addition, we collected 14 well-characterized deconvolution datasets for users
 | 7 | Parsons | RNA-seq | Bulk | known | [Parsons, *et al.*](https://doi.org/10.1186/s12864-015-1912-7) |
 | 8 | Shen-Orr | Microarray | Bulk | known | [Shen-Orr, *et al.*](https://doi.org/10.1038/nmeth.1439) |
 | 9 | Shi | Microarray | Bulk | known | [Shi, *et al.*](https://doi.org/10.1038/nbt1239) |
-| 10 | T2D | RNA-seq | Single Cell | known | [Fadista, *et al.*](https://doi.org/10.1073/pnas.1402665111) |
-| 11 | TCGA_LUSC | RNA-seq | Bulk | known | [Vasaikar, *et al.*](https://doi.org/10.1093/nar/gkx1090) |
-| 12 | TCGA_OV | RNA-seq | Bulk | known | [Vasaikar, *et al.*](https://doi.org/10.1093/nar/gkx1090) |
-| 13 | kidney_Arvaniti | RNA-seq | Single Cell | known | [	Arvaniti, *et al.*](https://doi.org/10.1038/srep26235) |
-| 14 | kidney_Arvaniti_TPM | RNA-seq | Bulk | known | [	Arvaniti, *et al.*](https://doi.org/10.1038/srep26235) |
-| 15 | kidney_Craciun | RNA-seq | Single Cell | known | [Craciun, *et al.*](https://doi.org/10.1681/ASN.2015020225) |
-| 16 | kidney_Craciun_TPM | RNA-seq | Bulk | known | [Craciun, *et al.*](https://doi.org/10.1681/ASN.2015020225) |
-| 17 | TCGA 35 cancer datasets | RNA-seq | Bulk | known | [Vasaikar, *et al.*](https://doi.org/10.1093/nar/gkx1090) |
+| 10 | T2D | RNA-seq | Single Cell | unknown | [Fadista, *et al.*](https://doi.org/10.1073/pnas.1402665111) |
+| 11 | TCGA_LUSC | RNA-seq | Bulk | unknown | [Vasaikar, *et al.*](https://doi.org/10.1093/nar/gkx1090) |
+| 12 | TCGA_OV | RNA-seq | Bulk | unknown | [Vasaikar, *et al.*](https://doi.org/10.1093/nar/gkx1090) |
+| 13 | kidney_Arvaniti | RNA-seq | Single Cell | unknown | [	Arvaniti, *et al.*](https://doi.org/10.1038/srep26235) |
+| 14 | kidney_Arvaniti_TPM | RNA-seq | Bulk | unknown | [	Arvaniti, *et al.*](https://doi.org/10.1038/srep26235) |
+| 15 | kidney_Craciun | RNA-seq | Single Cell | unknown | [Craciun, *et al.*](https://doi.org/10.1681/ASN.2015020225) |
+| 16 | kidney_Craciun_TPM | RNA-seq | Bulk | unknown | [Craciun, *et al.*](https://doi.org/10.1681/ASN.2015020225) |
+| 17 | TCGA 35 cancer datasets | RNA-seq | Bulk | unknown | [Vasaikar, *et al.*](https://doi.org/10.1093/nar/gkx1090) |
 
 We provided the processed 'LUSC' and 'OV' datasets from TCGA which were validated by [FARDEEP](https://cran.r-project.org/web/packages/FARDEEP/index.html). Datasets about other cancers are also provided in the form of an expression matrix along with the original information.
 
