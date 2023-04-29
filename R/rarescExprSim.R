@@ -11,6 +11,7 @@
 #' 7 * 8 = 56 samples. 7 means 7 rare proportions and 8 means 8 cell types.
 #' @param p Proportion of sample in train set, default: 2 / 3.
 #' @param transform "TPM", "CPM" or "NO". Transform the data into TPM, CPM or in raw counts.
+#' The suffix will be added to the file name.
 #' @param outputPath output file save path.
 #' @param bulk_name Pseudo bulk output file name.
 #' @param ref_bulk_name reference output file name in csv, for the deconvolution method based on bulk data.
@@ -194,12 +195,12 @@ rarescExprSim <- function (cell_number = 2000,
     # convert data
     if(transform == "TPM"){
         writeLines("Transform data into TPM......")
-        pseudo_bulk_expr <- decone:::TPM(data = decone:::merge.all(pseudo_bulk_expr, raw_data["Length"]))
-        reference_expr <- decone:::TPM(data = decone:::merge.all(reference_expr, raw_data["Length"]))
+        pseudo_bulk_expr_transformed <- decone:::TPM(data = decone:::merge.all(pseudo_bulk_expr, raw_data["Length"]))
+        reference_expr_transformed <- decone:::TPM(data = decone:::merge.all(reference_expr, raw_data["Length"]))
     }else if(transform == "CPM"){
         writeLines("Transform data into CPM......")
-        pseudo_bulk_expr <- decone:::CPM(data = decone:::merge.all(pseudo_bulk_expr, raw_data["Length"]))
-        reference_expr <- decone:::CPM(data = decone:::merge.all(reference_expr, raw_data["Length"]))
+        pseudo_bulk_expr_transformed <- decone:::CPM(data = decone:::merge.all(pseudo_bulk_expr, raw_data["Length"]))
+        reference_expr_transformed <- decone:::CPM(data = decone:::merge.all(reference_expr, raw_data["Length"]))
     } else {
         writeLines("Note: data transformation is not specified!")
     }
@@ -231,6 +232,25 @@ rarescExprSim <- function (cell_number = 2000,
            sep = ",",
            row.names = TRUE,
            quote = FALSE)
+
+    if (transform %in% c("TPM", "CPM")) {
+        tmp_name <- file_path_sans_ext(bulk_name)
+        bulk_name_transformed <- paste0(tmp_name, "_", transform, ".csv")
+        fwrite(x = as.data.frame(pseudo_bulk_expr_transformed),
+               file = file.path(outputPath, bulk_name_transformed),
+               sep = ",",
+               row.names = TRUE,
+               quote = FALSE)
+
+        tmp_name <- file_path_sans_ext(ref_bulk_name)
+        ref_bulk_name_transformed <- paste0(tmp_name, "_", transform, ".csv")
+        fwrite(x = as.data.frame(reference_expr_transformed),
+               file = file.path(outputPath, ref_bulk_name_transformed),
+               sep = ",",
+               row.names = TRUE,
+               quote = FALSE)
+    }
+
     if (!is.null(ref_sc_name)) {
         writeLines("Output raw train counts......")
         fwrite(x = as.data.frame(reference_expr_sc),

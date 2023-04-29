@@ -10,6 +10,7 @@
 #' 'replace = TRUE' will be used in sampling single cell.
 #' @param p Proportion of sample in train set, default: 2 / 3.
 #' @param transform "TPM", "CPM" or "NO". Transform the data into TPM, CPM or in raw counts.
+#' The suffix will be added to the file name.
 #' @param outputPath output file save path.
 #' @param bulk_name Pseudo bulk output file name.
 #' @param ref_bulk_name reference output file name in csv, for the deconvolution method based on bulk data.
@@ -215,7 +216,7 @@ scExprSim <- function (n_sample = 50,
            sep = ",",
            row.names = TRUE,
            quote = FALSE)
-    if (transform == "TPM") {
+    if (transform %in% c("TPM", "CPM")) {
         tmp_name <- file_path_sans_ext(bulk_name)
         bulk_name_transformed <- paste0(tmp_name, "_", transform, ".csv")
         fwrite(x = as.data.frame(pseudo_bulk_expr_transformed),

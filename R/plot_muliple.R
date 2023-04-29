@@ -59,6 +59,7 @@
 #' @importFrom reshape2 melt
 #' @importFrom ggpubr stat_cor ggarrange
 #' @importFrom tibble rownames_to_column
+#' @importFrom ggplot2 geom_bar
 #'
 #' @export
 #'

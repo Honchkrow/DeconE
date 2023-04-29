@@ -22,7 +22,8 @@ rarescExprSim(
 \arguments{
 \item{p}{Proportion of sample in train set, default: 2 / 3.}
 
-\item{transform}{"TPM", "CPM" or "NO". Transform the data into TPM, CPM or in raw counts.}
+\item{transform}{"TPM", "CPM" or "NO". Transform the data into TPM, CPM or in raw counts.
+The suffix will be added to the file name.}
 
 \item{outputPath}{output file save path.}
 
