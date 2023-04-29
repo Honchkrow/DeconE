@@ -12,18 +12,19 @@
 - [Section 7: Well-Characterized Deconvolution Datasets](#section-7-well-characterized-deconvolution-datasets)
 - [Citation](#citation)
 
-
 **Links**:
+
 - [decone manual](https://honchkrow.github.io/decone/inst/documents/decone_manual.pdf)
 - [decone vignettes](https://honchkrow.github.io/decone/inst/documents/decone_intro.html)
 
-
 ## Section 1: Introduction
+
 Cell type proportion is related to phenotypes or diseases ([Wang, *et al.*](https://doi.org/10.1038/s41467-018-08023-x), [Wei, *et al.*](https://doi.org/10.1093/bib/bbab362)). Therefore, quantifying cell or tissue proportions is important for understanding the mechanisms in biological processes.
 
 Here, we proposed a cell type <u>decon</u>volution <u>e</u>valuating toolkit named '**decone**' to perform comprehensive and systematic evaluation of different algorithms.
 
 **decone** consists of 6 main part functions as below.
+
 - Pseudo bulk data generation (from massive bulk data and single cell data).
 - Stability analysis under different types of noise.
 - Rare component analysis.
@@ -32,8 +33,6 @@ Here, we proposed a cell type <u>decon</u>volution <u>e</u>valuating toolkit nam
 - Well-characterized datasets for deconvolution utilities.
 
 In the following parts, we will give a comprehensive tutorial about decone.
-
-
 
 ## Section 2: Installation
 
@@ -54,21 +53,18 @@ devtools::install_github('Honchkrow/decone')
 library(decone)
 ```
 
-
-
 ## Section 3: Gnerating Pseudo Bulk Data
 
 Generating pseudo-bulk data is a challenging problem. Inspired by the former work ([Francisco, *et al.*](https://doi.org/10.1038/s41467-020-20288-9), [Wang, *et al.*](https://doi.org/10.1038/s41467-018-08023-x), [Wei, *et al.*](https://doi.org/10.1093/bib/bbab362), [Racle, *et al.*](https://doi.org/10.7554/eLife.26476)) and [Tumor Deconvolution DREAM Challenge](https://www.synapse.org/#!Synapse:syn15589870/wiki/), decone provides different pseudo data generation strategies from massive bulk RNA-seq data as well as scRNA-seq data.
-
-
 
 ### Section 3.1: Gnerating Pseudo Bulk Data From Massive RNA-seq Studies
 
 Many deconvolution methods need cell type-specific bulk data as the prior knowledge during deconvolution. To have a more realistic simulation, we collected 302 well-characterized bulk RNA-seq data to generate pseudo bulk data. When generating data, 1/3 samples will be used for generating the mixture and the rest will be used for generating external reference.
 
-Inspired by [Tumor Deconvolution DREAM Challenge](https://www.synapse.org/#!Synapse:syn15589870/wiki/), decone also provides function to generate 'coarse' and 'fine' level mixture samples. 
+Inspired by [Tumor Deconvolution DREAM Challenge](https://www.synapse.org/#!Synapse:syn15589870/wiki/), decone also provides function to generate 'coarse' and 'fine' level mixture samples.
 
 For **'coarse'** level, decone generates mixture samples which contains the following 8 cell types.
+
 - B cells
 - CD4 T cells
 - CD8 T cells
@@ -79,6 +75,7 @@ For **'coarse'** level, decone generates mixture samples which contains the foll
 - NK cells
 
 For **'fine'** level, there will be 14 cell types.
+
 - memory B cells
 - naive B cells
 - memory CD4 T cells
@@ -112,13 +109,11 @@ exprSim(n_sample = 50,  # generate 50 samples
 
 All the output files will be save in folder 'exprSim'. The proportion will be generated randomly from a uniform distribution ([Wei, *et al.*](https://doi.org/10.1093/bib/bbab362)). decone also outputs the data for generating the external reference (parameter '**train_name**' in function **exprSim**) which can be used for differential expression analysis in marker gene selection.
 
-
-
 ### Section 3.2: Gnerating Pseudo Bulk Data From scRNA-seq data
 
-With the development of single cell technologies, the prediction of cell type proportion becomes more accurate. Lots of single cell-based methods had been proposed such as [MuSiC](https://doi.org/10.1038/s41467-018-08023-x) and [SCDC](https://doi.org/10.1093/bib/bbz166). In addition, constructing in silico bulk data also becomes direct. 
+With the development of single cell technologies, the prediction of cell type proportion becomes more accurate. Lots of single cell-based methods had been proposed such as [MuSiC](https://doi.org/10.1038/s41467-018-08023-x) and [SCDC](https://doi.org/10.1093/bib/bbz166). In addition, constructing in silico bulk data also becomes direct.
 
-For a comprehensive simulation, decone provides two types of simulated bulk data. 
+For a comprehensive simulation, decone provides two types of simulated bulk data.
 
 The first one is [human PBMC data from 10X](https://support.10xgenomics.com/single-cell-multiome-atac-gex/datasets/1.0.0/pbmc_granulocyte_sorted_10k). This single cell dataset contains more than 10k single cell from huamn blood. We processed this dataset with [10X Cell Ranger](https://support.10xgenomics.com/single-cell-gene-expression/software/pipelines/latest/what-is-cell-ranger) as well as [muon](https://muon.readthedocs.io/en/latest/). Cell type annotation is performed followed by the tutorial ['Processing gene expression of 10k PBMCs'](https://muon-tutorials.readthedocs.io/en/latest/single-cell-rna-atac/pbmc10k/1-Gene-Expression-Processing.html). We annotataed 13 cell types as below.
 
@@ -159,7 +154,6 @@ scExprSim(n_sample = 50,  # generate 50 samples
           train_name = "scMouse_ref_rawCount.csv",  ## this file can be used for differential expression analysis
           type = 'mouse_tissue')  ## 'mouse_tissue' or 'human_PBMC'
 ```
-
 
 ### Code Demo 1: Evaluating The Deconvolution Results In A Simple Manner
 
@@ -240,7 +234,7 @@ plot_multiple(actual = actual,
 
 <center>
     <img style="border-radius: 0.3125em;
-    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);"
     src="./inst/figures/box_ct_rmse.png">
     <br>
     <div style="color:orange; border-bottom: 1px solid #d9d9d9;
@@ -264,7 +258,7 @@ plot_multiple(actual = actual,
 
 <center>
     <img style="border-radius: 0.3125em;
-    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);"
     src="./inst/figures/bat_all_rmse.png">
     <br>
     <div style="color:orange; border-bottom: 1px solid #d9d9d9;
@@ -286,7 +280,7 @@ plot_multiple(actual = actual,
 
 <center>
     <img style="border-radius: 0.3125em;
-    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);"
     src="./inst/figures/heatmap_ct_rmse.png">
     <br>
     <div style="color:orange; border-bottom: 1px solid #d9d9d9;
@@ -309,7 +303,7 @@ plot_multiple(actual = actual,
 
 <center>
     <img style="border-radius: 0.3125em;
-    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);"
     src="./inst/figures/scatter_ct_pearson.png">
     <br>
     <div style="color:orange; border-bottom: 1px solid #d9d9d9;
@@ -322,7 +316,7 @@ The combined heatmap with circles can be used for illustrating multiple metrics 
 
 <center>
     <img style="border-radius: 0.3125em;
-    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);"
     src="./inst/figures/cheatmap_ct.png">
     <br>
     <div style="color:orange; border-bottom: 1px solid #d9d9d9;
@@ -333,12 +327,9 @@ The combined heatmap with circles can be used for illustrating multiple metrics 
 
 If the users want to plot the results for a single method, the 'plot_single' function can be used. For more information, please see [decone manual](https://honchkrow.github.io/decone/inst/documents/decone_manual.pdf).
 
-
-
 ## Section 4: Noise Analysis
 
 In expression data analysis, technical and biological noise cannot be ignored. Noise existing in bulk data brings a negative influence on deconvolution. In order to measure the stability and accuracy of different methods, decone provides functions to add noise with the different structures on bulk data.
-
 
 ### Section 4.1: Generating Noised Bulk Data With Different Models
 
@@ -410,9 +401,7 @@ mix/
   └── mix_NL_1.csv     # noise level 1
 ```
 
-After this, users can test the performance of different methods easily. The next demo shows how to analysis stability of different methods with different noise levels. 
-
-
+After this, users can test the performance of different methods easily. The next demo shows how to analysis stability of different methods with different noise levels.
 
 ### Code Demo 2: Evaluating The Deconvolution Results For Multiple Method
 
@@ -490,7 +479,7 @@ The output figures are as follows.
 
 <center>
     <img style="border-radius: 0.3125em;
-    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);"
     src="./inst/figures/noise_rmse_single_boxplot.png">
     <br>
     <div style="color:orange; border-bottom: 1px solid #d9d9d9;
@@ -499,14 +488,11 @@ The output figures are as follows.
     padding: 2px;">Box plot for rmse value of CIBERSORT</div>
 </center>
 
-
 It is clear that with the growth of noise power, the deconvolution results become worse.
-
-
 
 <center>
     <img style="border-radius: 0.3125em;
-    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);"
     src="./inst/figures/noise_rmse_single_heatmap.png">
     <br>
     <div style="color:orange; border-bottom: 1px solid #d9d9d9;
@@ -557,7 +543,7 @@ The boxplot and heatmap for rmse and mape are as follows.
 
 <center>
     <img style="border-radius: 0.3125em;
-    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);"
     src="./inst/figures/noise_rmse_multi_boxplot.png">
     <br>
     <div style="color:orange; border-bottom: 1px solid #d9d9d9;
@@ -566,11 +552,9 @@ The boxplot and heatmap for rmse and mape are as follows.
     padding: 2px;">Boxplot of rmse for different deconvolution method</div>
 </center>
 
-
-
 <center>
     <img style="border-radius: 0.3125em;
-    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);"
     src="./inst/figures/noise_mape_multi_heatmap.png">
     <br>
     <div style="color:orange; border-bottom: 1px solid #d9d9d9;
@@ -579,9 +563,7 @@ The boxplot and heatmap for rmse and mape are as follows.
     padding: 2px;">Heatmap of mape for different deconvolution method</div>
 </center>
 
-
 Usually, only one metric may not be sufficient to reveal the deconvolution efficacy, especially for rare components ([Wei, *et al.*](https://doi.org/10.1093/bib/bbab362)). decone provides heatmap with circles for illustrating the double metrics in one figure.
-
 
 ```R
 # generate figure for rmse and pearson 
@@ -596,7 +578,7 @@ plot_multiple2(actual = actual,
 
 <center>
     <img style="border-radius: 0.3125em;
-    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);"
     src="./inst/figures/noise_multi_cheatmap.png">
     <br>
     <div style="color:orange; border-bottom: 1px solid #d9d9d9;
@@ -605,17 +587,16 @@ plot_multiple2(actual = actual,
     padding: 2px;">circle heatmap of rmse and mape for different deconvolution method</div>
 </center>
 
-
 ## Section 5: Rare Component Analysis
 
 In the cell type deconvolution problem, cell types with extremely small proportion are always been ignored. However, these cell types play vital roles in some situations, like TILs which exhibit low fractions in many cancer tissues. Some methods have been proposed to tackle this problem like [DWLS](https://doi.org/10.1038/s41467-019-10802-z) and [ARIC](https://doi.org/10.1093/bib/bbab362).
-
 
 decone provides functions 'rareExprSim' and 'rarescExprSim' to simulate bulk data with the rare component. In order to perform a comprehensive analysis, decone takes all the cell types as potential rare components in a loop with a pre-set rare proportion gradient.
 
 Here is an example with 6 different deconvolution algorithms.
 
 First, generate in silico rare proportion dataset.
+
 ```R
 # rare proportion is set to 0.001, 0.003, 0.005, 0.008, 0.01, 0.03 and 0.05
 rareExprSim(p_rare = c(0.001, 0.003, 0.005, 0.008, 0.01, 0.03, 0.05),
@@ -625,7 +606,6 @@ rareExprSim(p_rare = c(0.001, 0.003, 0.005, 0.008, 0.01, 0.03, 0.05),
 ```
 
 Second, deconvolute the simulated bulk data with different algorithms. Here, we directly takes the deconvolution results from [ARIC](https://doi.org/10.1093/bib/bbab362), [CIBERSORT](https://doi.org/10.1038/nmeth.3337), [EPIC](https://doi.org/10.1007/978-1-0716-0327-7_17), [dtangle](https://doi.org/10.1093/bioinformatics/bty926), [FARDEEP](10.1371/journal.pcbi.1006976) as well as [DeconRNAseq](https://doi.org/10.1093/bioinformatics/btt090) as an example.
-
 
 We can generate a scatter plot for each method like below.
 
@@ -647,7 +627,7 @@ plot_rare(actual = actual,
 
 <center>
     <img style="border-radius: 0.3125em;
-    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);"
     src="./inst/figures/scatter_R.png">
     <br>
     <div style="color:orange; border-bottom: 1px solid #d9d9d9;
@@ -655,7 +635,6 @@ plot_rare(actual = actual,
     color: #999;
     padding: 2px;">Scatter plot of rare component for EPIC</div>
 </center>
-
 
 From the above figure, users can analyze the deconvolution power for each cell type.
 
@@ -683,7 +662,7 @@ plot_rare(actual = actual,
 
 <center>
     <img style="border-radius: 0.3125em;
-    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);"
     src="./inst/figures/rare_multi_heatmap.png">
     <br>
     <div style="color:orange; border-bottom: 1px solid #d9d9d9;
@@ -696,7 +675,7 @@ plot_rare(actual = actual,
 
 <center>
     <img style="border-radius: 0.3125em;
-    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);"
     src="./inst/figures/rare_multi_cheatmap.png">
     <br>
     <div style="color:orange; border-bottom: 1px solid #d9d9d9;
@@ -705,37 +684,33 @@ plot_rare(actual = actual,
     padding: 2px;">circle heatmap plot for rmse and mape</div>
 </center>
 
-
-
 ## Section 6: Single Cell Related Functions
 
 Single cell related functions are similar with functions used for massive bulk data, like 'scExprSim', 'rarescExprSim'. For more information, please refer to [decone manual](https://honchkrow.github.io/decone/inst/documents/decone_manual.pdf).
 
-
-
 ## Section 7: Well-Characterized Deconvolution Datasets
 
-In addition, we collected 14 well-characterized deconvolution datasets for users. Some of them are known cell-type proportions. Some datasets without know the true proportion, but the related phenotype can be accessed. We provide the processed datasets with **bulk data**, **reference data** as well as **true proportions**, which means that these datasets can be used directly. We summarized the datasets in the following table. 
+In addition, we collected 14 well-characterized deconvolution datasets for users. Some of them are known cell-type proportions. Some datasets without know the true proportion, but the related phenotype can be accessed. We provide the processed datasets with **bulk data**, **reference data** as well as **true proportions**, which means that these datasets can be used directly. We summarized the datasets in the following table.
 
-| NO. | NAME | Description | Reference Type | Proportion | Source |
-| :----: | :----: | :----: | :----: | :----: | :----: |
-| 1 | Abbas | Microarray | Bulk | known | [Abbas, *et al.*](https://doi.org/10.1371/journal.pone.0006098) |
-| 2 | Becht | Microarray | Bulk | known | [Becht, *et al.*](https://doi.org/10.1186/s13059-016-1070-5) |
-| 3 | Gong | Microarray | Bulk | known | [Gong, *et al.*](https://doi.org/10.1371/journal.pone.0027156) |
-| 4 | Kuhn | Microarray | Bulk | known | [Kuhn, *et al.*](https://doi.org/10.1038/nmeth.1710) |
-| 5 | Linsley | RNA-seq | Bulk | known | [Linsley, *et al.*](https://doi.org/10.1371/journal.pone.0109760) |
-| 6 | Liu | RNA-seq | Bulk | known | [Liu, *et al.*](https://doi.org/10.1093/nar/gkv412) |
-| 7 | Parsons | RNA-seq | Bulk | known | [Parsons, *et al.*](https://doi.org/10.1186/s12864-015-1912-7) |
-| 8 | Shen-Orr | Microarray | Bulk | known | [Shen-Orr, *et al.*](https://doi.org/10.1038/nmeth.1439) |
-| 9 | Shi | Microarray | Bulk | known | [Shi, *et al.*](https://doi.org/10.1038/nbt1239) |
-| 10 | T2D | RNA-seq | Single Cell | unknown | [Fadista, *et al.*](https://doi.org/10.1073/pnas.1402665111) |
-| 11 | TCGA_LUSC | RNA-seq | Bulk | unknown | [Vasaikar, *et al.*](https://doi.org/10.1093/nar/gkx1090) |
-| 12 | TCGA_OV | RNA-seq | Bulk | unknown | [Vasaikar, *et al.*](https://doi.org/10.1093/nar/gkx1090) |
-| 13 | kidney_Arvaniti | RNA-seq | Single Cell | unknown | [	Arvaniti, *et al.*](https://doi.org/10.1038/srep26235) |
-| 14 | kidney_Arvaniti_TPM | RNA-seq | Bulk | unknown | [	Arvaniti, *et al.*](https://doi.org/10.1038/srep26235) |
-| 15 | kidney_Craciun | RNA-seq | Single Cell | unknown | [Craciun, *et al.*](https://doi.org/10.1681/ASN.2015020225) |
-| 16 | kidney_Craciun_TPM | RNA-seq | Bulk | unknown | [Craciun, *et al.*](https://doi.org/10.1681/ASN.2015020225) |
-| 17 | TCGA 35 cancer datasets | RNA-seq | Bulk | unknown | [Vasaikar, *et al.*](https://doi.org/10.1093/nar/gkx1090) |
+|  NO.  |          NAME           | Description | Reference Type | Proportion |                              Source                               |
+| :---: | :---------------------: | :---------: | :------------: | :--------: | :---------------------------------------------------------------: |
+|   1   |          Abbas          | Microarray  |      Bulk      |   known    |  [Abbas, *et al.*](https://doi.org/10.1371/journal.pone.0006098)  |
+|   2   |          Becht          | Microarray  |      Bulk      |   known    |   [Becht, *et al.*](https://doi.org/10.1186/s13059-016-1070-5)    |
+|   3   |          Gong           | Microarray  |      Bulk      |   known    |  [Gong, *et al.*](https://doi.org/10.1371/journal.pone.0027156)   |
+|   4   |          Kuhn           | Microarray  |      Bulk      |   known    |       [Kuhn, *et al.*](https://doi.org/10.1038/nmeth.1710)        |
+|   5   |         Linsley         |   RNA-seq   |      Bulk      |   known    | [Linsley, *et al.*](https://doi.org/10.1371/journal.pone.0109760) |
+|   6   |           Liu           |   RNA-seq   |      Bulk      |   known    |        [Liu, *et al.*](https://doi.org/10.1093/nar/gkv412)        |
+|   7   |         Parsons         |   RNA-seq   |      Bulk      |   known    |  [Parsons, *et al.*](https://doi.org/10.1186/s12864-015-1912-7)   |
+|   8   |        Shen-Orr         | Microarray  |      Bulk      |   known    |     [Shen-Orr, *et al.*](https://doi.org/10.1038/nmeth.1439)      |
+|   9   |           Shi           | Microarray  |      Bulk      |   known    |         [Shi, *et al.*](https://doi.org/10.1038/nbt1239)          |
+|  10   |           T2D           |   RNA-seq   |  Single Cell   |  unknown   |   [Fadista, *et al.*](https://doi.org/10.1073/pnas.1402665111)    |
+|  11   |        TCGA_LUSC        |   RNA-seq   |      Bulk      |  unknown   |     [Vasaikar, *et al.*](https://doi.org/10.1093/nar/gkx1090)     |
+|  12   |         TCGA_OV         |   RNA-seq   |      Bulk      |  unknown   |     [Vasaikar, *et al.*](https://doi.org/10.1093/nar/gkx1090)     |
+|  13   |     kidney_Arvaniti     |   RNA-seq   |  Single Cell   |  unknown   |     [Arvaniti, *et al.*](https://doi.org/10.1038/srep26235)      |
+|  14   |   kidney_Arvaniti_TPM   |   RNA-seq   |      Bulk      |  unknown   |     [Arvaniti, *et al.*](https://doi.org/10.1038/srep26235)      |
+|  15   |     kidney_Craciun      |   RNA-seq   |  Single Cell   |  unknown   |    [Craciun, *et al.*](https://doi.org/10.1681/ASN.2015020225)    |
+|  16   |   kidney_Craciun_TPM    |   RNA-seq   |      Bulk      |  unknown   |    [Craciun, *et al.*](https://doi.org/10.1681/ASN.2015020225)    |
+|  17   | TCGA 35 cancer datasets |   RNA-seq   |      Bulk      |  unknown   |     [Vasaikar, *et al.*](https://doi.org/10.1093/nar/gkx1090)     |
 
 We provided the processed 'LUSC' and 'OV' datasets from TCGA which were validated by [FARDEEP](https://cran.r-project.org/web/packages/FARDEEP/index.html). Datasets about other cancers are also provided in the form of an expression matrix along with the original information.
 
@@ -745,34 +720,6 @@ Note: some dataset are collected from [dtangle](https://doi.org/10.1093/bioinfor
 
 Please cite the corresponding article when you use the datasets.
 
-
-
 ## Citation
 
 Zhang, W., Xu, H., Qiao, R., Zhong, B., Zhang, X., Gu, J., Zhang, X., Wei, L. and Wang, X., 2022. ARIC: accurate and robust inference of cell type proportions from bulk gene expression or DNA methylation data. Briefings in Bioinformatics, 23(1), p.bbab362.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
