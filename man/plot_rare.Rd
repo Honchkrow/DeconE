@@ -12,6 +12,7 @@ plot_rare(
   method2 = NULL,
   type = NULL,
   celltype = TRUE,
+  errbar = "SE",
   figure = NULL
 )
 }
@@ -49,7 +50,9 @@ regardless of sample and cell type.}
 cell types. Default: TRUE.
 Note: This parameter only supported by the scatterplot.}
 
-\item{figure}{One of the c("scatterplot", "heatmap", "cheatmap").
+\item{errbar}{standard error.}
+
+\item{figure}{One of the c("scatterplot", "heatmap", "cheatmap", "barplot").
 For different type of figure, users should pass the correct parameters.}
 
 \item{label}{a vector contains the label corresponding to the predicted

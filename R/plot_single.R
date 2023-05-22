@@ -31,7 +31,7 @@
 #' geom_point scale_shape_manual geom_smooth labs geom_tile geom_text
 #' coord_fixed scale_fill_gradient guides guide_legend guide_colorbar
 #' guide_colourbar scale_x_discrete scale_radius theme_minimal position_dodge
-#' geom_errorbar
+#' geom_errorbar scale_fill_gradient2
 #' @importFrom stats sd lm
 #' @importFrom reshape2 melt
 #' @importFrom ggpubr stat_cor
@@ -50,9 +50,10 @@ plot_single <- function(actual,
                         errbar = "SE") {
     p_true <- getInput(data = actual, name = "actual")
     p_pred <- getInput(data = predicted, name = "predicted")
+    p_pred <- reorder_df(df1 = p_true, df2 = p_pred)
 
 
-    if (method %in% c("mape", "mae", "rmse", "kendall", "pearson", "spearman")) {
+    if (method %in% c("mape", "mae", "rmse", 'smape', "kendall", "pearson", "spearman")) {
         res <- regMetrics(actual = p_true,
                           predicted = p_pred,
                           method = method,

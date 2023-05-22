@@ -6,7 +6,7 @@
 #' row: cell types, column: samples.
 #' @param predicted The predicted proportion of cell types in matrix.
 #' row: cell types, column: samples.
-#' @param method One of c("rmse", "mape", "mae", "kendall", "pearson", "spearman"),
+#' @param method One of c("rmse", "mape", "mae", "smape", "kendall", "pearson", "spearman"),
 #' @param type One of c("sample.", "celltype", "all").
 #' For "sample.", generate metric for each sample.
 #' For "celltype", generate metric for each cell type.
@@ -15,7 +15,7 @@
 #'
 #' @return a vector with the value for each sample.
 #'
-#' @importFrom Metrics rmse mape mae
+#' @importFrom Metrics rmse mape mae smape
 #' @importFrom stats cor
 #'
 #' @export
@@ -25,12 +25,16 @@
 #'                   predicted = matrix(data = seq(9), nrow = 3),
 #'                   method = "rmse")
 regMetrics <- function(actual, predicted, method = NULL, type = NULL) {
+    # check dimension
     if (!all(dim(actual) == dim(predicted))) {
         stop("Dimension of matrix actual and predicted are inconsistent.")
     } else {
         num_celltype <- nrow(actual)
         num_sample <- ncol(actual)
     }
+
+    # check colname and rowname
+    predicted <- reorder_df(df1 = actual, df2 = predicted)
 
     res <- c()
 
@@ -53,6 +57,12 @@ regMetrics <- function(actual, predicted, method = NULL, type = NULL) {
         } else if (method == "mae"){
             for (i in seq(num_sample)) {
                 res <- c(res, mae(actual = actual[, i], predicted = predicted[, i]))
+            }
+            names(res) <- colnames(actual)
+
+        } else if (method == "smape"){
+            for (i in seq(num_sample)) {
+                res <- c(res, smape(actual = actual[, i], predicted = predicted[, i]))
             }
             names(res) <- colnames(actual)
 
@@ -83,7 +93,13 @@ regMetrics <- function(actual, predicted, method = NULL, type = NULL) {
             }
             names(res) <- rownames(actual)
 
-        } else if (method == "mae"){
+        } else if (method == "smape"){
+            for (i in seq(num_celltype)) {
+                res <- c(res, smape(actual = actual[i, ], predicted = predicted[i, ]))
+            }
+            names(res) <- rownames(actual)
+
+        }else if (method == "mae"){
             for (i in seq(num_celltype)) {
                 res <- c(res, mae(actual = actual[i, ], predicted = predicted[i, ]))
             }

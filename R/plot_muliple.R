@@ -59,7 +59,7 @@
 #' @importFrom reshape2 melt
 #' @importFrom ggpubr stat_cor ggarrange
 #' @importFrom tibble rownames_to_column
-#' @importFrom ggplot2 geom_bar
+#' @importFrom ggplot2 geom_bar scale_fill_gradient2
 #'
 #' @export
 #'
@@ -73,9 +73,7 @@ plot_multiple <- function(actual,
                           errbar = "SE",
                           nrow = 3) {
 
-    if (!(method %in% c("mape", "mae", "rmse", "pearson", "spearman", "kendall"))) {
-        stop("Parameter method must be one of c('mae', 'mape', 'rmse', 'pearson', 'spearman', 'kendall').")
-    }
+    check_method(method = method)
 
     if (is.null(label)) {
         label <- file_path_sans_ext(basename(predicted))
@@ -93,6 +91,7 @@ plot_multiple <- function(actual,
     for (i in seq(length(predicted))) {
         this.label <- label[i]
         p_pred <- getInput(data = predicted[i], name = this.label)
+        p_pred <- reorder_df(df1 = p_true, df2 = p_pred)
 
         res[[this.label]] <- regMetrics(actual = p_true,
                                         predicted = p_pred,
@@ -105,6 +104,7 @@ plot_multiple <- function(actual,
         for (i in seq(length(predicted))) {
             this.label <- label[i]
             p_pred <- getInput(data = predicted[i], name = this.label)
+            p_pred <- reorder_df(df1 = p_true, df2 = p_pred)
 
             res2[[this.label]] <- regMetrics(actual = p_true,
                                              predicted = p_pred,
@@ -196,6 +196,7 @@ plot_multiple <- function(actual,
         for (i in seq(length(predicted))) {
             this.label <- label[i]
             p_pred <- decone:::getInput(data = predicted[i], name = this.label)
+            p_pred <- reorder_df(df1 = p_true, df2 = p_pred)
 
             a1 <- melt(p_true)
             a2 <- melt(p_pred)
@@ -328,13 +329,21 @@ plot_multiple <- function(actual,
                        stroke = 0) +
             scale_x_discrete(position = "bottom") +
             scale_radius(range = c(5, 15)) +
-            scale_fill_gradient(low = "orange",
-                                high = "red",
-                                breaks = c(min(data$value.x), max(data$value.x)),
-                                # labels = trend_label,
-                                labels = c(round(x = min(data$value.x), digits = 2),
-                                           round(x = max(data$value.x), digits = 2)),
-                                limits = c(min(data$value.x), max(data$value.x))) +
+            # scale_fill_gradient(low = "yellow",
+            #                     high = "purple3",
+            #                     breaks = c(min(data$value.x), max(data$value.x)),
+            #                     # labels = trend_label,
+            #                     labels = c(round(x = min(data$value.x), digits = 2),
+            #                                round(x = max(data$value.x), digits = 2)),
+            #                     limits = c(min(data$value.x), max(data$value.x))) +
+            scale_fill_gradient2(low = "yellow",
+                                 mid = "red",
+                                 high = "mediumblue",
+                                 midpoint = mean(data$value.x),
+                                 breaks = c(min(data$value.x), max(data$value.x)),
+                                 labels = c(round(x = min(data$value.x), digits = 2),
+                                            round(x = max(data$value.x), digits = 2)),
+                                 limits = c(min(data$value.x), max(data$value.x))) +
             theme_minimal() +
             theme(panel.background = element_blank(),
                   panel.grid.major = element_blank(),

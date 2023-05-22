@@ -298,11 +298,50 @@ refGenerator <- function(df = NULL, attr = NULL, cellTypes = NULL){
     return(list(ref = ref, std = std))
 }
 
+#' @title Re-order dataframe
+#'
+#' @description Re-order dataframe2 by dataframe1.
+#'
+#' @param df1 A dataframe1.
+#' @param df2 Attribute dataframe2.
+#'
+#' @return Re-order dataframe2.
+#'
+#'
+#' @keywords internal
+#'
+reorder_df <- function(df1 = NULL, df2 = NULL) {
+    # check rowname
+    if(!all(rownames(df1) %in% rownames(df2))) {
+        stop("Rowname is not consistent!")
+    }
+
+    if(!all(colnames(df1) %in% colnames(df2))) {
+        stop("Rowname is not consistent!")
+    }
+
+    df2 <- df2[match(rownames(df1), rownames(df2)), ]
+    df2 <- df2[, match(colnames(df1), colnames(df2))]
+    return(df2)
+}
 
 
-
-
-
+#' @title check method
+#'
+#' @description check method
+#'
+#' @param method
+#'
+#' @return TRUE or FALSE
+#'
+#'
+#' @keywords internal
+#'
+check_method <- function(method = NULL) {
+    if (!(method %in% c("mape", "mae", "rmse", "smape", "pearson", "spearman", "kendall"))) {
+        stop("Parameter method must be one of c('mae', 'mape', 'rmse', 'smape', 'pearson', 'spearman', 'kendall').")
+    }
+}
 
 
 

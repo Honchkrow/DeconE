@@ -48,7 +48,7 @@
 #' geom_point scale_shape_manual geom_smooth labs geom_tile geom_text
 #' coord_fixed scale_fill_gradient guides guide_legend guide_colorbar
 #' guide_colourbar scale_x_discrete scale_radius theme_minimal position_dodge
-#' geom_errorbar
+#' geom_errorbar scale_fill_gradient2
 #' @importFrom stats sd lm
 #' @importFrom reshape2 melt
 #' @importFrom ggpubr stat_cor ggarrange
@@ -64,9 +64,7 @@ plot_multiple2 <- function(actual,
                            figure = "boxplot",
                            errbar = NULL) {
 
-    if (!(method %in% c("mape", "mae", "rmse", "pearson", "spearman", "kendall"))) {
-        stop("Parameter method must be one of c('mae', 'mape', 'rmse', 'pearson', 'spearman', 'kendall').")
-    }
+    check_method(method = method)
 
     if (is.null(condition)) {
         stop("Parameter 'condition' must be provided!")
@@ -83,6 +81,8 @@ plot_multiple2 <- function(actual,
             for (i in seq(length(pred_files))) {
                 tmp_condition <- condition[i]
                 p_pred <- getInput(data = pred_files[i], name = "predicted")
+                p_pred <- reorder_df(df1 = p_true, df2 = p_pred)
+
                 res[[tmp_condition]] <- regMetrics(actual = p_true,
                                                    predicted = p_pred,
                                                    method = method,
@@ -99,6 +99,7 @@ plot_multiple2 <- function(actual,
             for (i in seq(length(pred_files))) {
                 tmp_condition <- condition[i]
                 p_pred <- getInput(data = pred_files[i], name = "predicted")
+                p_pred <- reorder_df(df1 = p_true, df2 = p_pred)
                 res[[tmp_condition]] <- regMetrics(actual = p_true,
                                                    predicted = p_pred,
                                                    method = method,
@@ -115,6 +116,7 @@ plot_multiple2 <- function(actual,
                 for (i in seq(length(pred_files))) {
                     tmp_condition <- condition[i]
                     p_pred <- getInput(data = pred_files[i], name = "predicted")
+                    p_pred <- reorder_df(df1 = p_true, df2 = p_pred)
                     res[[tmp_condition]] <- regMetrics(actual = p_true,
                                                        predicted = p_pred,
                                                        method = method2,
@@ -237,13 +239,22 @@ plot_multiple2 <- function(actual,
                        stroke = 0) +
             scale_x_discrete(position = "bottom") +
             scale_radius(range = c(5, 15)) +
-            scale_fill_gradient(low = "orange",
-                                high = "blue",
-                                breaks = c(min(df$value1), max(df$value1)),
-                                # labels = trend_label,
-                                labels = c(round(x = min(df$value1), digits = 2),
-                                           round(x = max(df$value1), digits = 2)),
-                                limits = c(min(df$value1), max(df$value1))) +
+            # scale_fill_gradient(low = "yellow",
+            #                     high = "purple3",
+            #                     breaks = c(min(df$value1), max(df$value1)),
+            #                     # labels = trend_label,
+            #                     labels = c(round(x = min(df$value1), digits = 2),
+            #                                round(x = max(df$value1), digits = 2)),
+            #                     limits = c(min(df$value1), max(df$value1))) +
+            scale_fill_gradient2(low = "yellow",
+                                 mid = "red",
+                                 high = "mediumblue",
+                                 midpoint = mean(df$value1),
+                                 breaks = c(min(df$value1),
+                                            max(df$value1)),
+                                 labels = c(round(x = min(df$value1), digits = 2),
+                                            round(x = max(df$value1), digits = 2)),
+                                 limits = c(min(df$value1), max(df$value1))) +
             theme_minimal() +
             theme(panel.background = element_blank(),
                   panel.grid.major = element_blank(),
@@ -254,7 +265,7 @@ plot_multiple2 <- function(actual,
                   axis.text.x = element_text(size = 12, angle = 0, hjust = 0.5, vjust = 0.5),
                   axis.text.y = element_text(size = 12, angle = 0, hjust = 0.5, vjust = 0.5),
                   panel.border = element_rect(colour = "black", fill = NA, size = 1)) +
-            guides(size = guide_legend(override.aes = list(fill = "black", color = "black", stroke = 0.25),
+            guides(size = guide_legend(override.aes = list(fill = NA, color = "black", stroke = 0.25),
                                        label.position = "bottom",
                                        title.position = "right",
                                        order = 1),
