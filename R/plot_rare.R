@@ -71,7 +71,7 @@ plot_rare <- function(actual,
     check_method(method = method)
 
     # get real proportion
-    p_true <- decone:::getInput(data = actual, name = "actual")
+    p_true <- DeconE:::getInput(data = actual, name = "actual")
 
     if (figure == "barplot"){
         res1 <- list()
@@ -79,8 +79,8 @@ plot_rare <- function(actual,
 
         for (i in seq(length(label))) {
             this_label <- label[i]
-            p_pred <- decone:::getInput(data = predicted[i], name = "predicted")
-            p_pred <- decone:::reorder_df(df1 = p_true, df2 = p_pred)
+            p_pred <- DeconE:::getInput(data = predicted[i], name = "predicted")
+            p_pred <- DeconE:::reorder_df(df1 = p_true, df2 = p_pred)
 
             # get overall
             res1[[this_label]] <- regMetrics(actual = p_true,
@@ -115,7 +115,7 @@ plot_rare <- function(actual,
         data2 <- do.call(cbind, res2)
 
         mean_value <- apply(X = data1, MARGIN = 2, FUN = mean)
-        errbar_value <- apply(X = data1, MARGIN = 2, FUN = decone:::sde, type = errbar)
+        errbar_value <- apply(X = data1, MARGIN = 2, FUN = DeconE:::sde, type = errbar)
         df1 <- as.data.frame(cbind(mean_value, errbar_value))
         df1 <- rownames_to_column(df1, "dmethod")
 
@@ -136,7 +136,7 @@ plot_rare <- function(actual,
 
 
         mean_value <- apply(X = data2, MARGIN = 2, FUN = mean)
-        errbar_value <- apply(X = data2, MARGIN = 2, FUN = decone:::sde, type = errbar)
+        errbar_value <- apply(X = data2, MARGIN = 2, FUN = DeconE:::sde, type = errbar)
         df2 <- as.data.frame(cbind(mean_value, errbar_value))
         df2 <- rownames_to_column(df2, "dmethod")
 
@@ -161,7 +161,7 @@ plot_rare <- function(actual,
                        nrow = 1,
                        ncol = 2)
     } else if (figure == "scatterplot") {
-        p_pred <- decone:::getInput(data = predicted, name = "predicted")
+        p_pred <- DeconE:::getInput(data = predicted, name = "predicted")
         p_pred <- reorder_df(df1 = p_true, df2 = p_pred)
 
         p_len <- length(p_rare)
@@ -241,7 +241,7 @@ plot_rare <- function(actual,
         res <- list()
         res2 <- list()
         for (i in seq(length(predicted))) {
-            p_pred <- decone:::getInput(data = predicted[i], name = "predicted")
+            p_pred <- DeconE:::getInput(data = predicted[i], name = "predicted")
             p_pred <- reorder_df(df1 = p_true, df2 = p_pred)
             tmp_label <- label[i]
 

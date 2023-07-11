@@ -163,10 +163,10 @@ plot_multiple <- function(actual,
             data <- do.call(cbind, res)
             if (type == "sample") {
                 mean_value <- apply(X = data, MARGIN = 1, FUN = mean)
-                errbar_value <- apply(X = data, MARGIN = 1, FUN = decone:::sde, type = errbar)
+                errbar_value <- apply(X = data, MARGIN = 1, FUN = DeconE:::sde, type = errbar)
             } else {
                 mean_value <- apply(X = data, MARGIN = 2, FUN = mean)
-                errbar_value <- apply(X = data, MARGIN = 2, FUN = decone:::sde, type = errbar)
+                errbar_value <- apply(X = data, MARGIN = 2, FUN = DeconE:::sde, type = errbar)
             }
 
             df <- as.data.frame(cbind(mean_value, errbar_value))
@@ -195,7 +195,7 @@ plot_multiple <- function(actual,
         p_list <- list()
         for (i in seq(length(predicted))) {
             this.label <- label[i]
-            p_pred <- decone:::getInput(data = predicted[i], name = this.label)
+            p_pred <- DeconE:::getInput(data = predicted[i], name = this.label)
             p_pred <- reorder_df(df1 = p_true, df2 = p_pred)
 
             a1 <- melt(p_true)

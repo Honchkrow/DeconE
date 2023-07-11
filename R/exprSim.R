@@ -51,8 +51,8 @@ exprSim <- function(n_sample = 50,
                     refVar_name = NULL,
                     train_name = NULL) {
     writeLines("Loading RNA-seq data......")
-    attr <- readRDS(file = system.file(package="decone", "extdata", "RNAseq_attr.rds"))
-    raw_data <- readRDS(file = system.file(package="decone", "extdata", "RNAseq_matrix.rds"))
+    attr <- readRDS(file = system.file(package="DeconE", "extdata", "RNAseq_attr.rds"))
+    raw_data <- readRDS(file = system.file(package="DeconE", "extdata", "RNAseq_matrix.rds"))
 
     if (is.null(outputPath)) {
         writeLines("output path is not specified, all the file will be saved in work directory.")

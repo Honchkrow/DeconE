@@ -14,16 +14,16 @@
 
 **Links**:
 
-- [decone manual](https://honchkrow.github.io/decone/inst/documents/decone_manual.pdf)
-- [decone vignettes](https://honchkrow.github.io/decone/inst/documents/decone_intro.html)
+- [DeconE manual](https://honchkrow.github.io/DeconE/inst/documents/DeconE_manual.pdf)
+- [DeconE vignettes](https://honchkrow.github.io/DeconE/inst/documents/DeconE_intro.html)
 
 ## Section 1: Introduction
 
 Cell type proportion is related to phenotypes or diseases ([Wang, *et al.*](https://doi.org/10.1038/s41467-018-08023-x), [Wei, *et al.*](https://doi.org/10.1093/bib/bbab362)). Therefore, quantifying cell or tissue proportions is important for understanding the mechanisms in biological processes.
 
-Here, we proposed a cell type <u>decon</u>volution <u>e</u>valuating toolkit named '**decone**' to perform comprehensive and systematic evaluation of different algorithms.
+Here, we proposed a cell type <u>decon</u>volution <u>e</u>valuating toolkit named '**DeconE**' to perform comprehensive and systematic evaluation of different algorithms.
 
-**decone** consists of 6 main part functions as below.
+**DeconE** consists of 6 main part functions as below.
 
 - Pseudo bulk data generation (from massive bulk data and single cell data).
 - Stability analysis under different types of noise.
@@ -32,38 +32,38 @@ Here, we proposed a cell type <u>decon</u>volution <u>e</u>valuating toolkit nam
 - Comprehensive evaluation metrics as well as pretty figure generation.
 - Well-characterized datasets for deconvolution utilities.
 
-In the following parts, we will give a comprehensive tutorial about decone.
+In the following parts, we will give a comprehensive tutorial about DeconE.
 
 ## Section 2: Installation
 
-decone is based on R and can be easily installed on Windows, Linux as well as MAC OS.
+DeconE is based on R and can be easily installed on Windows, Linux as well as MAC OS.
 
 First, users should install [R >= 4.1.0](https://www.r-project.org/).
 
-Next, install devtools and decone.
+Next, install devtools and DeconE.
 
 ```R
 # install devtools
 install.packages('devtools')
 
-# install the decone package
-devtools::install_github('Honchkrow/decone')
+# install the DeconE package
+devtools::install_github('Honchkrow/DeconE')
 
-# load decone
-library(decone)
+# load DeconE
+library(DeconE)
 ```
 
 ## Section 3: Gnerating Pseudo Bulk Data
 
-Generating pseudo-bulk data is a challenging problem. Inspired by the former work ([Francisco, *et al.*](https://doi.org/10.1038/s41467-020-20288-9), [Wang, *et al.*](https://doi.org/10.1038/s41467-018-08023-x), [Wei, *et al.*](https://doi.org/10.1093/bib/bbab362), [Racle, *et al.*](https://doi.org/10.7554/eLife.26476)) and [Tumor Deconvolution DREAM Challenge](https://www.synapse.org/#!Synapse:syn15589870/wiki/), decone provides different pseudo data generation strategies from massive bulk RNA-seq data as well as scRNA-seq data.
+Generating pseudo-bulk data is a challenging problem. Inspired by the former work ([Francisco, *et al.*](https://doi.org/10.1038/s41467-020-20288-9), [Wang, *et al.*](https://doi.org/10.1038/s41467-018-08023-x), [Wei, *et al.*](https://doi.org/10.1093/bib/bbab362), [Racle, *et al.*](https://doi.org/10.7554/eLife.26476)) and [Tumor Deconvolution DREAM Challenge](https://www.synapse.org/#!Synapse:syn15589870/wiki/), DeconE provides different pseudo data generation strategies from massive bulk RNA-seq data as well as scRNA-seq data.
 
 ### Section 3.1: Gnerating Pseudo Bulk Data From Massive RNA-seq Studies
 
 Many deconvolution methods need cell type-specific bulk data as the prior knowledge during deconvolution. To have a more realistic simulation, we collected 302 well-characterized bulk RNA-seq data to generate pseudo bulk data. When generating data, 1/3 samples will be used for generating the mixture and the rest will be used for generating external reference.
 
-Inspired by [Tumor Deconvolution DREAM Challenge](https://www.synapse.org/#!Synapse:syn15589870/wiki/), decone also provides function to generate 'coarse' and 'fine' level mixture samples.
+Inspired by [Tumor Deconvolution DREAM Challenge](https://www.synapse.org/#!Synapse:syn15589870/wiki/), DeconE also provides function to generate 'coarse' and 'fine' level mixture samples.
 
-For **'coarse'** level, decone generates mixture samples which contains the following 8 cell types.
+For **'coarse'** level, DeconE generates mixture samples which contains the following 8 cell types.
 
 - B cells
 - CD4 T cells
@@ -94,7 +94,7 @@ For **'fine'** level, there will be 14 cell types.
 The following demo shows how to generate simulated samples. Considering that different deconvolution methods may be written in different languages, we output the simulated data as CSV files which can be easily loaded to R, Python as well as MATLAB.
 
 ```R
-library(decone)
+library(DeconE)
 
 exprSim(n_sample = 50,  # generate 50 samples
         type = 'coarse',  # can be changed to 'fine'
@@ -107,13 +107,13 @@ exprSim(n_sample = 50,  # generate 50 samples
         train_name = "train_data.csv")  # data for generating reference, can be used for differential analysis
 ```
 
-All the output files will be save in folder 'exprSim'. The proportion will be generated randomly from a uniform distribution ([Wei, *et al.*](https://doi.org/10.1093/bib/bbab362)). decone also outputs the data for generating the external reference (parameter '**train_name**' in function **exprSim**) which can be used for differential expression analysis in marker gene selection.
+All the output files will be save in folder 'exprSim'. The proportion will be generated randomly from a uniform distribution ([Wei, *et al.*](https://doi.org/10.1093/bib/bbab362)). DeconE also outputs the data for generating the external reference (parameter '**train_name**' in function **exprSim**) which can be used for differential expression analysis in marker gene selection.
 
 ### Section 3.2: Gnerating Pseudo Bulk Data From scRNA-seq data
 
 With the development of single cell technologies, the prediction of cell type proportion becomes more accurate. Lots of single cell-based methods had been proposed such as [MuSiC](https://doi.org/10.1038/s41467-018-08023-x) and [SCDC](https://doi.org/10.1093/bib/bbz166). In addition, constructing in silico bulk data also becomes direct.
 
-For a comprehensive simulation, decone provides two types of simulated bulk data.
+For a comprehensive simulation, DeconE provides two types of simulated bulk data.
 
 The first one is [human PBMC data from 10X](https://support.10xgenomics.com/single-cell-multiome-atac-gex/datasets/1.0.0/pbmc_granulocyte_sorted_10k). This single cell dataset contains more than 10k single cell from huamn blood. We processed this dataset with [10X Cell Ranger](https://support.10xgenomics.com/single-cell-gene-expression/software/pipelines/latest/what-is-cell-ranger) as well as [muon](https://muon.readthedocs.io/en/latest/). Cell type annotation is performed followed by the tutorial ['Processing gene expression of 10k PBMCs'](https://muon-tutorials.readthedocs.io/en/latest/single-cell-rna-atac/pbmc10k/1-Gene-Expression-Processing.html). We annotataed 13 cell types as below.
 
@@ -131,7 +131,7 @@ The first one is [human PBMC data from 10X](https://support.10xgenomics.com/sing
 - CD14_mono
 - MAIT
 
-The second dataset comes from mouse tissue. Tissue level deconvolution is also an important question, such as the prediction of tissue origin from human liquid biopsy. [Han, *et al.*](https://doi.org/10.1016/j.cell.2018.02.001) built a scRNA-seq atlas for the mouse with high quality and decone adopted this study to perform in silico mixing. For a solid simulation, decone adopted 7 tissues from the femal fetal mouse and 1500 cells for each tissue.
+The second dataset comes from mouse tissue. Tissue level deconvolution is also an important question, such as the prediction of tissue origin from human liquid biopsy. [Han, *et al.*](https://doi.org/10.1016/j.cell.2018.02.001) built a scRNA-seq atlas for the mouse with high quality and DeconE adopted this study to perform in silico mixing. For a solid simulation, DeconE adopted 7 tissues from the femal fetal mouse and 1500 cells for each tissue.
 
 - stomach
 - lung
@@ -157,14 +157,14 @@ scExprSim(n_sample = 50,  # generate 50 samples
 
 ### Code Demo 1: Evaluating The Deconvolution Results In A Simple Manner
 
-Generally, when a new deconvolution approach is proposed, cross-comparison between different methods is needed. decone provides multi-level comparison and visualization functions. In this part, we will demonstrate how to perform a simple evaluation of deconvolution results.
+Generally, when a new deconvolution approach is proposed, cross-comparison between different methods is needed. DeconE provides multi-level comparison and visualization functions. In this part, we will demonstrate how to perform a simple evaluation of deconvolution results.
 
 We adopted [EpiDISH](https://www.bioconductor.org/packages/release/bioc/html/EpiDISH.html), [DeconRNASeq](http://bioconductor.org/packages/release/bioc/html/DeconRNASeq.html) as well as [FARDEEP](https://cran.r-project.org/web/packages/FARDEEP/index.html) from Bioconductor as the demo methods. Users can follow the steps below to reproduce the results easily.
 
 First, generate simulated expression data. Here, we adopted the massive RNA-seq dataset as am example.
 
 ```R
-library(decone)
+library(DeconE)
 
 # generate bulk data
 exprSim(n_sample = 50,  # generating 50 samples
@@ -325,15 +325,15 @@ The combined heatmap with circles can be used for illustrating multiple metrics 
     padding: 2px;">Heatmap with circles</div>
 </center>
 
-If the users want to plot the results for a single method, the 'plot_single' function can be used. For more information, please see [decone manual](https://honchkrow.github.io/decone/inst/documents/decone_manual.pdf).
+If the users want to plot the results for a single method, the 'plot_single' function can be used. For more information, please see [DeconE manual](https://honchkrow.github.io/DeconE/inst/documents/DeconE_manual.pdf).
 
 ## Section 4: Noise Analysis
 
-In expression data analysis, technical and biological noise cannot be ignored. Noise existing in bulk data brings a negative influence on deconvolution. In order to measure the stability and accuracy of different methods, decone provides functions to add noise with the different structures on bulk data.
+In expression data analysis, technical and biological noise cannot be ignored. Noise existing in bulk data brings a negative influence on deconvolution. In order to measure the stability and accuracy of different methods, DeconE provides functions to add noise with the different structures on bulk data.
 
 ### Section 4.1: Generating Noised Bulk Data With Different Models
 
-Many of the noise model had been used in different studies, such as the normal, log-normal and negative binomial model ([Jin, *et al.*](https://doi.org/10.1186/s13059-021-02290-6)). decone implemented these models and provided flexible interface for users.
+Many of the noise model had been used in different studies, such as the normal, log-normal and negative binomial model ([Jin, *et al.*](https://doi.org/10.1186/s13059-021-02290-6)). DeconE implemented these models and provided flexible interface for users.
 
 - **Normal Model**
 
@@ -407,7 +407,7 @@ After this, users can test the performance of different methods easily. The next
 
 Comparison the deconvolution performance between different algorithms helps to find the appropriate method for a certain biology scenario.
 
-Here, taking stability analysis as an example, we show how to use decone to perform cross-comparison between different methods. In order to give a direct and fast example, we also adopted [EpiDISH](https://www.bioconductor.org/packages/release/bioc/html/EpiDISH.html), [DeconRNAseq](https://www.bioconductor.org/packages/release/bioc/html/DeconRNASeq.html) as well as [FARDEEP](https://cran.r-project.org/web/packages/FARDEEP/index.html) to perform deconvolution.
+Here, taking stability analysis as an example, we show how to use DeconE to perform cross-comparison between different methods. In order to give a direct and fast example, we also adopted [EpiDISH](https://www.bioconductor.org/packages/release/bioc/html/EpiDISH.html), [DeconRNAseq](https://www.bioconductor.org/packages/release/bioc/html/DeconRNASeq.html) as well as [FARDEEP](https://cran.r-project.org/web/packages/FARDEEP/index.html) to perform deconvolution.
 
 First, profoem deconvolution with different methods.
 
@@ -563,7 +563,7 @@ The boxplot and heatmap for rmse and mape are as follows.
     padding: 2px;">Heatmap of mape for different deconvolution method</div>
 </center>
 
-Usually, only one metric may not be sufficient to reveal the deconvolution efficacy, especially for rare components ([Wei, *et al.*](https://doi.org/10.1093/bib/bbab362)). decone provides heatmap with circles for illustrating the double metrics in one figure.
+Usually, only one metric may not be sufficient to reveal the deconvolution efficacy, especially for rare components ([Wei, *et al.*](https://doi.org/10.1093/bib/bbab362)). DeconE provides heatmap with circles for illustrating the double metrics in one figure.
 
 ```R
 # generate figure for rmse and pearson 
@@ -591,7 +591,7 @@ plot_multiple2(actual = actual,
 
 In the cell type deconvolution problem, cell types with extremely small proportion are always been ignored. However, these cell types play vital roles in some situations, like TILs which exhibit low fractions in many cancer tissues. Some methods have been proposed to tackle this problem like [DWLS](https://doi.org/10.1038/s41467-019-10802-z) and [ARIC](https://doi.org/10.1093/bib/bbab362).
 
-decone provides functions 'rareExprSim' and 'rarescExprSim' to simulate bulk data with the rare component. In order to perform a comprehensive analysis, decone takes all the cell types as potential rare components in a loop with a pre-set rare proportion gradient.
+DeconE provides functions 'rareExprSim' and 'rarescExprSim' to simulate bulk data with the rare component. In order to perform a comprehensive analysis, DeconE takes all the cell types as potential rare components in a loop with a pre-set rare proportion gradient.
 
 Here is an example with 6 different deconvolution algorithms.
 
@@ -686,7 +686,7 @@ plot_rare(actual = actual,
 
 ## Section 6: Single Cell Related Functions
 
-Single cell related functions are similar with functions used for massive bulk data, like 'scExprSim', 'rarescExprSim'. For more information, please refer to [decone manual](https://honchkrow.github.io/decone/inst/documents/decone_manual.pdf).
+Single cell related functions are similar with functions used for massive bulk data, like 'scExprSim', 'rarescExprSim'. For more information, please refer to [DeconE manual](https://honchkrow.github.io/DeconE/inst/documents/DeconE_manual.pdf).
 
 ## Section 7: Well-Characterized Deconvolution Datasets
 
@@ -714,7 +714,7 @@ In addition, we collected 14 well-characterized deconvolution datasets for users
 
 We provided the processed 'LUSC' and 'OV' datasets from TCGA which were validated by [FARDEEP](https://cran.r-project.org/web/packages/FARDEEP/index.html). Datasets about other cancers are also provided in the form of an expression matrix along with the original information.
 
-Users can download the datasets from this [page](https://github.com/Honchkrow/decone_dataset).
+Users can download the datasets from this [page](https://github.com/Honchkrow/DeconE_dataset).
 
 Note: some dataset are collected from [dtangle](https://doi.org/10.1093/bioinformatics/bty926) and [MuSiC](https://doi.org/10.1038/s41467-018-08023-x).
 

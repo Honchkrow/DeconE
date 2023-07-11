@@ -49,11 +49,11 @@ rarescExprSim <- function (cell_number = 2000,
     writeLines("Loading scRNA-seq data......")
 
     if(type == 'mouse_tissue') {
-        raw_data <- readRDS(file = system.file(package="decone", "extdata", "scRNAseq_matrix_mouse.rds"))
+        raw_data <- readRDS(file = system.file(package="DeconE", "extdata", "scRNAseq_matrix_mouse.rds"))
         this.celltypes <- c("FetalStomach", "FetalLung", "FetalLiver", "FetalKidney",
                             "FetalIntestine", "FetalBrain", "Female.fetal.Gonad")
     } else if (type == 'human_PBMC') {
-        raw_data <- readRDS(file = system.file(package="decone", "extdata", "scRNAseq_matrix_PBMC.rds"))
+        raw_data <- readRDS(file = system.file(package="DeconE", "extdata", "scRNAseq_matrix_PBMC.rds"))
         this.celltypes <- c("intermediate_mono", "CD8+_naïve_T", "mDC", "CD4+_naïve_T", "NK",
                             "memory_B", "CD4+_memory_T", "CD16_mono", "pDC", "naïve_B",
                             "CD8+_activated_T", "CD14_mono", "MAIT")
@@ -119,7 +119,7 @@ rarescExprSim <- function (cell_number = 2000,
     mode(cell_number_matrix) <- "integer"
 
     # # re-norm prop
-    # prop <- apply(X = prop, MARGIN = 2, FUN = decone:::v_norm)
+    # prop <- apply(X = prop, MARGIN = 2, FUN = DeconE:::v_norm)
 
 
     ## generatebulk data
@@ -195,12 +195,12 @@ rarescExprSim <- function (cell_number = 2000,
     # convert data
     if(transform == "TPM"){
         writeLines("Transform data into TPM......")
-        pseudo_bulk_expr_transformed <- decone:::TPM(data = decone:::merge.all(pseudo_bulk_expr, raw_data["Length"]))
-        reference_expr_transformed <- decone:::TPM(data = decone:::merge.all(reference_expr, raw_data["Length"]))
+        pseudo_bulk_expr_transformed <- DeconE:::TPM(data = DeconE:::merge.all(pseudo_bulk_expr, raw_data["Length"]))
+        reference_expr_transformed <- DeconE:::TPM(data = DeconE:::merge.all(reference_expr, raw_data["Length"]))
     }else if(transform == "CPM"){
         writeLines("Transform data into CPM......")
-        pseudo_bulk_expr_transformed <- decone:::CPM(data = decone:::merge.all(pseudo_bulk_expr, raw_data["Length"]))
-        reference_expr_transformed <- decone:::CPM(data = decone:::merge.all(reference_expr, raw_data["Length"]))
+        pseudo_bulk_expr_transformed <- DeconE:::CPM(data = DeconE:::merge.all(pseudo_bulk_expr, raw_data["Length"]))
+        reference_expr_transformed <- DeconE:::CPM(data = DeconE:::merge.all(reference_expr, raw_data["Length"]))
     } else {
         writeLines("Note: data transformation is not specified!")
     }
