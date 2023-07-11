@@ -1,0 +1,44 @@
+---
+title: "DeconE: An easy-to-use and comprehensive evaluation toolkit for cell type deconvolution from expression data"
+author: Wei Zhang
+date: "`r Sys.Date()`"
+output:
+  prettydoc::html_pretty:
+    theme: architect
+  pdf_document:
+    toc: true
+vignette: >
+  %\VignetteIndexEntry{DeconE: An easy-to-use and comprehensive evaluation toolkit for cell type deconvolution from expression data}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\usepackage[utf8]{inputenc}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+Cell type proportion is related with certain phenotype or disease ([Wei, *et al.*](https://doi.org/10.1093/bib/bbab362)). Therefore, quantifying cell or tissue proportions is an important problem in bioinformatics.
+
+Here, we proposed a cell type <u>decon</u>volution <u>e</u>valuating toolkit named '**DeconE**' to perform comprehensive and systematic analysis for different algorithms.
+
+**DeconE** consists of 6 main part functions as below.
+
++ Pseudo bulk data generation (including bulk and single cell).
++ Stability analysis under different types of noise.
++ Rare component analysis.
++ Unknown component analysis.
++ Comprehensive evaluation metrics.
++ Well characterized datasets for deconvolution utilities.
+
+
+For more information, please see [DeconE github page](https://github.com/Honchkrow/DeconE).
+
+```{r setup}
+library(DeconE)
+
+sessionInfo()
+```
