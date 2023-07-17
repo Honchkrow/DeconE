@@ -23,7 +23,7 @@ knitr::opts_chunk$set(
 
 Cell type proportion is related with certain phenotype or disease ([Wei, *et al.*](https://doi.org/10.1093/bib/bbab362)). Therefore, quantifying cell or tissue proportions is an important problem in bioinformatics.
 
-Here, we proposed a cell type <u>decon</u>volution <u>e</u>valuating toolkit named '**Deconer**' to perform comprehensive and systematic analysis for different algorithms.
+Here, we proposed a cell type deconvolution evaluating toolkit named '**Deconer**' to perform comprehensive and systematic analysis for different algorithms.
 
 **Deconer** consists of 6 main part functions as below.
 
