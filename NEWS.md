@@ -20,3 +20,7 @@
 
 * removed unknown component generating function
 * update single cell sampling code
+
+# Deconer 1.0.3
+
+* change name to Deconer

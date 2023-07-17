@@ -56,8 +56,8 @@ rareExprSim <- function(p_rare = c(0.001, 0.003, 0.005, 0.008, 0.01, 0.03, 0.05)
                         refVar_name = NULL,
                         train_name = NULL) {
     writeLines("Loading RNA-seq data......")
-    attr <- readRDS(file = system.file(package="DeconE", "extdata", "RNAseq_attr.rds"))
-    raw_data <- readRDS(file = system.file(package="DeconE", "extdata", "RNAseq_matrix.rds"))
+    attr <- readRDS(file = system.file(package="Deconer", "extdata", "RNAseq_attr.rds"))
+    raw_data <- readRDS(file = system.file(package="Deconer", "extdata", "RNAseq_matrix.rds"))
 
     if (is.null(outputPath)) {
         writeLines("output path is not specified, all the file will be saved in work directory.")
