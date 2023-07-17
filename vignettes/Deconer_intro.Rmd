@@ -1,5 +1,5 @@
 ---
-title: "DeconE: An easy-to-use and comprehensive evaluation toolkit for cell type deconvolution from expression data"
+title: "Deconer: An easy-to-use and comprehensive evaluation toolkit for cell type deconvolution from expression data"
 author: Wei Zhang
 date: "`r Sys.Date()`"
 output:
@@ -8,7 +8,7 @@ output:
   pdf_document:
     toc: true
 vignette: >
-  %\VignetteIndexEntry{DeconE: An easy-to-use and comprehensive evaluation toolkit for cell type deconvolution from expression data}
+  %\VignetteIndexEntry{Deconer: An easy-to-use and comprehensive evaluation toolkit for cell type deconvolution from expression data}
   %\VignetteEngine{knitr::rmarkdown}
   %\usepackage[utf8]{inputenc}
   %\VignetteEncoding{UTF-8}
@@ -23,9 +23,9 @@ knitr::opts_chunk$set(
 
 Cell type proportion is related with certain phenotype or disease ([Wei, *et al.*](https://doi.org/10.1093/bib/bbab362)). Therefore, quantifying cell or tissue proportions is an important problem in bioinformatics.
 
-Here, we proposed a cell type <u>decon</u>volution <u>e</u>valuating toolkit named '**DeconE**' to perform comprehensive and systematic analysis for different algorithms.
+Here, we proposed a cell type <u>decon</u>volution <u>e</u>valuating toolkit named '**Deconer**' to perform comprehensive and systematic analysis for different algorithms.
 
-**DeconE** consists of 6 main part functions as below.
+**Deconer** consists of 6 main part functions as below.
 
 + Pseudo bulk data generation (including bulk and single cell).
 + Stability analysis under different types of noise.
@@ -35,10 +35,10 @@ Here, we proposed a cell type <u>decon</u>volution <u>e</u>valuating toolkit nam
 + Well characterized datasets for deconvolution utilities.
 
 
-For more information, please see [DeconE github page](https://github.com/Honchkrow/DeconE).
+For more information, please see [Deconer github page](https://github.com/Honchkrow/Deconer).
 
 ```{r setup}
-library(DeconE)
+library(Deconer)
 
 sessionInfo()
 ```

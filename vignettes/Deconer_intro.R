@@ -5,7 +5,7 @@ knitr::opts_chunk$set(
 )
 
 ## ----setup--------------------------------------------------------------------
-library(DeconE)
+library(Deconer)
 
 sessionInfo()
 
