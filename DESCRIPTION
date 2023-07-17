@@ -1,15 +1,12 @@
-Package: DeconE
+Package: Deconer
 Type: Package
 Date: 2022-09-18
-Title: Cell Type Deconvolution Evaluator
-Version: 1.0.2
+Title: A Comprehensive and Systematic Cell Type Deconvolution Evaluator
+Version: 1.0.3
 Authors@R: c(
   person(given = 'Wei', family = 'Zhang', email = 'zw@sdu.edu.cn', role = c('aut', 'cre'))
   )
-Description: The evaluation platform for cell type deconvolution. This platform 
-    provides multiple simulation and real mixture expression datasets for evaluate 
-    the performance of deconvlution tools. This toolkit also plots preety
-    figure for the comparison of different deconvolution methods.
+Description: This platform focuses on evaluating cell type deconvolution algorithms.It provides multiple simulation and real mixture expression datasets. These datasets are used to evaluate the performance of deconvolution tools.This toolkit also generates aesthetically pleasing figures. These figures allow for comparison of different deconvolution methods.
 License: GPL-3 | file LICENSE
 Encoding: UTF-8
 LazyData: true

@@ -12,9 +12,9 @@
 
 <meta name="author" content="Wei Zhang" />
 
-<meta name="date" content="2023-07-11" />
+<meta name="date" content="2023-07-17" />
 
-<title>DeconE: An easy-to-use and comprehensive evaluation toolkit for cell type deconvolution from expression data</title>
+<title>Deconer: An easy-to-use and comprehensive evaluation toolkit for cell type deconvolution from expression data</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -140,10 +140,10 @@ pointer-events: auto;
 
 <header>
 <div class="inner">
-<h1 class="title toc-ignore">DeconE: An easy-to-use and comprehensive
+<h1 class="title toc-ignore">Deconer: An easy-to-use and comprehensive
 evaluation toolkit for cell type deconvolution from expression data</h1>
 <h3 class="author">Wei Zhang</h3>
-<h3 class="date">2023-07-11</h3>
+<h3 class="date">2023-07-17</h3>
 </div>
 </header>
 
@@ -156,9 +156,9 @@ evaluation toolkit for cell type deconvolution from expression data</h1>
 Therefore, quantifying cell or tissue proportions is an important
 problem in bioinformatics.</p>
 <p>Here, we proposed a cell type <u>decon</u>volution <u>e</u>valuating
-toolkit named ‘<strong>DeconE</strong>’ to perform comprehensive and
+toolkit named ‘<strong>Deconer</strong>’ to perform comprehensive and
 systematic analysis for different algorithms.</p>
-<p><strong>DeconE</strong> consists of 6 main part functions as
+<p><strong>Deconer</strong> consists of 6 main part functions as
 below.</p>
 <ul>
 <li>Pseudo bulk data generation (including bulk and single cell).</li>
@@ -168,8 +168,8 @@ below.</p>
 <li>Comprehensive evaluation metrics.</li>
 <li>Well characterized datasets for deconvolution utilities.</li>
 </ul>
-<p>For more information, please see <a href="https://github.com/Honchkrow/DeconE">DeconE github page</a>.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">library</span>(DeconE)</span>
+<p>For more information, please see <a href="https://github.com/Honchkrow/Deconer">Deconer github page</a>.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">library</span>(Deconer)</span>
 <span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span>
 <span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="co">#&gt; R version 4.2.2 (2022-10-31 ucrt)</span></span>
@@ -189,21 +189,21 @@ below.</p>
 <span id="cb1-18"><a href="#cb1-18" tabindex="-1"></a><span class="co">#&gt; [1] stats     graphics  grDevices utils     datasets  methods   base     </span></span>
 <span id="cb1-19"><a href="#cb1-19" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb1-20"><a href="#cb1-20" tabindex="-1"></a><span class="co">#&gt; other attached packages:</span></span>
-<span id="cb1-21"><a href="#cb1-21" tabindex="-1"></a><span class="co">#&gt; [1] DeconE_1.0.2</span></span>
+<span id="cb1-21"><a href="#cb1-21" tabindex="-1"></a><span class="co">#&gt; [1] Deconer_1.0.3</span></span>
 <span id="cb1-22"><a href="#cb1-22" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb1-23"><a href="#cb1-23" tabindex="-1"></a><span class="co">#&gt; loaded via a namespace (and not attached):</span></span>
-<span id="cb1-24"><a href="#cb1-24" tabindex="-1"></a><span class="co">#&gt;  [1] sass_0.4.5        pkgload_1.3.2     tidyr_1.3.0       jsonlite_1.8.4   </span></span>
+<span id="cb1-24"><a href="#cb1-24" tabindex="-1"></a><span class="co">#&gt;  [1] sass_0.4.5        pkgload_1.3.2.1   tidyr_1.3.0       jsonlite_1.8.7   </span></span>
 <span id="cb1-25"><a href="#cb1-25" tabindex="-1"></a><span class="co">#&gt;  [5] prettydoc_0.4.1   carData_3.0-5     R.utils_2.12.2    bslib_0.4.2      </span></span>
 <span id="cb1-26"><a href="#cb1-26" tabindex="-1"></a><span class="co">#&gt;  [9] shiny_1.7.4       yaml_2.3.7        progress_1.2.2    remotes_2.4.2    </span></span>
 <span id="cb1-27"><a href="#cb1-27" tabindex="-1"></a><span class="co">#&gt; [13] sessioninfo_1.2.2 pillar_1.9.0      backports_1.4.1   lattice_0.21-8   </span></span>
 <span id="cb1-28"><a href="#cb1-28" tabindex="-1"></a><span class="co">#&gt; [17] glue_1.6.2        digest_0.6.31     promises_1.2.0.1  ggsignif_0.6.4   </span></span>
-<span id="cb1-29"><a href="#cb1-29" tabindex="-1"></a><span class="co">#&gt; [21] colorspace_2.1-0  htmltools_0.5.5   httpuv_1.6.9      Matrix_1.5-4     </span></span>
+<span id="cb1-29"><a href="#cb1-29" tabindex="-1"></a><span class="co">#&gt; [21] colorspace_2.1-0  htmltools_0.5.5   httpuv_1.6.9      Matrix_1.6-0     </span></span>
 <span id="cb1-30"><a href="#cb1-30" tabindex="-1"></a><span class="co">#&gt; [25] R.oo_1.25.0       plyr_1.8.8        pkgconfig_2.0.3   devtools_2.4.5   </span></span>
-<span id="cb1-31"><a href="#cb1-31" tabindex="-1"></a><span class="co">#&gt; [29] broom_1.0.4       purrr_1.0.1       xtable_1.8-4      scales_1.2.1     </span></span>
+<span id="cb1-31"><a href="#cb1-31" tabindex="-1"></a><span class="co">#&gt; [29] broom_1.0.5       purrr_1.0.1       xtable_1.8-4      scales_1.2.1     </span></span>
 <span id="cb1-32"><a href="#cb1-32" tabindex="-1"></a><span class="co">#&gt; [33] processx_3.8.1    later_1.3.0       tibble_3.2.1      generics_0.1.3   </span></span>
 <span id="cb1-33"><a href="#cb1-33" tabindex="-1"></a><span class="co">#&gt; [37] car_3.1-2         ggplot2_3.4.2     usethis_2.1.6     ellipsis_0.3.2   </span></span>
 <span id="cb1-34"><a href="#cb1-34" tabindex="-1"></a><span class="co">#&gt; [41] ggpubr_0.6.0      cachem_1.0.7      withr_2.5.0       cli_3.6.1        </span></span>
-<span id="cb1-35"><a href="#cb1-35" tabindex="-1"></a><span class="co">#&gt; [45] magrittr_2.0.3    crayon_1.5.2      mime_0.12         evaluate_0.20    </span></span>
+<span id="cb1-35"><a href="#cb1-35" tabindex="-1"></a><span class="co">#&gt; [45] magrittr_2.0.3    crayon_1.5.2      mime_0.12         evaluate_0.21    </span></span>
 <span id="cb1-36"><a href="#cb1-36" tabindex="-1"></a><span class="co">#&gt; [49] memoise_2.0.1     ps_1.7.5          R.methodsS3_1.8.2 fs_1.6.2         </span></span>
 <span id="cb1-37"><a href="#cb1-37" tabindex="-1"></a><span class="co">#&gt; [53] fansi_1.0.4       rstatix_0.7.2     forcats_1.0.0     xml2_1.3.3       </span></span>
 <span id="cb1-38"><a href="#cb1-38" tabindex="-1"></a><span class="co">#&gt; [57] pkgbuild_1.4.0    profvis_0.3.7     tools_4.2.2       data.table_1.14.8</span></span>
