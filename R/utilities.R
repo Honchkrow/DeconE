@@ -344,4 +344,97 @@ check_method <- function(method = NULL) {
 }
 
 
+#' @title check_matrix_names
+#'
+#' @description check_matrix_names
+#'
+#' @param matrix1 matrix
+#' @param matrix2 matrix
+#'
+#' @return bool
+#'
+#' @keywords internal
+#'
+check_matrix_names <- function(matrix1, matrix2) {
+    rownames_match <- identical(rownames(matrix1), rownames(matrix2))
+    colnames_match <- identical(colnames(matrix1), colnames(matrix2))
+    return(rownames_match && colnames_match)
+}
 
+
+
+#' @title compute_js
+#'
+#' @description compute_js
+#'
+#' @param p matrix
+#' @param q matrix
+#'
+#' @return matrix
+#'
+#' @keywords internal
+#'
+compute_js <- function(p, q) {
+    m <- 0.5 * (p + q)
+    return(0.5 * kl_divergence(p, m) + 0.5 * kl_divergence(q, m))
+}
+
+
+
+
+#' @title kl_divergence
+#'
+#' @description kl_divergence
+#'
+#' @param p matrix
+#' @param q matrix
+#'
+#' @return matrix
+#'
+#' @keywords internal
+#'
+kl_divergence <- function(p, q) {
+    return(sum(p * log(p / q)))
+}
+
+
+#' @title calculate_probabilities
+#'
+#' @description calculate_probabilities
+#'
+#' @param matrix matrix
+#'
+#' @return prob_matrix
+#'
+#' @keywords internal
+#'
+calculate_probabilities <- function(matrix) {
+    prob_matrix <- matrix / rowSums(matrix)
+    return(prob_matrix)
+}
+
+
+#' @title compute ssim
+#'
+#' @description compute ssim
+#'
+#' @param x matrix
+#' @param y matrix
+#'
+#' @return output
+#'
+#' @keywords internal
+#'
+compute_ssim <- function(x, y, C1 = 0.01, C2 = 0.03) {
+    mu_x <- mean(x)
+    mu_y <- mean(y)
+
+    sigma_x <- var(x)
+    sigma_y <- var(y)
+
+    covariance_xy <- cov(x, y)
+
+    ssim <- ((2 * mu_x * mu_y + C1) * (2 * covariance_xy + C2)) /
+        ((mu_x^2 + mu_y^2 + C1) * (sigma_x + sigma_y + C2))
+    return(ssim)
+}
