@@ -406,6 +406,7 @@ kl_divergence <- function(p, q) {
 #'
 #' @return prob_matrix
 #'
+#'
 #' @keywords internal
 #'
 calculate_probabilities <- function(matrix) {

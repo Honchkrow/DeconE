@@ -8,6 +8,8 @@
 #' row: cell types, column: samples.
 #' @param method One of c("SSIM", "JS"),
 #'
+#' @importFrom matrixStats rowMaxs
+#'
 #' @return vector
 #'
 #' @export
