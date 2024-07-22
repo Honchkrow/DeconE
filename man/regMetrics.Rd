@@ -13,7 +13,7 @@ row: cell types, column: samples.}
 \item{predicted}{The predicted proportion of cell types in matrix.
 row: cell types, column: samples.}
 
-\item{method}{One of c("rmse", "mape", "mae", "smape", "kendall", "pearson", "spearman"),}
+\item{method}{One of c("rmse", "mape", "mae", "smape", "kendall", "pearson", "spearman", "CCC"),}
 
 \item{type}{One of c("sample.", "celltype", "all").
 For "sample.", generate metric for each sample.
