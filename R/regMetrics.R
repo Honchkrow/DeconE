@@ -17,6 +17,7 @@
 #'
 #' @importFrom Metrics rmse mape mae smape
 #' @importFrom stats cor
+#' @importFrom DescTools CCC
 #'
 #' @export
 #'
