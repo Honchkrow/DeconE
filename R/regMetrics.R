@@ -6,7 +6,7 @@
 #' row: cell types, column: samples.
 #' @param predicted The predicted proportion of cell types in matrix.
 #' row: cell types, column: samples.
-#' @param method One of c("rmse", "mape", "mae", "smape", "kendall", "pearson", "spearman"),
+#' @param method One of c("rmse", "mape", "mae", "smape", "kendall", "pearson", "spearman", "CCC"),
 #' @param type One of c("sample.", "celltype", "all").
 #' For "sample.", generate metric for each sample.
 #' For "celltype", generate metric for each cell type.
@@ -105,9 +105,14 @@ regMetrics <- function(actual, predicted, method = NULL, type = NULL) {
             }
             names(res) <- rownames(actual)
 
-        } else if (method %in% c("pearson", "kendall", "spearman")){
+        } else if (method %in% c("pearson", "kendall", "spearman", "CCC")){
             for (i in seq(num_celltype)) {
-                res <- c(res, cor(x = actual[i, ], y = predicted[i, ], method = method))
+                if (method %in% c("pearson", "kendall", "spearman")){
+                    res <- c(res, cor(x = actual[i, ], y = predicted[i, ], method = method))
+                }else{
+                    res <- c(res, CCC(actual[i, ], predicted[i, ], ci = "z-transform", conf.level = 0.95))
+                }
+
             }
             names(res) <- rownames(actual)
 
@@ -131,8 +136,13 @@ regMetrics <- function(actual, predicted, method = NULL, type = NULL) {
         } else if (method == "mae"){
             res <- c(res, mae(actual = actual, predicted = predicted))
 
-        } else if (method %in% c("pearson", "kendall", "spearman")){
-            res <- c(res, cor(x = actual, y = predicted, method = method))
+        } else if (method %in% c("pearson", "kendall", "spearman", "CCC")){
+            # res <- c(res, cor(x = actual, y = predicted, method = method))
+            if (method %in% c("pearson", "kendall", "spearman")){
+                res <- c(res, cor(x = actual, y = predicted, method = method))
+            }else{
+                res <- c(res, CCC(actual, predicte[i, ], ci = "z-transform", conf.level = 0.95))
+            }
 
         } else {
             stop("Parameter 'method' is invalid.")
