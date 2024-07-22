@@ -24,3 +24,7 @@
 # Deconer 1.0.3
 
 * change name to Deconer
+
+# Deconer 1.0.4
+
+* add SSIM, JS and CCC
