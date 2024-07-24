@@ -735,4 +735,4 @@ Please cite the corresponding article when using these datasets.
 
 ## Citation
 
-Zhang, W., Xu, H., Qiao, R., Zhong, B., Zhang, X., Gu, J., Zhang, X., Wei, L. and Wang, X., 2022. ARIC: accurate and robust inference of cell type proportions from bulk gene expression or DNA methylation data. Briefings in Bioinformatics, 23(1), p.bbab362.
+Zhang, Wei, et al. "Deconer: A comprehensive and systematic evaluation toolkit for reference-based cell type deconvolution algorithms using gene expression data." bioRxiv (2023): 2023-12.
