@@ -16,6 +16,7 @@
 
 - [Deconer manual](https://honchkrow.github.io/Deconer/inst/documents/Deconer_manual.pdf)
 - [Deconer vignettes](https://honchkrow.github.io/Deconer/inst/documents/Deconer_intro.html)
+- [Deconer datasets](https://honchkrow.github.io/Deconer_dataset/)
 
 ## Section 1: Introduction
 
