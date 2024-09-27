@@ -705,25 +705,25 @@ Functions related to single-cell data are similar to those used for large-scale 
 Additionally, we have curated 14 well-characterized deconvolution datasets for users. Some of these datasets include known cell-type proportions, while others may not have known true proportions but have associated phenotypic information. We provide these datasets in a processed format, including **bulk data**, **reference data**, and **true proportions**, making them readily usable. The summarized datasets are presented in the following table.
 
 
-|  NO.  |          NAME           | Description | Reference Type | Proportion |                              Source                               |
-| :---: | :---------------------: | :---------: | :------------: | :--------: | :---------------------------------------------------------------: |
-|   1   |          Abbas          | Microarray  |      Bulk      |   known    |  [Abbas, *et al.*](https://doi.org/10.1371/journal.pone.0006098)  |
-|   2   |          Becht          | Microarray  |      Bulk      |   known    |   [Becht, *et al.*](https://doi.org/10.1186/s13059-016-1070-5)    |
-|   3   |          Gong           | Microarray  |      Bulk      |   known    |  [Gong, *et al.*](https://doi.org/10.1371/journal.pone.0027156)   |
-|   4   |          Kuhn           | Microarray  |      Bulk      |   known    |       [Kuhn, *et al.*](https://doi.org/10.1038/nmeth.1710)        |
-|   5   |         Linsley         |   RNA-seq   |      Bulk      |   known    | [Linsley, *et al.*](https://doi.org/10.1371/journal.pone.0109760) |
-|   6   |           Liu           |   RNA-seq   |      Bulk      |   known    |        [Liu, *et al.*](https://doi.org/10.1093/nar/gkv412)        |
-|   7   |         Parsons         |   RNA-seq   |      Bulk      |   known    |  [Parsons, *et al.*](https://doi.org/10.1186/s12864-015-1912-7)   |
-|   8   |        Shen-Orr         | Microarray  |      Bulk      |   known    |     [Shen-Orr, *et al.*](https://doi.org/10.1038/nmeth.1439)      |
-|   9   |           Shi           | Microarray  |      Bulk      |   known    |         [Shi, *et al.*](https://doi.org/10.1038/nbt1239)          |
-|  10   |           T2D           |   RNA-seq   |  Single Cell   |  unknown   |   [Fadista, *et al.*](https://doi.org/10.1073/pnas.1402665111)    |
-|  11   |        TCGA_LUSC        |   RNA-seq   |      Bulk      |  unknown   |     [Vasaikar, *et al.*](https://doi.org/10.1093/nar/gkx1090)     |
-|  12   |         TCGA_OV         |   RNA-seq   |      Bulk      |  unknown   |     [Vasaikar, *et al.*](https://doi.org/10.1093/nar/gkx1090)     |
-|  13   |     kidney_Arvaniti     |   RNA-seq   |  Single Cell   |  unknown   |     [Arvaniti, *et al.*](https://doi.org/10.1038/srep26235)      |
-|  14   |   kidney_Arvaniti_TPM   |   RNA-seq   |      Bulk      |  unknown   |     [Arvaniti, *et al.*](https://doi.org/10.1038/srep26235)      |
-|  15   |     kidney_Craciun      |   RNA-seq   |  Single Cell   |  unknown   |    [Craciun, *et al.*](https://doi.org/10.1681/ASN.2015020225)    |
-|  16   |   kidney_Craciun_TPM    |   RNA-seq   |      Bulk      |  unknown   |    [Craciun, *et al.*](https://doi.org/10.1681/ASN.2015020225)    |
-|  17   | TCGA 35 cancer datasets |   RNA-seq   |      Bulk      |  unknown   |     [Vasaikar, *et al.*](https://doi.org/10.1093/nar/gkx1090)     |
+| NO. | NAME | Description | Reference Type | Proportion | Sample Size | Source |
+| :----: | :----: | :----: | :----: | :----: | :----: | :----: |
+| 1 | Abbas | Microarray | Bulk | known | 12 | [Abbas, *et al.*](https://doi.org/10.1371/journal.pone.0006098) |
+| 2 | Becht | Microarray | Bulk | known | 10 | [Becht, *et al.*](https://doi.org/10.1186/s13059-016-1070-5) |
+| 3 | Gong | Microarray | Bulk | known | 9 | [Gong, *et al.*](https://doi.org/10.1371/journal.pone.0027156) |
+| 4 | Kuhn | Microarray | Bulk | known | 10 | [Kuhn, *et al.*](https://doi.org/10.1038/nmeth.1710) |
+| 5 | Linsley | RNA-seq | Bulk | known | 5 | [Linsley, *et al.*](https://doi.org/10.1371/journal.pone.0109760) |
+| 6 | Liu | RNA-seq | Bulk | known | 24 | [Liu, *et al.*](https://doi.org/10.1093/nar/gkv412) |
+| 7 | Parsons | RNA-seq | Bulk | known | 30 | [Parsons, *et al.*](https://doi.org/10.1186/s12864-015-1912-7) |
+| 8 | Shen-Orr | Microarray | Bulk | known | 33 | [Shen-Orr, *et al.*](https://doi.org/10.1038/nmeth.1439) |
+| 9 | Shi | Microarray | Bulk | known | 60 | [Shi, *et al.*](https://doi.org/10.1038/nbt1239) |
+| 10 | T2D | RNA-seq | Single Cell | unknown | 89 | [Fadista, *et al.*](https://doi.org/10.1073/pnas.1402665111) |
+| 11 | TCGA_LUSC | RNA-seq | Bulk | unknown | 130 | [Vasaikar, *et al.*](https://doi.org/10.1093/nar/gkx1090) |
+| 12 | TCGA_OV | RNA-seq | Bulk | unknown | 514 | [Vasaikar, *et al.*](https://doi.org/10.1093/nar/gkx1090) |
+| 13 | kidney_Arvaniti | RNA-seq | Single Cell | unknown | 11 | [Arvaniti, *et al.*](https://doi.org/10.1038/srep26235) |
+| 14 | kidney_Arvaniti_TPM | RNA-seq | Bulk | unknown | 11 | [Arvaniti, *et al.*](https://doi.org/10.1038/srep26235) |
+| 15 | kidney_Craciun | RNA-seq | Single Cell | unknown | 19 | [Craciun, *et al.*](https://doi.org/10.1681/ASN.2015020225) |
+| 16 | kidney_Craciun_TPM | RNA-seq | Bulk | unknown | 19 | [Craciun, *et al.*](https://doi.org/10.1681/ASN.2015020225) |
+| 17 | TCGA 35 cancer datasets | RNA-seq | Bulk | unknown | - | [Vasaikar, *et al.*](https://doi.org/10.1093/nar/gkx1090) |
 
 We have provided processed 'LUSC' and 'OV' datasets from TCGA, which have been validated by [FARDEEP](https://cran.r-project.org/web/packages/FARDEEP/index.html). Additionally, datasets related to other cancers are available in the form of expression matrix along with the original information.
 
